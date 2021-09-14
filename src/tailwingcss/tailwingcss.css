@@ -1,0 +1,4 @@
+.content {
+    @apply hover:text-yellow-300 transform hover:translate-y-1 hover:scale-100;
+    transition: all 0.3s;
+}

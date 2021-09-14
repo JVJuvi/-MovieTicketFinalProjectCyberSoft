@@ -1,0 +1,60 @@
+.ghe{
+    border: 3px solid orange;
+    width: 45px;
+    height: 35px;
+    font-size: 12px;
+    margin-left: 7px;
+    margin-bottom: 1%;
+    border-radius: 5px;
+}
+
+.gheDuocChon {
+    border: 3px solid orange !important;
+    background: orange !important;
+    color: #000 !important;
+    border-radius: 5px;
+    width: 45px;
+    height: 35px;
+
+}
+
+.gheDangChon {
+    background: rgb(109, 238, 109) !important;
+    border: 3px solid rgb(109, 238, 109) !important;
+    color: #000 !important;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 45px;
+    height: 35px;
+
+}
+
+.gheVip {
+    background: rgb(228, 74, 8);
+    border: 3px solid rgb(228, 74, 8);
+    color: #000;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 45px;
+    height: 35px;
+
+}
+
+.gheMinhDat {
+    background: rgb(80, 40, 92) !important;
+    border: 3px solid rgb(80, 40, 92) !important;
+    color: #ffff !important;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 45px;
+    height: 35px;
+}
+.gheKhachDat {
+    background: rgb(14, 23, 105) !important;
+    border: 3px solid rgb(14, 23, 105) !important;
+    color: #ffff !important;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 45px;
+    height: 35px;
+}

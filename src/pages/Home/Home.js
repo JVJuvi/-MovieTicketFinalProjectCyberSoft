@@ -1,0 +1,40 @@
+import React, { useEffect } from 'react'
+import HomeMenu from './HomeMenu/HomeMenu';
+import { useDispatch, useSelector } from 'react-redux';
+import MultipRowSlick from '../../components/RSlick/MulltipRowSlick';
+import Films from '../../components/Films/Films';
+import { LayDanhSachPhimAction } from '../../redux/actions/QuanLyPhimAcTion';
+import { ChevronLeft } from '@material-ui/icons';
+import { layDanhSachCumRapAction } from '../../redux/actions/QuanLyRapAction';
+import HomeCarousel from '../../templates/HomeTemplate/Layout/HomeCarousel/HomeCarousel';
+
+
+export default function Home(props) {
+
+    const dispatch = useDispatch();
+
+    const { arrPhim } = useSelector(state => state.QuanLyPhimReducer);
+    console.log('arrPhim', arrPhim)
+
+    const {arrRap} = useSelector(state => state.QuanLyRapReducer);
+    console.log('arrRap', arrRap)
+
+    useEffect(()=>{
+        dispatch(LayDanhSachPhimAction())
+        dispatch(layDanhSachCumRapAction())
+    },[])
+
+    return (
+        <div>
+            <HomeCarousel />  
+            <section className="text-gray-600 body-font">
+                <div className="container px-5 py-24 mx-auto">
+                    <MultipRowSlick arrPhim={arrPhim} />
+                </div>
+            </section>
+            <div className="mx-36">
+                <HomeMenu arrRap={arrRap} />
+            </div>
+        </div>
+    )
+}
