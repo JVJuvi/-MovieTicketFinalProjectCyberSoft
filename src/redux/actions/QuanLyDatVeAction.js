@@ -25,7 +25,7 @@ export const layChiTietPhongVeAcTion = (maLichChieu) => {
 }
 
 export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
-    return async(dispatch) => {
+    return async(dispatch, getState) => {
         try {
             dispatch({
                 type: DISPPLAY_LOADING
@@ -37,17 +37,16 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
             // sau khi đặt vé thành công api load lại phòng vé
             await dispatch(layChiTietPhongVeAcTion(thongTinDatVe.maLichChieu))
             await dispatch({type: DAT_VE_HOAN_TAT})
-            
+            await dispatch({type: HIDE_LOADING})    
 
-            dispatch({
-                type: HIDE_LOADING
-            })
-            dispatch({
-                type: 'CHUYEN_TAB',
-            })
+            let userLogin = getState().QuanLyNguoiDungReducer.userLogin;
+            connection.invoke("datGheThanhCong", userLogin.taiKhoan, thongTinDatVe.maLichChieu)
+
+            dispatch({type: 'CHUYEN_TAB',})
             
             
         } catch (error) {
+            dispatch({type: HIDE_LOADING})
             console.log('error', error.response.data)
         }
     }

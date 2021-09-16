@@ -3,14 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from "./Checkout.module.css";
 import { datVeAction, layChiTietPhongVeAcTion, datGheAction } from '../../redux/actions/QuanLyDatVeAction';
 import './Checkout.css';
-import { CheckOutlined, CloseCircleOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
-import { DAT_VE } from '../../redux/types/QuanLyDatVeType';
+import { CheckOutlined, CloseCircleOutlined, SmileOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
+import { DAT_GHE, DAT_VE } from '../../redux/types/QuanLyDatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
 import { Tabs } from 'antd';
 import { layThongTinNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import moment from 'moment';
 import { connection } from '../../index';
+import { history } from '../../App';
+import { USER_LOGIN, TOKEN_CYBERSOFT } from '../../util/setting';
+import { NavLink } from 'react-router-dom';
+
 
 
 
@@ -24,23 +28,59 @@ function Checkout(props) {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(layChiTietPhongVeAcTion(props.match.params.id))
+        const action = layChiTietPhongVeAcTion(props.match.params.id);
+        dispatch(action);
+
+        // có 1 client nào thực hiện việc đặt vé thành công mình sẽ load lại danh sách phòng vé của lịch chiếu đó 
+        connection.on("datVeThanhCong", () => {
+            dispatch(action);
+        })
+
+        // vừa vào trang load tất vả ghế của các người khác đang đặt
+        connection.invoke("loadDanhSachGhe", props.match.params.id);
+
+
 
         //load danh sách ghê đang đặt từ server về (lắng nghe tính hiệu từ server trả về)
         connection.on("loadDanhSachGheDaDat", (dsGheKhachDat) => {
             console.log('danhSachGheKhachDat', dsGheKhachDat);
             //bước 1 loại mình ra khỏi danh sách
             dsGheKhachDat = dsGheKhachDat.filter(item => item.taiKhoan !== userLogin.taiKhoan)
+
             //bước 2 gộp danh sách ghế khách đặt ở tất cả user thành 1 mảng chung
             let arrGheKhachDat = dsGheKhachDat.reduce((result,item,index)=>{
                 let stringItem = JSON.parse(item.danhSachGhe);
                 return [...result,...stringItem]
-            },[])
+            },[]);
+            //không được để có mã ghế trùng nhau nếu 2 tài khoản cùng chọn 1 mã ghế sao đó đưa lên redux
+            arrGheKhachDat = _.uniqBy(arrGheKhachDat,'maGhe');
             console.log('arrGheKhachDat',arrGheKhachDat)
 
+            dispatch({
+                type: DAT_GHE,
+                payload: arrGheKhachDat,
+            })
         })
 
+        // cài đặc sự kiện khi reload trang
+        window.addEventListener("beforeunload", clearGhe );
+
+
+        return () => {
+            clearGhe()
+            window.removeEventListener("beforeunload", clearGhe)
+        }
+
     },[])
+
+
+
+    const clearGhe = function(event) { 
+        connection.invoke('huyDat', userLogin.taiKhoan, props.match.params.id)
+    }
+
+
+
 
     console.log('chiTietPhongVe', chiTietPhongVe)
     console.log('danhSachGheDangDat',danhSachGheDangDat)
@@ -119,7 +159,7 @@ function Checkout(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-3 border-2 min-h-screen">
+                <div className="col-span-3 min-h-screen">
                     <div className="px-2">
                         <h1 className="text-4xl text-center mt-3" style={{color: '#7ed321'}}>{danhSachGheDangDat.reduce((tongTien,item,index)=>{
                                 return tongTien += item.giaVe
@@ -150,6 +190,8 @@ function Checkout(props) {
                             {/* thay input bằng reducer email */}
                         </div>                  
                         <div className="h-full flex flex-col justify-end" style={{marginTop: '100px'}}>
+
+
                             <button className="bg-green-400 rounded-sm p-3 text-white font-bold text-3xl" onClick={()=>{
                                 const thongTinDatVe = new ThongTinDatVe();
                                 thongTinDatVe.maLichChieu = props.match.params.id;
@@ -158,6 +200,8 @@ function Checkout(props) {
                                 
                                 dispatch(datVeAction(thongTinDatVe))
                             }}>ĐẶT VÉ</button>
+
+
                         </div>                     
                     </div>
                 </div>
@@ -235,9 +279,32 @@ export default function (props) {
 
     const dispatch = useDispatch();
 
+    useEffect(()=>{
+        return ()=>{
+            dispatch({
+                type: 'CHUYEN_TAB_ACTIVE',
+                payload: '1'
+            })
+        }
+    })
+
+    // hiện tên người dùng góc phải và đăng xuất
+    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
+    const operations = <Fragment>
+        {!_.isEmpty(userLogin) ? <Fragment><button onClick={()=>{
+            history.push('/profile')
+        }}> <div className="flex align-items-center"> <div className="rounded-full bg-red-500" style={{width: '50px',height: '50px'}}></div> <div> <h5>{userLogin.hoTen}</h5></div> </div> </button> <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200" onClick={()=>{
+            localStorage.removeItem(USER_LOGIN);
+            localStorage.removeItem(TOKEN_CYBERSOFT);
+            history.push('/home');
+            window.location.reload();
+        }}>Đăng xuất</button> </Fragment>  : ''}
+    </Fragment>
+    
+
     return (
-        <div className="min-h-screen">
-            <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key)=>{
+        <div className="min-h-screen px-5">
+            <Tabs tabBarExtraContent={operations} defaultActiveKey="1" activeKey={tabActive} onChange={(key)=>{
                 dispatch({
                     type: 'CHUYEN_TAB_ACTIVE',
                     payload: key
@@ -248,6 +315,11 @@ export default function (props) {
                 </TabPane>
                 <TabPane tab="02 KẾT QUẢ ĐẶT GHẾ" key="2">
                         <KetQuaDatVe {...props} />
+                </TabPane>
+                <TabPane tab={<button onClick={()=>{
+                    history.push('/home')
+                }}><HomeOutlined /></button>} key="3">
+                        
                 </TabPane>
             </Tabs>
         </div>

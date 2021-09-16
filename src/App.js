@@ -1,19 +1,9 @@
 import {Suspense, lazy} from 'react';
-import Grid from './tailwingcss/Grid';
-import JoinDemo from './tailwingcss/JoinDemo';
-import Padding from './tailwingcss/Padding';
-import Chunk from './tailwingcss/Chunk';
-import Fill from './tailwingcss/Fill';
 import { BrowserRouter, Router, Switch } from 'react-router-dom';
-import { UserTemplate } from './templates/UserTemplate';
-import DangKy from './layouts/DangKy/DangKy';
-import DangNhap from './layouts/DangNhap/DangNhap';
+import { UserTemplate } from './templates/UserTemplate/UserTemplate';
+
 // chuyen huong
 import { createBrowserHistory } from 'history';
-import { AdminTemplate } from './templates/AdminTemplate';
-import Films from './layouts/Admin/Films';
-import AddFilm from './layouts/Admin/AddFilm';
-import Menu from './layouts/MonAn/Menu';
 import { Route } from 'react-router-dom';
 import { HomTemplate } from './templates/HomeTemplate/Hometemplate';
 import Home from './pages/Home/Home';
@@ -23,11 +13,17 @@ import Login from './pages/Login/Login';
 import Register from './pages/Resister/Register';
 import HomeMenu from './pages/Home/HomeMenu/HomeMenu';
 import Detail from './pages/Detail/Detail';
+import { AdminTemplate } from './templates/AdminTemplate/AdminTemplate';
+import Dashboard from './pages/Admin/Dashboard/Dashboard';
 // import CheckOutTemPlate from './templates/CheckOutTemPlate/CheckOutTemPlate';
 import Checkout from './pages/Checkout/Checkout';
 import Loading from './components/Loading/Loading';
+import Profile from './pages/Profile/Profile';
+import Films from './pages/Admin/Films/Films';
+import ShowTime from './pages/Admin/ShowTime/ShowTime';
 
 const CheckOutTemPlateLazy = lazy(()=> import ('./templates/CheckOutTemPlate/CheckOutTemPlate'))
+
 
 
 export const history = createBrowserHistory();
@@ -38,23 +34,30 @@ function App() {
     <Router history={history}>
         <Loading />
         <Switch>
-          <HomTemplate path="/" exact component={Home} />
           <HomTemplate path="/home" exact component={Home} />
           <HomTemplate path="/homemenu" exact component={HomeMenu} />
           <HomTemplate path="/contact" exact component={Contact} />
           <HomTemplate path="/detail/:id" exact component={Detail} />
           <HomTemplate path="/new" exact component={New} />
+          <HomTemplate path="/profile" exact component={Profile} />
 
+          
           <UserTemplate path="/login" exact component={Login} />
+          <UserTemplate path="/register" exact component={Register} />
 
-          <Route path="/register" exact component={Register} />
+          <AdminTemplate path="/admin" exact component={Dashboard} />
+          <AdminTemplate path="/admin/user" exact component={Dashboard} />
+          <AdminTemplate path="/admin/films" exact component={Films} />
+          <AdminTemplate path="/admin/showtime" exact component={ShowTime} />
+
+
           {/* lazy loading react */}
           <Suspense fallback={<h1>Loading ....</h1>}>
             {/* path="/checkout/:id" */}
             <CheckOutTemPlateLazy path="/checkout/:id" exact component={Checkout} />  
           </Suspense>
 
-
+          <HomTemplate path="/" exact component={Home} />
         </Switch>
     </Router>
   );

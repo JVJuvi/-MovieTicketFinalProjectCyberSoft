@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Films() {
+export default function Dashboard() {
     return (
         <div>
-            films
+            dashboard
         </div>
     )
 }

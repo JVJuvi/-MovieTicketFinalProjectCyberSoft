@@ -50,7 +50,7 @@ export default function HomeMenu(props) {
                                                                     <d className="text-red-500">Thời gian: </d>
                                                                     {phim.lstLichChieuTheoPhim.splice(0,10).map((lichChieu,index)=>{
                                                                     return (
-                                                                        <NavLink to={`/checkout/${phim.maPhim}`} key={index}>
+                                                                        <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
                                                                             {moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}
                                                                         </NavLink>
                                                                         )

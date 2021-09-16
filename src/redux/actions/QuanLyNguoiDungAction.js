@@ -5,19 +5,22 @@ import { LAY_THONG_TIN_NGUOI_DUNG } from '../types/QuanLyNguoiDungType';
 
 
 
-export const dangKyAsyncAction = (values) => {
-    return (dispatch) => {
-        let promise = http.post(`/api/QuanLyNguoiDung/DangKy`,values);
-        promise.then(result => {
-            console.log('result', result.data);
-            alert('Đăng ký thành công')
-            history.push('/signin');          
-        })
-        promise.catch(error => {
-            console.log('error', {error})
-        })
+export const dangKyNguoiDungAction = (values) => {
+    return async(dispatch) => {
+        try {
+            const result = await quanLyNguoiDungService.dangKyNguoiDung(values);
+            console.log('result', result.data)
+            await alert("Đăng ký thành công")
+            await history.goBack();
+        } catch(error) {
+            console.log('error', error.response?.data);
+            // alert("Đăng ký không thành công vui lòng đăng ký lại")
+            alert(error.response?.data.content)
+        }
     }
 }
+
+
 
 export const dangNhapAction = (values) => {
     return async (dispatch) => {

@@ -1,5 +1,5 @@
 
-import { DAT_VE, DAT_VE_HOAN_TAT, LAY_CHI_TIET_DAT_VE } from '../types/QuanLyDatVeType';
+import { DAT_GHE, DAT_VE, DAT_VE_HOAN_TAT, LAY_CHI_TIET_DAT_VE } from '../types/QuanLyDatVeType';
 import { ThongTinLichChieu } from '../../_core/models/ThongTinPhongVe';
 
 
@@ -8,7 +8,7 @@ const stateDefault = {
     chiTietPhongVe: new ThongTinLichChieu,
       // ban đầu reducer bằng rổng nên trang checkout ko thể bóc tách lấy giá trị được ,khi api trả về thì mới có dữ liệu , nên ta phải tạo 1 lớp đối tượng để sẳn maintain code và để không bị báo lỗi
     danhSachGheDangDat: [],
-    danhSachGheKhachDat: [{maGhe: 55408},{maGhe:55409}],
+    danhSachGheKhachDat: [],
     tabActive: '1',
 }   
 
@@ -39,6 +39,12 @@ const QuanLyDatVeReducer = (state = stateDefault, action) => {
         }
         case 'CHUYEN_TAB_ACTIVE': {
             state.tabActive = action.payload;
+            return {...state};
+        }
+        case DAT_GHE: {
+            let danhSachGheKhachDatMoi = [...state.danhSachGheKhachDat];
+            danhSachGheKhachDatMoi = action.payload;
+            state.danhSachGheKhachDat = danhSachGheKhachDatMoi;
             return {...state};
         }
         default: return{...state}
