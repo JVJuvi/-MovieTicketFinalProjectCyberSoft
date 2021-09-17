@@ -9,14 +9,14 @@ export const LayDanhSachPhimAction = () => {
     return async (dispatch) => {
         try {
             const result = await quanLyPhimService.layDanhSachPhim();
-            console.log('layPhim', result.data.content)
+            console.log('layPhim', result.data)
             dispatch({
                 type: LAY_DANH_SACH_PHIM,
                 payload: result.data.content
             })
 
         } catch(error) {
-            console.log('error', error)
+            console.log('error', error.response?.data)
         }
     }
 }

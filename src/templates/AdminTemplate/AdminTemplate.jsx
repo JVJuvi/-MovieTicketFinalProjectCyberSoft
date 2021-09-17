@@ -10,12 +10,14 @@ import {
     UserOutlined,
     VideoCameraOutlined,
     UploadOutlined,
+    FileOutlined,
 } from '@ant-design/icons';
 import { useSelector } from "react-redux";
 import _ from "lodash";
 import { history } from "../../App";
 import { TOKEN_CYBERSOFT, USER_LOGIN } from "../../util/setting";
 import { Redirect } from "react-router";
+import SubMenu from "antd/lib/menu/SubMenu";
 
 const { Header, Sider, Content } = Layout;
 
@@ -75,11 +77,14 @@ export const AdminTemplate = (props) => {
                                 DashBoard
                             </NavLink>
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                            <NavLink to="/admin/films">
-                                Quản lý phim
-                            </NavLink>
-                        </Menu.Item>
+                        <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
+                            <Menu.Item key="10" icon={<FileOutlined />}>
+                                <NavLink to="/admin/films">Films</NavLink>                         
+                            </Menu.Item>
+                            <Menu.Item key="11" icon={<FileOutlined />}>
+                                <NavLink to="/admin/films/addnew">Add new</NavLink>             
+                            </Menu.Item>
+                        </SubMenu>
                         <Menu.Item key="3" icon={<UploadOutlined />}>
                             <NavLink to="/admin/showtime">
                                 Quản lý lịch chiếu

@@ -21,8 +21,10 @@ import Loading from './components/Loading/Loading';
 import Profile from './pages/Profile/Profile';
 import Films from './pages/Admin/Films/Films';
 import ShowTime from './pages/Admin/ShowTime/ShowTime';
+import AddNew from './pages/Admin/Films/AddNew/AddNew';
 
 const CheckOutTemPlateLazy = lazy(()=> import ('./templates/CheckOutTemPlate/CheckOutTemPlate'))
+
 
 
 
@@ -48,6 +50,7 @@ function App() {
           <AdminTemplate path="/admin" exact component={Dashboard} />
           <AdminTemplate path="/admin/user" exact component={Dashboard} />
           <AdminTemplate path="/admin/films" exact component={Films} />
+          <AdminTemplate path="/admin/films/addnew" exact component={AddNew} />
           <AdminTemplate path="/admin/showtime" exact component={ShowTime} />
 
 
