@@ -19,8 +19,10 @@ export default function FilmsFlip(props) {
                     </div>
                     <div className="w-full h-full" style={{position: 'absolute',backgroundColor: 'rgba(0,0,0,.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <div>
-                            <div className="rounder-full cursor-pointer"><PlayCircleOutlined style={{fontSize: '50px'}} /></div>
-                            <div className="text-2xl font-bold">{item.tenPhim}</div>
+                            <button className="rounder-full cursor-pointer transition duration-300 ease-in-out hover:opacity-75">
+                                <img src='https://tix.vn/app/assets/img/icons/play-video.png' />    
+                            </button>
+                            <div className="text-2xl ">{item.tenPhim}</div>
                         </div>
                     </div>
                 </div>

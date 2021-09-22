@@ -1,12 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
-import { Button, Table } from 'antd';
-import { Input, Space } from 'antd';
-import { AudioOutlined, EditOutlined, SearchOutlined, DeleteOutlined,CalendarOutlined } from '@ant-design/icons';
+import React, { Fragment, useEffect, useRef } from 'react';
+import { Button, Table, AutoComplete, Input } from 'antd';
+import { EditOutlined, DeleteOutlined, ScheduleOutlined} from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { LayDanhSachPhimAction } from '../../../redux/actions/QuanLyPhimAcTion';
-import { render } from '@testing-library/react';
+import { LayDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanLyPhimAcTion';
 import { NavLink } from 'react-router-dom';
-import { colors } from '@material-ui/core';
+import { history } from '../../../App';
 
 
 
@@ -17,12 +15,14 @@ export default function Films(props) {
     const {arrPhimDefault} = useSelector(state => state.QuanLyPhimReducer)
     console.log('arrPhimDefault', arrPhimDefault)
 
+    const searchRef = useRef(null)
+
     const dispatch = useDispatch();
 
     // phòng trường hợp admin vào trực tiếp trang admin mà 1 số api chỉ call ở trang người dùng thì ta nên call lại ở admin
 
     useEffect(() => {
-        dispatch(LayDanhSachPhimAction());
+        dispatch(LayDanhSachPhimAction(props.match.params.id));
     },[])
 
     const columns = [
@@ -74,8 +74,17 @@ export default function Films(props) {
             dataIndex: 'hanhDong',
             render: (text, film, index) => {
                 return <Fragment>
-                    <NavLink to='/' className="mr-2 text-3xl"><EditOutlined style={{color: 'blue'}}/></NavLink>
-                    <NavLink to='/' className="text-3xl"><DeleteOutlined style={{color: 'red'}}/></NavLink>
+                    <NavLink key={1} to={`/admin/films/edit/${film.maPhim}`} className="mr-2 text-3xl"><EditOutlined style={{color: 'blue'}}/></NavLink>
+                    <span key={2} className="mr-2 text-3xl" style={{cursor: 'pointer'}} onClick={()=>{
+                        //xác nhận muốn xoá
+                        if(window.confirm('Bạn có chắc muốn xoá phim ' + film.tenPhim)) {
+                            //gọi action
+                            dispatch(xoaPhimAction(film.maPhim))
+                        }
+                    }}><DeleteOutlined style={{color: 'red'}}/></span>
+                    <NavLink key={3} to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} className="mr-2 text-3xl" onClick={()=>{
+                        localStorage.setItem('filmParams', JSON.stringify(film))
+                    }}><ScheduleOutlined style={{color: 'green'}}/></NavLink>
                 </Fragment>
             },
             sortDirections: ['descend', 'ascend'],
@@ -86,9 +95,14 @@ export default function Films(props) {
     const data = arrPhimDefault;
 
     const onSearch = value => {
-
         console.log(value);
-
+        // gọi api lấy danhSachPhim
+        if(searchRef.current) {
+            clearTimeout(searchRef.current)
+        }
+        searchRef.current = setTimeout(()=>{
+            dispatch(LayDanhSachPhimAction(value))
+        },300);
     };
 
     function onChange(pagination, filters, sorter, extra) {
@@ -98,14 +112,11 @@ export default function Films(props) {
     return (
         <div>
             <h3 className="text-4xl">Quản lý phim</h3>
-            <Button className="mb-3">Thêm phim</Button>
-            <Search
-                className="mb-5"
-                placeholder="Tìm phim"
-                enterButton={<SearchOutlined />}
-                size="large"
-                onSearch={onSearch}
-            />
+            <Button className="mb-3" onClick={()=>{
+                history.push('/admin/films/addnew')
+            }}>Thêm phim</Button>
+            <br />
+            <AutoComplete style={{marginBottom: '40px', width: '100%'}} onSearch={onSearch} placeholder="Tìm phim bằng từ khoá"  />
             <Table columns={columns} dataSource={data} onChange={onChange} rowKey={"maPhim"} />
         </div>
     )

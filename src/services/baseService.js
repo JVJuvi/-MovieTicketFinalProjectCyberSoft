@@ -11,7 +11,7 @@ export class baseService {
             data:model,
             headers: {
                 'TokenCybersoft': TOKEN_CYBERSOFT,
-                'Authorization': 'Bearer' + localStorage.getItem(ACCESS_TOKEN)
+                'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
             } //JWT
         }) 
     }
@@ -36,7 +36,7 @@ export class baseService {
             method:'GET',
             headers: {
                 'TokenCybersoft': TOKEN_CYBERSOFT,
-                'Authorization': 'Bearer' + localStorage.getItem(ACCESS_TOKEN)
+                'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
             } //TOKEN yêu cầu từ backend chứng minh user đã đăng nhập rồi
         })
     }
@@ -47,7 +47,7 @@ export class baseService {
             method:'DELETE',
             headers: {
                 'TokenCybersoft': TOKEN_CYBERSOFT,
-                'Authorization': 'Bearer' + localStorage.getItem(ACCESS_TOKEN)
+                'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
             } //token yêu cầu từ backend chứng minh user đã đăng nhập rồi
         })
     }

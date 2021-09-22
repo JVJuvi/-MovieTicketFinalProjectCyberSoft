@@ -8,7 +8,7 @@ const CheckOutTemPlate = (props) => {
 
     useEffect(()=>{
         window.scrollTo(0, 0);
-    })
+    },[])
 
     if(!localStorage.getItem(USER_LOGIN)) {
         return <Redirect to="/login" />

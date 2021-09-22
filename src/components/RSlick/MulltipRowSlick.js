@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 import styleSlick from "./MultipleRowSlick.module.css"
-import Films from "../Films/Films";
 import FilmsFlip from "../Films/FilmsFlip";
 import { LAY_PHIM_DANG_CHIEU, LAY_PHIM_SAP_CHIEU } from "../../redux/types/QuanLyPhimType";
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +35,6 @@ const MultipRowSlick = (props) => {
       return arrPhim.map((item,index)=>{
           return (
               <div key={index} className={`${styleSlick['width-item']}`}>
-                  {/* <Films item={item} /> */}
                   <FilmsFlip item={item} />
               </div>
           )
@@ -49,7 +47,7 @@ const MultipRowSlick = (props) => {
         className: "center variable-width",
         centerMode: true,
         infinite: true,
-        centerPadding: "80px",
+        centerPadding: "140px",
         slidesToShow: 3,
         speed: 500,
         rows: 1,    

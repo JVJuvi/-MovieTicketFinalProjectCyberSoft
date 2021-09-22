@@ -14,7 +14,7 @@ export const CarouselAction = () => {
                 payload: result.data.content
             })
         } catch (error){
-            console.log('error', error)
+            console.log('error', error.response?.data)
         }
     }
 }

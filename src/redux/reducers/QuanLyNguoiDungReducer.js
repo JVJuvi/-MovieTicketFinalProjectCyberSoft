@@ -1,5 +1,5 @@
 import { USER_LOGIN } from '../../util/setting';
-import { LAY_THONG_TIN_NGUOI_DUNG } from '../types/QuanLyNguoiDungType';
+import { LAY_DANH_SACH_NGUOI_DUNG, LAY_THONG_TIN_NGUOI_DUNG, LAY_THONG_TIN_NGUOI_DUNG_ADMIN } from '../types/QuanLyNguoiDungType';
 
 let usLogin = null;
 
@@ -9,7 +9,9 @@ if(localStorage.getItem(USER_LOGIN)) {
 
 const stateDefault = {
     userLogin: usLogin,
-    thongTinNguoiDung: {}
+    thongTinNguoiDung: {},
+    danhSachNguoiDung: [],
+    thongTinNguoiDungAdmin: {}
 }
 
 const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
@@ -22,6 +24,18 @@ const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
         case LAY_THONG_TIN_NGUOI_DUNG: {
             state.thongTinNguoiDung = action.payload;
             return {...state};
+        }
+        case LAY_DANH_SACH_NGUOI_DUNG: {
+            let danhSachNguoiDungnew = action.payload
+            let danhSachNguoiDungnewThemSTT = danhSachNguoiDungnew.map((ds,index)=>{
+                return {...ds, stt: index+1} 
+            })
+            state.danhSachNguoiDung = danhSachNguoiDungnewThemSTT;
+            return {...state};
+        }
+        case LAY_THONG_TIN_NGUOI_DUNG_ADMIN: {
+            state.thongTinNguoiDungAdmin = action.payload;
+            return {...state}
         }
         default: return {...state}
     }

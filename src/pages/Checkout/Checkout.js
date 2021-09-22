@@ -8,12 +8,11 @@ import { DAT_GHE, DAT_VE } from '../../redux/types/QuanLyDatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
 import { Tabs } from 'antd';
-import { layThongTinNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungAction';
+import { layThongTinNguoiDungDanNhapAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import moment from 'moment';
 import { connection } from '../../index';
 import { history } from '../../App';
 import { USER_LOGIN, TOKEN_CYBERSOFT } from '../../util/setting';
-import { NavLink } from 'react-router-dom';
 
 
 
@@ -214,12 +213,11 @@ function KetQuaDatVe(props) {
 
     const {thongTinNguoiDung} = useSelector(state => state.QuanLyNguoiDungReducer);
     console.log('thongTinNguoiDung',thongTinNguoiDung)
-    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer);
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(layThongTinNguoiDungAction())
+        dispatch(layThongTinNguoiDungDanNhapAction())
     },[])
 
     const ticketItem = () => {
@@ -286,7 +284,7 @@ export default function (props) {
                 payload: '1'
             })
         }
-    })
+    },[])
 
     // hiện tên người dùng góc phải và đăng xuất
     const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)

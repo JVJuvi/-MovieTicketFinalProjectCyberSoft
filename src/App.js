@@ -22,6 +22,10 @@ import Profile from './pages/Profile/Profile';
 import Films from './pages/Admin/Films/Films';
 import ShowTime from './pages/Admin/ShowTime/ShowTime';
 import AddNew from './pages/Admin/Films/AddNew/AddNew';
+import Edit from './pages/Admin/Films/Edit/Edit';
+import Users from './pages/Admin/Users/Users';
+import AddUserNew from './pages/Admin/Users/AddNew/AddUserNew';
+import EditUser from './pages/Admin/Users/Edit/EditUser';
 
 const CheckOutTemPlateLazy = lazy(()=> import ('./templates/CheckOutTemPlate/CheckOutTemPlate'))
 
@@ -36,6 +40,7 @@ function App() {
     <Router history={history}>
         <Loading />
         <Switch>
+          <HomTemplate path="/" exact component={Home} />
           <HomTemplate path="/home" exact component={Home} />
           <HomTemplate path="/homemenu" exact component={HomeMenu} />
           <HomTemplate path="/contact" exact component={Contact} />
@@ -48,19 +53,22 @@ function App() {
           <UserTemplate path="/register" exact component={Register} />
 
           <AdminTemplate path="/admin" exact component={Dashboard} />
-          <AdminTemplate path="/admin/user" exact component={Dashboard} />
           <AdminTemplate path="/admin/films" exact component={Films} />
           <AdminTemplate path="/admin/films/addnew" exact component={AddNew} />
+          <AdminTemplate path="/admin/films/edit/:id" exact component={Edit} />
+          <AdminTemplate path="/admin/films/showtime/:id/:tenphim" exact component={ShowTime} />
           <AdminTemplate path="/admin/showtime" exact component={ShowTime} />
 
+          <AdminTemplate path="/admin/users" exact component={Users} />
+          <AdminTemplate path="/admin/users/addnew" exact component={AddUserNew} />
+          <AdminTemplate path="/admin/users/edit/:taikhoan" exact component={EditUser} />
 
           {/* lazy loading react */}
           <Suspense fallback={<h1>Loading ....</h1>}>
-            {/* path="/checkout/:id" */}
             <CheckOutTemPlateLazy path="/checkout/:id" exact component={Checkout} />  
           </Suspense>
 
-          <HomTemplate path="/" exact component={Home} />
+          
         </Switch>
     </Router>
   );

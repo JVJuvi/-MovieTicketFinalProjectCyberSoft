@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Carousel } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { CarouselAction } from '../../../../redux/actions/CarouselActione';
-import "./HomeCarousel.css"
+import "./HomeCarousel.css";
+import Slider from "react-slick";
 
 const contentStyle = {
     height: '500px',
@@ -13,7 +13,18 @@ const contentStyle = {
     backgroundPosition: 'center',
     backgroundSize: '100%',
     backgroundRepeat: 'no-repeat',
+    marginTop: '60px'
 };
+
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000
+  };
 
 export default function HomeCarousel(props) {
 
@@ -28,17 +39,15 @@ export default function HomeCarousel(props) {
 
     return (
         <div>
-            <Carousel effect="fade" style={{width:'100%',padding:0,margin:0}}>
-                {arrImg.map((item,index)=>{
-                    return (
-                        <div key={index}>
-                            <div style={{...contentStyle, backgroundImage: `url(${item.hinhAnh})`}}>
-                                <img src={item.hinhAnh} className="w-full opacity-0" alt={item.hinhAnh} />
-                            </div>
+            <Slider {...settings}>
+                {arrImg.map((banner,index)=>{
+                    return <div key={index}>
+                        <div style={{...contentStyle, backgroundImage: `url(${banner.hinhAnh})`}}>
+                            <img src={banner.hinhAnh} className="opacity-0" alt={banner.hinhAnh} />
                         </div>
-                    )
+                    </div>
                 })}
-            </Carousel>
+            </Slider>
         </div>
     )
 }

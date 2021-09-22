@@ -1,15 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
-
+import './AdminTemplate.css';
 //Fragment giống thẻ div mà không hiển thị chỉ dùng để bao bọc trang
 import { NavLink, Route } from "react-router-dom"
 
 import { Layout, Menu } from 'antd';
 import {
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
     UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
     FileOutlined,
 } from '@ant-design/icons';
 import { useSelector } from "react-redux";
@@ -67,17 +63,17 @@ export const AdminTemplate = (props) => {
 
         return <Fragment>
             <Layout>
-                <Sider trigger={null} collapsible collapsed={state.collapsed}>
-                    <div className="logo text-center"> 
+                <Sider className="sider">
+                    <div className="text-center mb-1"> 
                         <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="..." />
                      </div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item key="1" icon={<UserOutlined />}>
-                            <NavLink to="/admin/user">
+                            <NavLink to="/admin">
                                 DashBoard
                             </NavLink>
                         </Menu.Item>
-                        <SubMenu key="sub1" icon={<FileOutlined />} title="Films">
+                        <SubMenu key="sub1" icon={<FileOutlined />} title="Quản lý phim">
                             <Menu.Item key="10" icon={<FileOutlined />}>
                                 <NavLink to="/admin/films">Films</NavLink>                         
                             </Menu.Item>
@@ -85,17 +81,19 @@ export const AdminTemplate = (props) => {
                                 <NavLink to="/admin/films/addnew">Add new</NavLink>             
                             </Menu.Item>
                         </SubMenu>
-                        <Menu.Item key="3" icon={<UploadOutlined />}>
-                            <NavLink to="/admin/showtime">
-                                Quản lý lịch chiếu
-                            </NavLink>
-                        </Menu.Item>
+                        <SubMenu key="sub2" icon={<FileOutlined />} title="Quản lý người dùng">
+                            <Menu.Item key="13" icon={<FileOutlined />}>
+                                <NavLink to="/admin/users">Users</NavLink>                         
+                            </Menu.Item>
+                            <Menu.Item key="14" icon={<FileOutlined />}>
+                                <NavLink to="/admin/users/addnew">Add new</NavLink>             
+                            </Menu.Item>
+                        </SubMenu>
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background flex justify-between align-items-center" style={{ padding: 0 }}>
-                        {state.collapsed ? <MenuUnfoldOutlined style={{fontSize:25, color: 'white'}} onClick={toggle} />  : <MenuFoldOutlined style={{fontSize:25, color: 'white'}} onClick={toggle}/>}
-                        <div className="flex justify-center align-items-center">
+                    <Header className="site-layout-background" style={{ padding: 0 }}>
+                        <div className="text-right pr-10 pt-1">
                             {operations}
                         </div>
                     </Header>
@@ -111,9 +109,6 @@ export const AdminTemplate = (props) => {
                     </Content>
                 </Layout>
             </Layout>
-
-
-
         </Fragment>
     }} />
 

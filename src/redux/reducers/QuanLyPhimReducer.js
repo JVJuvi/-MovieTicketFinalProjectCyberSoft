@@ -1,5 +1,5 @@
 
-import { LAY_DANH_SACH_PHIM, LAY_PHIM_DANG_CHIEU, LAY_PHIM_SAP_CHIEU } from '../types/QuanLyPhimType';
+import { LAY_CHI_TIET_PHIM_ADMIN, LAY_DANH_SACH_PHIM, LAY_PHIM_DANG_CHIEU, LAY_PHIM_SAP_CHIEU } from '../types/QuanLyPhimType';
 import { LAY_CHI_TIET_PHIM } from '../types/QuanLyRapType';
 
 
@@ -9,6 +9,7 @@ const stateDefault = {
     sapChieu:true,
     arrPhimDefault: [],
     filmDetail: {},
+    adminThongTinPhim: {}
 }
 
 const QuanLyPhimReducer = (state = stateDefault, action) => {
@@ -32,6 +33,10 @@ const QuanLyPhimReducer = (state = stateDefault, action) => {
         case LAY_CHI_TIET_PHIM: {
           state.filmDetail = action.payload;
           return {...state};
+        }
+        case LAY_CHI_TIET_PHIM_ADMIN: {
+            state.adminThongTinPhim = action.payload;
+            return {...state};
         }
         default: return{...state};
     }
