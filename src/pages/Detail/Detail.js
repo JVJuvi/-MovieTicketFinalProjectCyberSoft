@@ -60,7 +60,7 @@ export default function Detail(props) {
                     <div className="col-span-4 flex flex-col">
                         <div className={`c100 p${filmDetail.danhGia * 10} big`}>
                             <span>
-                                {filmDetail.danhGia * 10}%
+                                {filmDetail.danhGia * 10} điểm
                             </span>
                             <div className="slice">
                                 <div className="bar"></div>

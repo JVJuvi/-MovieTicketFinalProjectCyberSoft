@@ -19,12 +19,15 @@ const { Option } = Select;
 
 export default function Header() {
 
+     // lấy thông tin đăng nhập
+    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer);
+    console.log('userLogin', userLogin)
+
     const { t, i18n } = useTranslation();
 
 
     // dịch ngôn ngữ
-    const handleChange =(value) => {
-        
+    const handleChange = (value) => {      
         i18n.changeLanguage(value)
     }
 
@@ -34,12 +37,12 @@ export default function Header() {
         //dùng lodash
         if(_.isEmpty(userLogin)) {
             return <Fragment>
-                        <button className="self-center px-8 py-3 rounded text-white" onClick={()=>{
+                        <button style={{background: '#e5a24b'}} className="self-center px-8 py-3 rounded text-white mr-3" onClick={()=>{
                                 history.push('/login')
-                        }}>{t("Sign in")}</button>                                                
-                        <button className="self-center px-8 py-3 rounded bg-violet-600 text-coolGray-50 text-white"  onClick={()=>{
+                        }}>Đăng nhập</button>                                                
+                        <button style={{background: '#af731b'}} className="self-center px-8 py-3 rounded text-white"  onClick={()=>{
                                 history.push('/register')
-                        }}>{t("Sign up")}</button>
+                        }}>Đăng ký</button>
             </Fragment>
         }
 
@@ -48,7 +51,7 @@ export default function Header() {
                     history.push('/profile')
                 }} className="text-white">{t('Hello')} <span className="text-green-400" style={{fontSize: '20px', cursor: 'pointer'}}>{userLogin.hoTen}</span> 
             </button>
-            <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200" onClick={()=>{
+            <button className="text-blue-800 pl-5 transition duration-300 ease-in-out hover:text-blue-200" onClick={()=>{
                 localStorage.removeItem(USER_LOGIN);
                 localStorage.removeItem(TOKEN_CYBERSOFT);
                 history.push('/home');
@@ -56,115 +59,34 @@ export default function Header() {
                 }}>Đăng xuất
             </button>
         </Fragment>
+
     }
 
-
-    // lấy thông tin đăng nhập
-    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer);
-    console.log('userLogin', userLogin)
-
-
-
     return (
-        <header className=" bg-coolGray-100 text-coolGray-800 bg-opacity-40 fixed w-full z-10 header">
-            <div className="flex justify-between items-center container">
-                <div className="flex">
-                    <NavLink to="/home" aria-label="Back to homepage" className="flex items-center p-2">
-                        <img style={{width: '50px'}} src='https://tix.vn/app/assets/img/icons/web-logo.png' />
-                    </NavLink>             
-                    <ul className="items-stretch hidden space-x-3 lg:flex">
-                        <li className="flex">
-                            <NavLink to="/home" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black" activeClassName="border-b-2 border-white">{t("Home")}</NavLink>
-                        </li>
-                        <li className="flex">
-                            <NavLink to="/contact" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black" activeClassName="border-b-2 border-white">{t("Contact")}</NavLink>
-                        </li>
-                        <li className="flex">
-                            <NavLink to="/new" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black" activeClassName="border-b-2 border-white">{t("News")}</NavLink>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <div className=" flex-shrink-0 hidden lg:flex">
-                        <div>
-                            {renderLogin()}
-                        </div>
-                        <Select defaultValue="en" style={{ width: 80 }} onChange={handleChange}>
-                            <Option value="chi" label="China">
-                                    <div className="demo-option-label-item">
-                                        <span role="img" aria-label="China">
-                                        🇨🇳
-                                        </span>
-                                        <span className="ml-1">CHI</span> 
-                                    </div>
-                                </Option>
-                                <Option value="en" label="USA">
-                                    <div className="demo-option-label-item">
-                                        <span role="img" aria-label="USA">
-                                        🇺🇸
-                                        </span>
-                                        <span  className="ml-1">EN</span> 
-                                    </div>
-                                </Option>
-                                <Option value="vi" label="Korea">
-                                    <div className="demo-option-label-item">
-                                        <span role="img" aria-label="Korea">
-                                        🇰🇷
-                                        </span>
-                                        <span  className="ml-1">VI</span>
-                                    </div>
-                                </Option>
-                        </Select>                 
-                    </div>
-                </div>
-                {/* <NavLink to="/home" aria-label="Back to homepage" className="flex items-center p-2">
-                    <img style={{width: '50px'}} src='https://tix.vn/app/assets/img/icons/web-logo.png' />
+        <header className="p-4 header">
+            <div className="container flex justify-between items-center mx-auto">
+                <NavLink to="/home" aria-label="Back to homepage" className="flex items-center p-2" style={{marginBottom: '11px'}}>
+                    <img className="w-full" src='./imageFilm/logo.svg' />
                 </NavLink>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">
-                        <NavLink to="/home" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black" activeClassName="border-b-2 border-white">{t("Home")}</NavLink>
+                        <NavLink to="/home" className="flex text-white items-center px-4 -mb-1 transition duration-500 ease-in-out hover:text-yellow-300 ">Home</NavLink>
                     </li>
                     <li className="flex">
-                        <NavLink to="/contact" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black" activeClassName="border-b-2 border-white">{t("Contact")}</NavLink>
+                        <a href="#lichChieu" className="flex text-white items-center px-4 -mb-1 border-b-2 border-transparent transition duration-500 ease-in-out hover:text-yellow-300">lịch chiếu</a>
                     </li>
                     <li className="flex">
-                        <NavLink to="/new" className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-black" activeClassName="border-b-2 border-white">{t("News")}</NavLink>
+                        <a href="#cumRap" className="group text-white flex items-center px-4 -mb-1 border-b-2 border-transparent transition duration-500 ease-in-out hover:text-yellow-300">Cụm rạp</a>
                     </li>
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">
                     {renderLogin()}
-                    <Select defaultValue="en" style={{ width: 80 }} onChange={handleChange}>
-                        <Option value="chi" label="China">
-                                <div className="demo-option-label-item">
-                                    <span role="img" aria-label="China">
-                                    🇨🇳
-                                    </span>
-                                    <span className="ml-1">CHI</span> 
-                                </div>
-                            </Option>
-                            <Option value="en" label="USA">
-                                <div className="demo-option-label-item">
-                                    <span role="img" aria-label="USA">
-                                    🇺🇸
-                                    </span>
-                                    <span  className="ml-1">EN</span> 
-                                </div>
-                            </Option>
-                            <Option value="vi" label="Korea">
-                                <div className="demo-option-label-item">
-                                    <span role="img" aria-label="Korea">
-                                    🇰🇷
-                                    </span>
-                                    <span  className="ml-1">VI</span>
-                                </div>
-                            </Option>
-                    </Select>                 
-                </div> */}
-                {/* <button className="p-4 lg:hidden">
+                </div>
+                <button className="p-4 lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-coolGray-800">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
-                </button> */}
+                </button>
             </div>
         </header>
     )

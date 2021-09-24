@@ -5,7 +5,7 @@ import "./HomeCarousel.css";
 import Slider from "react-slick";
 
 const contentStyle = {
-    height: '500px',
+    height: '718px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',
@@ -13,7 +13,6 @@ const contentStyle = {
     backgroundPosition: 'center',
     backgroundSize: '100%',
     backgroundRepeat: 'no-repeat',
-    marginTop: '60px'
 };
 
 const settings = {
@@ -39,7 +38,7 @@ export default function HomeCarousel(props) {
 
     return (
         <div>
-            <Slider {...settings}>
+            <Slider {...settings} className="carousel">
                 {arrImg.map((banner,index)=>{
                     return <div key={index}>
                         <div style={{...contentStyle, backgroundImage: `url(${banner.hinhAnh})`}}>

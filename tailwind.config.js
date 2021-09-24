@@ -898,6 +898,9 @@ module.exports = {
     divideStyle: ['responsive'],
     divideWidth: ['responsive'],
     dropShadow: ['responsive'],
+    extend: {
+      backgroundColor: ['group-focus'],
+    },
     fill: ['responsive'],
     filter: ['responsive'],
     flex: ['responsive'],

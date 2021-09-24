@@ -22,7 +22,7 @@ i18n
   .init({
     fallbackLng: 'en', //ngôn ngữ mặc định
     debug: true,
-    whitelist:['en', 'chi', 'vi'], //liệt kê các ngôn ngữ
+    whitelist:['chi', 'en', 'vi'], //liệt kê các ngôn ngữ
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     }

@@ -6,7 +6,7 @@ import { LAY_CHI_TIET_PHIM } from '../types/QuanLyRapType';
 const stateDefault = {
     arrPhim: [],
     dangChieu: true,
-    sapChieu:true,
+    sapChieu:false,
     arrPhimDefault: [],
     filmDetail: {},
     adminThongTinPhim: {}
@@ -21,12 +21,13 @@ const QuanLyPhimReducer = (state = stateDefault, action) => {
         }
         case LAY_PHIM_DANG_CHIEU: {
             state.dangChieu = !state.dangChieu;
+            state.sapChieu = !state.sapChieu
             state.arrPhim = state.arrPhimDefault.filter(item => item.dangChieu === state.dangChieu);
             return {...state};
         }
         case LAY_PHIM_SAP_CHIEU: {
-            state.sapChieu = !state.sapChieu;
-
+            state.sapChieu = !state.sapChieu
+            state.dangChieu = !state.dangChieu;
             state.arrPhim = state.arrPhimDefault.filter(item => item.sapChieu === state.sapChieu);
             return {...state};
         }

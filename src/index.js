@@ -23,6 +23,9 @@ import "slick-carousel/slick/slick-theme.css";
 import './i18n';
 
 
+
+
+
 //doan code ket noi backend server lang nghe su kien tu server
 export const connection = new signalR.HubConnectionBuilder().withUrl(`${DOMAIN}/DatVeHub`).configureLogging(signalR.LogLevel.Information).build();
 

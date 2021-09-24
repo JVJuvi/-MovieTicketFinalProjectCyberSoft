@@ -1,26 +1,40 @@
-.slick-dots-bottom{
+.carousel .slick-dots-bottom{
     margin: 0 !important;
     padding: 0 !important;
 }
-.slick-slider slick-initialized {
+.carousel.slick-slider slick-initialized {
     margin: 0 !important;
     padding: 0 !important;
 }
-.slick-arrow .slick-prev {
+
+.carousel > button {
     display: none !important;
 }
-.slick-arrow .slick-next {
-    display: none !important;
+.carousel {
+    position: relative!important;
 }
-.slick-dots {
-    bottom: 25px !important;
+/* .carousel::before {
+    content: ""!important;
+    position: absolute!important;
+    top: 0!important;
+    left: 0;
+    width: 100%!important;
+    height: 100%!important;
+    background: linear-gradient(to top, #000000, transparent)!important;
+    z-index: 999 !important;
+} */
+
+
+.carousel .slick-dots {
+    bottom: 70px !important;
+    z-index: 1000;
 }
-.slick-dots li button:before {
+.carousel .slick-dots li button:before {
     font-size: 20px !important;
     opacity: 0.9 !important;
     color: white !important;
 
 }
-.slick-dots li.slick-active button:before {
+.carousel .slick-dots li.slick-active button:before {
     color: red !important;
 }

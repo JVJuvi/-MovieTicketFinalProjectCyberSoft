@@ -7,7 +7,7 @@ import { LayDanhSachPhimAction } from '../../redux/actions/QuanLyPhimAcTion';
 import { ChevronLeft } from '@material-ui/icons';
 import { layDanhSachCumRapAction } from '../../redux/actions/QuanLyRapAction';
 import HomeCarousel from '../../templates/HomeTemplate/Layout/HomeCarousel/HomeCarousel';
-
+import './Home.css'
 
 export default function Home(props) {
 
@@ -25,16 +25,17 @@ export default function Home(props) {
     },[])
 
     return (
-        <div>
+        <div className="home">
             <HomeCarousel />  
             <section className="text-gray-600 body-font">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="container px-5 pt-10 pb-5 mx-auto 2xl:px-60">
                     <MultipRowSlick arrPhim={arrPhim} />
                 </div>
             </section>
-            <div className="mx-36">
+            <div className="mx-36 2xl:px-60">
                 <HomeMenu arrRap={arrRap} />
             </div>
         </div>
     )
 }
+

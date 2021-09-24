@@ -1,39 +1,54 @@
 .flip-card {
-    background-color: transparent;
-    width: 300px;
-    height: 300px;
-    perspective: 1000px;
-  }
-  
-  .flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  }
-  
-  .flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  .flip-card-front {
-    background-color: #bbb;
-    color: black;
-  }
-  
-  .flip-card-back {
-    background-color: #2980b9;
-    color: white;
-    transform: rotateY(180deg);
-  }
+  margin-top: 20px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  text-align: center;
+  border-radius: 5px;
+   overflow: hidden;
+}
+.flip-card-inner:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all 0.3s linear;
+
+}
+.flip-card-inner:hover::before {
+  background: linear-gradient(to top,#000,transparent 100%);
+}
+
+.flip-card-inner div {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  width: 80%;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s linear;
+  z-index: 10;
+  position: absolute;
+} 
+.flip-card-inner:hover div {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+.flip-card-inner img {
+   border-radius: 5px;
+   
+} 
+.flip-bottom {
+  height: 60px;
+  max-height: 60px;
+  padding-right: 30px;
+  text-align: center;
+  margin-top: 10px;
+}
