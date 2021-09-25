@@ -49,14 +49,15 @@ export default function Header() {
         return <Fragment> 
             <button onClick={()=>{
                     history.push('/profile')
-                }} className="text-white">{t('Hello')} <span className="text-green-400" style={{fontSize: '20px', cursor: 'pointer'}}>{userLogin.hoTen}</span> 
+                }} className="text-white">
+                    {userLogin.hoTen}
             </button>
             <button className="text-blue-800 pl-5 transition duration-300 ease-in-out hover:text-blue-200" onClick={()=>{
                 localStorage.removeItem(USER_LOGIN);
                 localStorage.removeItem(TOKEN_CYBERSOFT);
                 history.push('/home');
                 window.location.reload();
-                }}>Đăng xuất
+                }}><span>Đăng xuất</span>
             </button>
         </Fragment>
 

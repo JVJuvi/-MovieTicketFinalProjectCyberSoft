@@ -4,12 +4,16 @@ import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
 import { http } from "../../util/setting";
 import { DISPPLAY_LOADING, HIDE_LOADING } from "../types/LoadingType";
 import { connection } from "../../index";
+import { layThongTinNguoiDungDanNhapAction } from "./QuanLyNguoiDungAction";
 
 
 
 export const layChiTietPhongVeAcTion = (maLichChieu) => {
     return async(dispatch) => {
         try {
+            dispatch({
+                type: DISPPLAY_LOADING
+            })
             const result = await quanLyDatVeService.layChiTietPhongVe(maLichChieu)
             console.log('result', result.data);
             if(result.status === 200) {
@@ -18,7 +22,9 @@ export const layChiTietPhongVeAcTion = (maLichChieu) => {
                     payload: result.data.content
                 })
             }
+            await dispatch({type: HIDE_LOADING})  
         } catch (error) {
+            await dispatch({type: HIDE_LOADING})  
             console.log('error', error.response?.data);
         }
     }
@@ -36,6 +42,7 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
             console.log('result', result.data.content)
             // sau khi đặt vé thành công api load lại phòng vé
             await dispatch(layChiTietPhongVeAcTion(thongTinDatVe.maLichChieu))
+            await dispatch(layThongTinNguoiDungDanNhapAction())
             await dispatch({type: DAT_VE_HOAN_TAT})
             await dispatch({type: HIDE_LOADING})    
 

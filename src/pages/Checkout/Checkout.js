@@ -138,11 +138,11 @@ function Checkout(props) {
                             <table className="table-fixed text-center">
                                 <thead className="px-10">
                                     <tr>
-                                        <th className="w-1/5">Ghế chưa đặt</th>
-                                        <th className="w-1/5">Ghế đang đặt</th>
-                                        <th className="w-1/5">Ghế VIP</th>
-                                        <th className="w-1/5">Ghế đã được đặt</th>
-                                        <th className="w-1/5">Ghế mình đặt</th>
+                                        <th className="px-3">Ghế chưa đặt</th>
+                                        <th className="px-3">Ghế đang đặt</th>
+                                        <th className="px-3">Ghế VIP</th>
+                                        <th className="px-3">Ghế đã được đặt</th>
+                                        <th className="px-3">Ghế mình đặt</th>
                                     </tr>
                                 </thead>
                                 <tbody className="mt-3">
@@ -158,9 +158,9 @@ function Checkout(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-3 min-h-screen">
-                    <div className="px-2">
-                        <h1 className="text-4xl text-center mt-3" style={{color: '#7ed321'}}>{danhSachGheDangDat.reduce((tongTien,item,index)=>{
+                <div className="col-span-3 min-h-screen" style={{border: '1px solid transparent', boxShadow: '0 0 15px rgb(0 0 0 / 30%)', marginTop: '16px'}}>
+                    <div className="px-10">
+                        <h1 className="text-5xl text-center mt-3" style={{color: '#7ed321'}}>{danhSachGheDangDat.reduce((tongTien,item,index)=>{
                                 return tongTien += item.giaVe
                             },0).toLocaleString()} đ</h1>
                         <hr />
@@ -175,7 +175,7 @@ function Checkout(props) {
                         <hr />
                         <div className="flex justify-between my-3">
                             <div>
-                                <span className="text-red-500 mr-2">Ghế </span>
+                                <span className="text-red-500 text-lg mr-2">Ghế </span>
                                 {/* // lodash sortBy giup sap xep thu tu */}
                                 {_.sortBy(danhSachGheDangDat,['stt']).map((item,index)=>{
                                     return <span key={index} className="text-green-500 text-xl"> {item.stt} </span>
@@ -184,23 +184,24 @@ function Checkout(props) {
                         </div>
                         <hr />
                         <div className="py-3">
-                            <h1>Email</h1>
+                            <i>Email</i>
                             <p>{userLogin.email}</p>
                             {/* thay input bằng reducer email */}
-                        </div>                  
+                        </div>  
+                        <hr />
+                        <div className="py-3">
+                            <i>Số điện thoại</i>
+                            <p>{userLogin.soDT}</p>
+                            {/* thay input bằng reducer email */}
+                        </div> 
+                        <hr />
                         <div className="h-full flex flex-col justify-end" style={{marginTop: '100px'}}>
-
-
-                            <button className="bg-green-400 rounded-sm p-3 text-white font-bold text-3xl" onClick={()=>{
+                            <button className="bg-green-400 rounded-xl p-3 text-white font-bold text-3xl" onClick={()=>{
                                 const thongTinDatVe = new ThongTinDatVe();
                                 thongTinDatVe.maLichChieu = props.match.params.id;
                                 thongTinDatVe.danhSachVe = danhSachGheDangDat;
-                                console.log('thongTinDatVe', thongTinDatVe)
-                                
                                 dispatch(datVeAction(thongTinDatVe))
                             }}>ĐẶT VÉ</button>
-
-
                         </div>                     
                     </div>
                 </div>
@@ -234,11 +235,12 @@ function KetQuaDatVe(props) {
                             <h2 className="text-gray-900 title-font font-medium text-3xl">{ticket.tenPhim}</h2>
                             <p className="text-gray-500">Giờ chiếu: {moment(ticket.ngayDat).format("hh:mm A")} - Ngày chiếu: {moment(ticket.ngayDat).format("DD-MM-YYYY")}</p>
                             <p>Địa điểm: {seats.tenHeThongRap} - {seats.tenCumRap}</p>
-                            {ticket.danhSachGhe.map((ghe,index)=>{
+                            <p>Ghế: {ticket.danhSachGhe.map((ghe,index)=>{
                                 return (
                                     <span key={index}>{ghe.tenGhe} </span>
                                 )
                             })}
+                            </p>
                         </div>
                         </div>
                     </div>              
@@ -253,7 +255,7 @@ function KetQuaDatVe(props) {
                     <div className="container px-5 py-24 mx-auto">
                         <div className="flex flex-col text-center w-full mb-20">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-800">Lịch sử đặt vé của khách hàng</h1>
-                        <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Hãy xem thông tin và thời gian chính xác để không ảnh hưởng trải nghiệm tuyệt vời của qus khách</p>
+                        <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Hãy xem thông tin và thời gian chính xác để không ảnh hưởng trải nghiệm tuyệt vời của quý khách</p>
                         </div>
                         <div className="flex flex-wrap -m-2">                      
                             {ticketItem()}
@@ -289,26 +291,32 @@ export default function (props) {
     // hiện tên người dùng góc phải và đăng xuất
     const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
     const operations = <Fragment>
-        {!_.isEmpty(userLogin) ? <Fragment><button onClick={()=>{
-            history.push('/profile')
-        }}> <div className="flex align-items-center"> <div className="rounded-full bg-red-500" style={{width: '50px',height: '50px'}}></div> <div> <h5>{userLogin.hoTen}</h5></div> </div> </button> <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200" onClick={()=>{
-            localStorage.removeItem(USER_LOGIN);
-            localStorage.removeItem(TOKEN_CYBERSOFT);
-            history.push('/home');
-            window.location.reload();
-        }}>Đăng xuất</button> </Fragment>  : ''}
+        {!_.isEmpty(userLogin) ? <Fragment>
+            <button onClick={()=>{
+                history.push('/profile')
+            }}> 
+                {userLogin.hoTen}
+            </button> 
+            <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200 ml-3" onClick={()=>{
+                localStorage.removeItem(USER_LOGIN);
+                localStorage.removeItem(TOKEN_CYBERSOFT);
+                history.push('/home');
+                window.location.reload();
+            }}>Đăng xuất
+            </button> 
+        </Fragment>  : ''}
     </Fragment>
     
 
     return (
-        <div className="min-h-screen px-5">
+        <div className="checkout min-h-screen">
             <Tabs tabBarExtraContent={operations} defaultActiveKey="1" activeKey={tabActive} onChange={(key)=>{
                 dispatch({
                     type: 'CHUYEN_TAB_ACTIVE',
                     payload: key
                 })
             }}>
-                <TabPane tab="01 CHỌN GHÊ & THANH TOÁN" key="1">
+                <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
                         <Checkout {...props}/> 
                 </TabPane>
                 <TabPane tab="02 KẾT QUẢ ĐẶT GHẾ" key="2">
@@ -316,8 +324,7 @@ export default function (props) {
                 </TabPane>
                 <TabPane tab={<button onClick={()=>{
                     history.push('/home')
-                }}><HomeOutlined /></button>} key="3">
-                        
+                    }}>03 TRỞ VỀ HOME</button>} key="3">                     
                 </TabPane>
             </Tabs>
         </div>

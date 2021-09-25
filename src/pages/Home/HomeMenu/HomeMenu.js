@@ -21,7 +21,7 @@ function HomeMenu(props) {
     console.log('arrRapSauKhiLay', arrRap)
 
     return (
-        <div id="cumRap">
+        <div id="cumRap" className="pb-20">
             <div>
                 <img src="./imageFilm/back-news.png" />
             </div>

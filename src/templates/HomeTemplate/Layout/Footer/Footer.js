@@ -10,7 +10,7 @@ export default function Footer() {
     console.log('arrlogo', arrLogoRap)
 
     return (
-        <footer className="footer mt-20">
+        <footer className="footer">
             <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
                 <div className="grid grid-cols-12">
                     <div className="pb-6 col-span-5 md:pb-0 ">

@@ -4,14 +4,14 @@ import {MdClose} from 'react-icons/md';
 
 
 const Background = styled.div`
-  width: 100%;
-  height: 100vh;
+  width: 100% !important;
+  height: 100% !important;
   background: rgba(0, 0, 0, 0.8) !important;
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100000;
+  position: fixed !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999 !important;
 `;
 const ModalWrapper = styled.div`
   width: 800px;
@@ -22,30 +22,6 @@ const ModalWrapper = styled.div`
   position: relative;
   z-index: 10;
   border-radius: 10px;
-`;
-const ModalImg = styled.img`s
-  width: 100%;
-  height: 100%;
-  border-radius: 10px 0 0 10px;
-  background: #000;
-`;
-
-const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  line-height: 1.8;
-  color: #141414;
-  p {
-    margin-bottom: 1rem;
-  }
-  button {
-    padding: 10px 24px;
-    background: #141414;
-    color: #fff;
-    border: none;
-  }
 `;
 
 const CloseModalButton = styled(MdClose)`
@@ -77,10 +53,8 @@ export default function ModalVideo({showModal, setShowModal, item}) {
            {showModal ? (
                <Background onClick={closeModal}>
                    <ModalWrapper showModal={showModal}>
-                       <ModalContent>
-                       <iframe width="800" height="500" src={item.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                       </ModalContent>
-                       <CloseModalButton aria-label="Close modal" onClick={()=>setShowModal(prev => !prev)} />
+                      <iframe width="800" height="500" src={item.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <CloseModalButton aria-label="Close modal" onClick={()=>setShowModal(prev => !prev)} />
                    </ModalWrapper>
                </Background>
            ): null}

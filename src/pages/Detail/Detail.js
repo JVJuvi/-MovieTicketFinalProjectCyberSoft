@@ -38,29 +38,31 @@ export default function Detail(props) {
     },[])
 
     return (
-        <div style={{backgroundImage: `url(${filmDetail.hinhAnh})`, maxWidth: '100%',backgroundSize: '100%', minHeight: '100vh', backgroundRepeat: 'no-repeat'}}>
+        <div style={{backgroundImage: `url(${filmDetail.hinhAnh})`, maxWidth: '100%',backgroundSize: '100%', minHeight: '100vh', backgroundRepeat: 'no-repeat',}}>
             <CustomCard
-                style={{minHeight: '100vh',paddingTop: '150px'}}
-                effectColor="rgba(255,255,255,0.4)" // required
-                color="#14AEFF" // default color is white
-                blur={10} // default blur value is 10px
+                style={{minHeight: '100vh',paddingTop: '150px', background: 'linear-gradient(to top, #0a2029, transparent', borderRadius: '0'}}
+                effectColor="black" // required
+                color="#14AEFF" // default color is white+
+                blur={15} // default blur value is 10px
                 borderRadius={0} // default border radius value is 10px
+                
             >
                 <div className="grid grid-cols-12">
                     <div className="col-span-5 col-start-3">
                         <div className="grid grid-cols-3">
                             <img className="col-span-1" src={filmDetail.hinhAnh} style={{width: '200px', height: '350px'}} alt="123" />
                             <div className="col-span-2 ml-3 text-white" style={{marginTop: '25%'}}>
-                                <p className="text-sm">Ngày khởi chiếu: {moment(filmDetail.ngayKhoiChieu).format('DD.MM.YYYY')}</p>
-                                <p className="text-4xl leading-3">{filmDetail.tenPhim}</p>
-                                <p>{filmDetail.moTa}</p>
+                                <p className="text-sm">{moment(filmDetail.ngayKhoiChieu).format('DD.MM.YYYY')}</p>
+                                <span className="text-white bg-red-500 rounded-md mr-1 text-4xl" style={{padding: '2px 10px'}}>C18</span>
+                                <span className="text-4xl">{filmDetail.tenPhim}</span>
+                                <p className="mt-3">{filmDetail.moTa}</p>
                             </div>
                         </div>
                     </div>
                     <div className="col-span-4 flex flex-col">
                         <div className={`c100 p${filmDetail.danhGia * 10} big`}>
                             <span>
-                                {filmDetail.danhGia * 10} điểm
+                                {filmDetail.danhGia * 10}%
                             </span>
                             <div className="slice">
                                 <div className="bar"></div>
@@ -70,7 +72,7 @@ export default function Detail(props) {
                         </div>
                        <div style={{marginLeft: '50px'}}>
                             <h1 className="text-2xl text-red-500">
-                                    <Rate allowHalf value={filmDetail.danhGia / 2} />
+                                <Rate allowHalf value={filmDetail.danhGia / 2} />
                             </h1>
                             <h1 className="text-white">Số người đánh giá</h1>
                        </div>
@@ -94,26 +96,28 @@ export default function Detail(props) {
                                                 {cumRap.cumRapChieu?.map((rap,index)=>{
                                                     return (
                                                         <div key={index}>
-                                                            <div className="flex mt-3">
-                                                                <img src={rap.hinhAnh} width={100} height={100} />
-                                                                <div>
-                                                                    <h3 className="font-bold" style={{fontSize: '25px'}}>{rap.tenCumRap}</h3>
-                                                                    <p>{rap.diaChi}</p>
-                                                                </div>
-                                                            </div>
-                                                            <div className="grid grid-cols-4">
-                                                                {rap.lichChieuPhim.splice(0,8)?.map((lichChieu,index)=>{
+                                                            <div className="flex mt-3 mb-10">
+                                                                <img src={rap.hinhAnh} style={{height: 60, width: 60}} />
+                                                                <div className="ml-2">
+                                                                    <h3 className="font-bold text-white text-xl">{rap.tenCumRap}</h3>
+                                                                    <p style={{color: '#aba6a6'}}>{rap.diaChi}</p>
+                                                                    <div className="grid grid-cols-5 gap-4">
+                                                                    {rap.lichChieuPhim.splice(0,10)?.map((lichChieu,index)=>{
                                                                     return (
                                                                         <div key={index} className="col-span-1 mt-3">
-                                                                            <NavLink to={`/checkout/${lichChieu.maLichChieu}`}>{moment(lichChieu.ngayChieuGioChieu).format("hh:mmA")}</NavLink>
+                                                                            <NavLink to={`/checkout/${lichChieu.maLichChieu}`}>
+                                                                                <h5 style={{display: 'inline-block', padding: '5px 10px', border: '1px solid #d0d0d4', borderRadius: '7px', color: 'green', background: '#ebebec', transition: 'all 300ms'}} className="border-md hover:opacity-50">{moment(lichChieu.ngayChieuGioChieu).format("hh:mmA")}</h5>
+                                                                            </NavLink>
                                                                         </div>
-                                                                    )
-                                                                })}
+                                                                            )
+                                                                        })}
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                            
                                                         </div>
                                                     )
                                                 })}
-                                                <NavLink to={`/checkout/${props.match.params.id}`}>6:10 PM</NavLink>
                                             </TabPane>
                                         )
                                     })}

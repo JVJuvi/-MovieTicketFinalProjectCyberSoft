@@ -10,6 +10,8 @@ import Home from './pages/Home/Home';
 import Contact from './pages/Contact/Contact';
 import New from './pages/News/New';
 import Login from './pages/Login/Login';
+import dangNhap from './pages/Login/dangNhap';
+
 import Register from './pages/Resister/Register';
 import HomeMenu from './pages/Home/HomeMenu/HomeMenu';
 import Detail from './pages/Detail/Detail';
@@ -51,6 +53,7 @@ function App() {
 
           
           <UserTemplate path="/login" exact component={Login} />
+          <UserTemplate path="/dangnhap" exact component={dangNhap} />
           <UserTemplate path="/register" exact component={Register} />
 
           <AdminTemplate path="/admin" exact component={Dashboard} />
