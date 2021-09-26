@@ -1,3 +1,7 @@
+@import "./variables";
+@import "./mixins";
+@import "./base";
+
 .header {
     /* height: 100px; */
     padding: 50px 20px;
@@ -11,7 +15,3 @@
     color: #af731b !important;
     transition: all .3s ease-in-out;
 }
-
-
-
-

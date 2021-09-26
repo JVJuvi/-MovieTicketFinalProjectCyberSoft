@@ -5,7 +5,7 @@ import "./HomeCarousel.css";
 import Slider from "react-slick";
 
 const contentStyle = {
-    height: '718px',
+    // height: '718px',
     color: '#fff',
     lineHeight: '160px',
     textAlign: 'center',

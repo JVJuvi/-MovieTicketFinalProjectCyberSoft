@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
 import App from './App';
+// import './App.css'
 import reportWebVitals from './reportWebVitals';
 import { DOMAIN } from './util/setting';
 
-//cấu hình realtime websocket với signalR
+//cấu hình realtime websocket với signalRß
 import * as signalR from '@aspnet/signalr';
 
+import './sass/index.scss';
 
 //set up redux
 import {Provider} from 'react-redux'
