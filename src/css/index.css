@@ -81,4 +81,21 @@ a {
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
+
+.header {
+  /* height: 100px; */
+  padding: 50px 20px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  /* background-color: rgba(0, 0, 0, 0.8); */
+  background: -webkit-gradient(linear, left top, left bottom, from(#af731b), color-stop(#ec7532), to(transparent));
+  background: linear-gradient(to bottom, #af731b, #ec7532, transparent);
+  position: fixed;
+  z-index: 1000;
+  color: #af731b !important;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
 /*# sourceMappingURL=index.css.map */
