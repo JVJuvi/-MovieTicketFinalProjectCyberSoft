@@ -44,11 +44,12 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
             await dispatch(layChiTietPhongVeAcTion(thongTinDatVe.maLichChieu))
             await dispatch(layThongTinNguoiDungDanNhapAction())
             await dispatch({type: DAT_VE_HOAN_TAT})
-            await dispatch({type: HIDE_LOADING})    
+            await dispatch({type: HIDE_LOADING});
+            await alert("Đặt vé thành công");    
 
             let userLogin = getState().QuanLyNguoiDungReducer.userLogin;
             connection.invoke("datGheThanhCong", userLogin.taiKhoan, thongTinDatVe.maLichChieu)
-
+            
             dispatch({type: 'CHUYEN_TAB',})
             
             

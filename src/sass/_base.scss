@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 * {
     padding: 0;
     margin: 0;
@@ -10,10 +10,11 @@
 
 html {
     font-size: 13px;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Quicksand', sans-serif;
 }
 
 ul {
@@ -22,21 +23,93 @@ ul {
 
 a {
     text-decoration: none;
-    color: unset;
+    color: unset ;
+}
+a:hover {
+    color: $main-color;
+}
+p {
+    color: black;
+    margin-bottom: 0;
+}
+
+input:focus {
+    outline: none;
+}
+
+@keyframes spin123 {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-75deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(75deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+
+}
+
+@each $color, $val in $colors {
+    .color-#{$color} {
+        color: $val;
+    }
+
+    .bg-#{$color} {
+        background-color: $val;
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-#{$val} {
+        grid-template-columns: repeat($val, 1fr);
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-md-#{$val} {
+        @include tablet-1024 {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
+}
+
+@each $val in $numbers {
+    .grid-col-sm-#{$val} {
+        @include mobile-576 {
+            grid-template-columns: repeat($val, 1fr);
+        }
+    }
 }
 
 .container {
     width: 100%;
-    max-width: 1620px;
+    max-width: 1200px;
     padding: 0 50px;
     margin: auto;
 
-    @include tablet {
-        padding: 0 20px;
+    @include mobile-576 {
+        padding: 0 10px !important;
     }
 
-    @include mobile {
-        padding: 0 10px;
+    @include mobile-768 {
+        padding: 0 20px !important;
+    }
+
+    @include tablet-1200 {
+        padding: 0 100px;
     }
 }
 
@@ -45,24 +118,15 @@ a {
     margin-bottom: 2rem;
     min-height: 100vh;
 
-    @include tablet {
+    @include tablet-1024 {
         margin-top: calc(#{$header-tablet-height} + 20px);
     }
 
-    @include mobile {
+    @include mobile-576 {
         margin-top: calc(#{$header-mobile-height} + 10px);
     }
 }
-.header {
-    /* height: 100px; */
-    padding: 50px 20px;
+
+.grid {
     display: grid;
-    place-items: center;
-    width: 100%;
-    /* background-color: rgba(0, 0, 0, 0.8); */
-    background: linear-gradient(to bottom, #af731b, #ec7532, transparent);
-    position: fixed;
-    z-index: 1000;
-    color: #af731b !important;
-    transition: all .3s ease-in-out;
 }

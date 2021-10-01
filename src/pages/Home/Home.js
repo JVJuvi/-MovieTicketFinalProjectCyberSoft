@@ -27,14 +27,8 @@ export default function Home(props) {
     return (
         <div className="home">
             <HomeCarousel />  
-            <section className="text-gray-600 body-font">
-                <div className="container px-5 pt-10 pb-5 mx-auto 2xl:px-60">
-                    <MultipRowSlick arrPhim={arrPhim} />
-                </div>
-            </section>
-            <div className="mx-36 2xl:px-60">
-                <HomeMenu arrRap={arrRap} />
-            </div>
+            <MultipRowSlick arrPhim={arrPhim} />
+            <HomeMenu arrRap={arrRap} />
         </div>
     )
 }

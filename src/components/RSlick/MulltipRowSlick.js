@@ -1,70 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Slider from "react-slick";
-import styleSlick from "./MultipleRowSlick.module.css"
+// import styleSlick from "./MultipleRowSlick.module.css"
 import FilmsFlip from "../Films/FilmsFlip";
 import { LAY_PHIM_DANG_CHIEU, LAY_PHIM_SAP_CHIEU } from "../../redux/types/QuanLyPhimType";
 import { useDispatch, useSelector } from 'react-redux';
-import Films from "../Films/Films";
 
-function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} ${styleSlick['slick-prev']}`}
-        style={{ ...style, display: "block"}}
-        onClick={onClick}
-      />
-    );
-  }
-  
-function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={`${className} ${styleSlick['slick-prev']}`}
-        style={{ ...style, display: "block", left: '-50px'}}
-        onClick={onClick}
-      />
-    );
-  }
+
 
 const MultipRowSlick = (props) => {
+
     const {arrPhim} = props;
     const {dangChieu, sapChieu} = useSelector(state => state.QuanLyPhimReducer);
+
+    console.log('dang chieu', dangChieu)
+    console.log('sapChieu', sapChieu)
+    
     const dispatch = useDispatch();
     const renderPhim = () => {
-      return arrPhim.slice(0,12).map((item,index)=>{
-          return (
-              <div key={index} className={`${styleSlick['width-item']}`}>
-                  <FilmsFlip item={item} />
-              </div>
-          )
-      })
-  }
-    let classButtonActiveDC = dangChieu === true ? 'active_Film': 'none_active_Film';
-    let classButtonActiveSC = sapChieu === true ? 'active_Film': 'none_active_Film';
-    
+        return arrPhim.slice(0,12).map((item,index)=>{
+            return (
+                <div key={index}>
+                    <FilmsFlip item={item} style={{ }} />
+                </div>
+            )
+        })
+    }
+
+    let activeClassDC = dangChieu===true ? 'active__Film' : '';
+
+    let activeClassSC = sapChieu === true ? 'active__Film' : '';
+
     const settings = {
-        className: "center variable-width",
+        className: "center",
         centerMode: true,
         infinite: true,
         centerPadding: "130px",
         slidesToShow: 3,
         speed: 500,
-        rows: 1,    
-        slidesPerRow: 2,
+        rows: 2,    
+        slidesPerRow: 1,
         variableWidth: true,
         responsive: [
-          {
-            breakpoint: 2300,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-              infinite: true,
-              centerMode: true,
-              centerPadding: "50px",
-            }
-          },
+          //laptop macbook m1 13inch
           {
             breakpoint: 1536,
             settings: {
@@ -78,11 +55,11 @@ const MultipRowSlick = (props) => {
           {
             breakpoint: 1280,
             settings: {
-              slidesToShow: 3,
+              slidesToShow: 2,
               slidesToScroll: 3,
               infinite: true,
               centerMode: true,
-              centerPadding: "120px",
+              centerPadding: "250px",
             }
           },
           {
@@ -92,47 +69,59 @@ const MultipRowSlick = (props) => {
               slidesToScroll: 1,
               infinite: true,
               centerMode: true,
-              centerPadding: "300px",
+              centerPadding: "280px",
             }
           },
           {
             breakpoint: 768,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: 1,
               centerMode: true,
-              centerPadding: '60px'
+              centerPadding: '130px'
             }
           },
           {
-            breakpoint: 480,
+            breakpoint: 414,
             settings: {
               slidesToShow: 1,
+              slidesPerRow: 1,
+              centerMode: false,
+            }
+          },
+          {
+            breakpoint: 375,
+            settings: {
+              slidesToShow: 1,
+              slidesPerRow: 1,
               centerMode: false,
             }
           }
         ],
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />
       };
       return (
-        <div id="lichChieu">
-            <div className="text-center mb-10">
-                <span type="button" className={`${styleSlick[classButtonActiveDC]} mr-20`} onClick={()=>{
-                    const action = {
-                        type: LAY_PHIM_DANG_CHIEU
-                    }
-                    dispatch(action)
-                }}>Đang chiếu</span>
-                <span type="button" className={`${styleSlick[classButtonActiveSC]}`} onClick={()=>{
-                    const action = {
-                        type: LAY_PHIM_SAP_CHIEU
-                    }
-                    dispatch(action)
-                }}>Sắp chiếu</span>
+        <div className="multipRowSlick" id="lichChieu">
+            <div className="container">
+                <div className="multipRowSlick__top">
+                    <span type="button" className={`multipRowSlick__top__button ${activeClassDC}`} onClick={()=>{
+                        const action = {
+                            type: LAY_PHIM_DANG_CHIEU
+                        }
+                        dispatch(action)
+                    }}>Đang chiếu</span>
+                    <span type="button" className={`multipRowSlick__top__button ${activeClassSC}`} onClick={()=>{
+                        const action = {
+                            type: LAY_PHIM_SAP_CHIEU
+                        }
+                        dispatch(action)
+                    }}>Sắp chiếu</span>
+                </div>
+                {/* <Slider {...settings}>
+                    {renderPhim()}
+                </Slider> */}
+                <Slider {...settings}>
+                    {renderPhim()}
+                </Slider>
             </div>
-          <Slider {...settings}>
-            {renderPhim()}
-          </Slider>
         </div>
       );
 }

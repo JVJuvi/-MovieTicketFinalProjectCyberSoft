@@ -1,0 +1,199 @@
+.header {
+    height: $header-height;
+    // display: grid;
+    // place-items: center;
+    width: 100%;
+    background: linear-gradient(to bottom, #313130, transparent);
+    // background: #1e1f19;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9000;
+    // color: #af731b !important;
+    transition: height .3s ease-in-out;
+    
+
+    @include tablet-1024 {
+        height: $header-tablet-height;
+        box-shadow: $box-shadow;
+    }
+
+    @include mobile-768 {
+        height: 90px;
+        box-shadow: $box-shadow;
+    }
+
+    @include mobile-576 {
+        height: $header-mobile-height;
+        box-shadow: $box-shadow;
+    }
+
+
+    &__height {
+        height: 100% ;
+        padding: 0 50px;
+
+        @include mobile-768 {
+            padding: 0 20px !important;
+        }
+
+        @include mobile-576 {
+            padding: 0 10px !important;
+        }
+    }
+
+    &.shrink {
+        height: $header-shrink-height;
+        box-shadow: $box-shadow
+    }
+
+    &__logo {
+        @include flex(center, center);
+        inset: 0; //nằm giữa
+        position: absolute;
+        height: 100%;
+        pointer-events: none;
+
+        img {
+
+            @include tablet-1024 {
+                width: 250px;
+                height: 250px;
+            }
+
+            @include mobile-768 {
+                width: 250px;
+                height: 250px;
+            }
+
+            @include mobile-576 {
+                width: 150px;
+                height: 200px;
+            }
+        }
+    }
+    &__menu {
+        height: 100%;
+        font-size: 1.5rem;
+
+        &__mobile-toggle {
+            display: none;
+
+            @include mobile-768 {
+                display: block;
+                font-size: 4.5rem;
+            }
+
+            @include mobile-576 {
+                display: block;
+                font-size: 3.5rem;
+            }
+        }
+
+        &__item ~ &__item {
+            margin-left: 39px;
+
+            @include tablet-1024 {
+                margin-left: 10px;
+            }
+        }
+
+        // &__item:hover {
+        //     color: #af731b;
+        // }
+
+        &__left, &__right {
+            @include flex(center, center);
+            height: 100%;
+        }
+
+        &__left {
+            @include flex(center, space-between);
+
+            &__item {
+                a {
+                    color: white;
+                    transition: all 0.3s linear;
+
+                    @include mobile-768 {
+                        color: black
+                    }
+
+                    &:hover {
+                        color: #f18f43
+                    }
+                }
+            }
+
+            &__content {
+                @include flex(center, space-between);
+
+                @include tablet-1024 {
+                    flex-direction: column;
+                    padding-top: 100px;
+                    text-align: center;
+                }
+            }
+
+            &__info {
+                color: white;
+                cursor: pointer;
+
+                span {
+                    transition: all 0.3s linear;
+
+                    &:hover {
+                        color: #f18f43;
+                    }
+                }
+                
+
+                @include tablet-1024 {
+                    flex-direction: column;
+                    padding-top: 100px;
+                    text-align: center;
+                }
+
+                @include mobile-768 {
+                    color: black;
+                }
+            }
+
+            &__close {
+                display: none;
+            }
+
+            @include tablet-1024 {
+                display: block;
+                z-index: 1000;
+                background-color: white !important;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 53%;
+                height: 100vh;
+                transform: translateX(-190%);
+                transition: transform .5s ease;
+
+                &.active {
+                    transform: translateX(-90%);
+                }
+
+                &__item ~ &__item {
+                    margin-left: unset;
+                    margin-top: 20px;
+                }
+
+                &__close {
+                    display: block;
+                    position: absolute;
+                    top: 4px;
+                    right: 20px;
+                    font-size: 3.5rem;
+                    z-index: 2000;
+                }
+            }
+        }
+    }
+    
+}

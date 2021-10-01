@@ -43,4 +43,4 @@ const QuanLyPhimReducer = (state = stateDefault, action) => {
     }
 }
 
-export default QuanLyPhimReducer
+export default QuanLyPhimReducer;

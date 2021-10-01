@@ -21,51 +21,62 @@ function HomeMenu(props) {
     console.log('arrRapSauKhiLay', arrRap)
 
     return (
-        <div id="cumRap" className="pb-20">
-            <div>
+        <div id="cumRap" className="homeMenu">
+            <div className="container">
+            <div className="homeMenu__top">
                 <img src="./imageFilm/back-news.png" />
             </div>
-            <div className="border-2 p-5">
+            <p className="homeMenu__hidden">
+                Kích thước màn hình không đủ để hiển thị hết nội dung
+            </p>
+            <div className="homeMenu__bottom">
             <Tabs tabPosition={tabPosition} >
                {arrRap.map((heThongRap,index)=>{
                    return (
-                    <TabPane tab={<img src={heThongRap.logo} width={50} className="rounded-full" />} key={index}>
+                    <TabPane tab={
+                        <div className="homeMenu__bottom__listCinemas">
+                            <img src={heThongRap.logo} />
+                        </div>
+                    } key={index}>
                         <Tabs tabPosition={tabPosition}>
                             {heThongRap.lstCumRap.splice(0, 6).map((cumRap,index)=>{
                                 return (                                   
-                                    <TabPane key={index} tab={
-                                        <div className="flex" style={{width: '350px'}}>
-                                            <img src={cumRap.hinhAnh} width={60} alt="..." className="mr-2" />
-                                            <div>
-                                                {cumRap.tenCumRap}
-                                                <p className="text-red-500 text-left transition-all duration-200 ease-in-out hover:text-red-300">[Chi tiết]</p>
-                                            </div>
-                                        </div>
+                                    <TabPane key={index} tab={  
+                                        <div className="homeMenu__bottom__homeCinemas">
+                                            <img src={cumRap.hinhAnh} alt="..."/>
+                                            <div >
+                                                <h3>{cumRap.tenCumRap}</h3>
+                                                <p >[Chi tiết]</p>
+                                            </div>                          
+                                        </div> 
                                     }>
                                         {/* load phim */}
-                                        {cumRap.danhSachPhim.splice(0,6).map((phim,index)=>{
+                                        {cumRap.danhSachPhim.splice(0,5).map((phim,index)=>{
                                             return (
                                                 <Fragment key={index}>
-                                                    <div className="my-3 flex">
-                                                        <div className="flex">
-                                                            <img src={phim.hinhAnh} alt="" style={{height: 60, width: 40}} onError={(e)=>{e.target.onerror = null; e.target.src='https://picsum.photos/50/50'}} />
-                                                            <div className="ml-2">
-                                                                <span className="text-white bg-red-500 rounded-md mr-1" style={{padding: '2px 10px'}}>C18</span>
-                                                                <span className="text-lg font-bold text-black">{phim.tenPhim}</span>
-                                                                <p className="text-red-500">Địa chỉ: <span className="text-black">{cumRap.diaChi}</span></p>
-                                                                <div className="grid grid-cols-5 gap-4">
-                                                                    {phim.lstLichChieuTheoPhim.splice(0,10).map((lichChieu,index)=>{
-                                                                    return (
-                                                                        <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
-                                                                            <h5 style={{display: 'inline-block', padding: '5px 10px', border: '1px solid #d0d0d4', borderRadius: '7px', color: 'green', background: '#ebebec', transition: 'all 300ms'}} className="border-md hover:opacity-50">{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</h5>
-                                                                        </NavLink>
-                                                                        )
-                                                                    })}
+                                                    <div className="homeMenu__bottom__listMovies"> 
+                                                        <div className="homeMenu__bottom__listMovies__top" >
+                                                            <img src={phim.hinhAnh} alt="" onError={(e)=>{e.target.onerror = null; e.target.src='https://picsum.photos/50/50'}} />
+                                                            <div className="homeMenu__bottom__listMovies__top__content" >
+                                                                <div>
+                                                                    <span>C18</span>
+                                                                    <span>{phim.tenPhim}</span>
                                                                 </div>
+                                                                <p>Địa chỉ: <span>{cumRap.diaChi}</span></p>
                                                             </div>
                                                         </div>
+                                                        <div className="homeMenu__bottom__listMovies__bottom">
+                                                            {phim.lstLichChieuTheoPhim.splice(0,10).map((lichChieu,index)=>{
+                                                                return (
+                                                                    <NavLink to={`/checkout/${lichChieu.maLichChieu}`} key={index}>
+                                                                        <h5>{moment(lichChieu.ngayChieuGioChieu).format('hh:mm A')}</h5>
+                                                                    </NavLink>
+                                                                    )
+                                                                })}
+                                                        </div>
+                                                        <hr />
                                                     </div>
-                                                    <hr />
+                                                    
                                                 </Fragment>
                                             )
                                         })}
@@ -77,6 +88,7 @@ function HomeMenu(props) {
                    )
                })}
             </Tabs>
+            </div>
             </div>
         </div>
     )

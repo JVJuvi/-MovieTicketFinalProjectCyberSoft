@@ -7,13 +7,10 @@ import QuanLyPhimReducer from './QuanLyPhimReducer';
 import QuanLyRapReducer from './QuanLyRapReducer';
 import QuanLyDatVeReducer from './QuanLyDatVeReducer';
 
-//middleware saga
-import createMiddleWareSaga from 'redux-saga';
-import { rootSaga } from "../sagas/rootSaga";
 import LoadingReducer from './LoadingReducer';
 
 
-const middleWareSaga = createMiddleWareSaga();
+
 
 const RootReducer = combineReducers({
     QuanLyNguoiDungReducer,
@@ -24,9 +21,8 @@ const RootReducer = combineReducers({
     LoadingReducer
 })
 
-export const store = createStore(RootReducer, applyMiddleware(thunk,middleWareSaga))
+export const store = createStore(RootReducer, applyMiddleware(thunk))
 
-//goi saga
-middleWareSaga.run(rootSaga)
+
 
 

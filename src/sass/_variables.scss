@@ -1,7 +1,9 @@
-$header-height: 170px;
+$main-color: #4267b2;
+
+$header-height: 130px;
 $header-tablet-height: 70px;
-$header-mobile-height: 40px;
-$header-shrink-height: 70px;
+$header-mobile-height: 60px;
+$header-shrink-height: 75px;
 
 $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
@@ -13,7 +15,14 @@ $colors: (
     "black": #000,
 );
 
-$mobile-width: 600px;
-$tablet-width: 1024px;
+$mobile-375-width: 375px;
+$mobile-576-width: 415px;
+$mobile-768-width: 768px;
+
+
+$tablet-1024-width: 1024px;
+$tablet-1200-width: 1280px;
+$tablet-1500-width: 1500px;
+
 
 $numbers: (0, 1, 2, 3, 4, 5, 6, 7, 8);

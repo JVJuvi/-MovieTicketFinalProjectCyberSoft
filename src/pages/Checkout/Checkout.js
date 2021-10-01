@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import style from "./Checkout.module.css";
 import { datVeAction, layChiTietPhongVeAcTion, datGheAction } from '../../redux/actions/QuanLyDatVeAction';
-import './Checkout.css';
+// import './Checkout.css';
 import { CheckOutlined, CloseCircleOutlined, SmileOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
 import { DAT_GHE, DAT_VE } from '../../redux/types/QuanLyDatVeType';
 import _ from 'lodash';
@@ -13,6 +13,7 @@ import moment from 'moment';
 import { connection } from '../../index';
 import { history } from '../../App';
 import { USER_LOGIN, TOKEN_CYBERSOFT } from '../../util/setting';
+import Grid from '../../components/Grid/Grid';
 
 
 
@@ -121,21 +122,34 @@ function Checkout(props) {
             )
         })
     }
+
+    let filmDetail = {};
+    if(localStorage.getItem('filmDetail')) {
+        filmDetail = JSON.parse(localStorage.getItem('filmDetail'))
+    }
+    console.log('filmDetaillogo', filmDetail);
   
     return (
-        <div className="min-h-screen">
-            <div className="grid grid-cols-12">
-                <div className="col-span-9">
-                    <div className="flex flex-col items-center mt-5">
-                        <div className="bg-black w-full rounded-sm" style={{width: '80%', height:'10px'}}></div>
-                        <div style={{textAlign: 'center'}} className={`${style['trapezoid']}`}>
-                            <h3 className="mt-1">Màn hình</h3>
+        <div>
+            <div className="chooseSeat">
+                <div className="chooseSeat__left container">
+                    <div className="chooseSeat__left__logo"> 
+                        <img src={filmDetail.logo} alt="" />
+                        <div>
+                            <span>{thongTinPhim.tenCumRap}</span>
+                            <span> - {thongTinPhim.gioChieu} - {thongTinPhim.tenRap}</span>
                         </div>
-                        <div className="mt-20">
+                    </div>
+                    <div className="chooseSeat__left__seat">
+                        <div className="chooseSeat__left__seat__tv"></div> 
+                        <div style={{textAlign: 'center'}} className={`${style['trapezoid']}`}>
+                            <h3>Màn hình</h3>
+                        </div>
+                        <div style={{marginTop: '60px'}}>
                             {renderSeats()}
                         </div>
-                        <div className="flex items-center mt-3">
-                            <table className="table-fixed text-center">
+                        <div className="chooseSeat__left__seat__table">
+                            <table>
                                 <thead className="px-10">
                                     <tr>
                                         <th className="px-3">Ghế chưa đặt</th>
@@ -143,6 +157,7 @@ function Checkout(props) {
                                         <th className="px-3">Ghế VIP</th>
                                         <th className="px-3">Ghế đã được đặt</th>
                                         <th className="px-3">Ghế mình đặt</th>
+                                        <th className="px-3">Ghế người khác đang đặt</th>
                                     </tr>
                                 </thead>
                                 <tbody className="mt-3">
@@ -152,58 +167,63 @@ function Checkout(props) {
                                         <td><button className="gheVip">Stt</button></td>
                                         <td><button className="gheDuocChon"><CloseCircleOutlined /></button></td>
                                         <td><button className="gheMinhDat"><CheckOutlined /></button></td>
+                                        <td><button className="gheKhachDat"><CloseCircleOutlined /></button></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div className="col-span-3 min-h-screen" style={{border: '1px solid transparent', boxShadow: '0 0 15px rgb(0 0 0 / 30%)', marginTop: '16px'}}>
-                    <div className="px-10">
-                        <h1 className="text-5xl text-center mt-3" style={{color: '#7ed321'}}>{danhSachGheDangDat.reduce((tongTien,item,index)=>{
+                <div className="chooseSeat__right">
+                    <div style={{padding: '0 20px'}}>
+                        <h1 className="chooseSeat__right__price">{danhSachGheDangDat.reduce((tongTien,item,index)=>{
                                 return tongTien += item.giaVe
                             },0).toLocaleString()} đ</h1>
                         <hr />
-                        <div className="flex items-center my-3">
-                            <span className="text-white bg-red-500 rounded-md mr-1" style={{padding: '2px 10px'}}>C18</span>
-                            <span className="text-2xl">{thongTinPhim.tenPhim}</span>
+                        <div className="chooseSeat__right__name">
+                            <span>C18</span>
+                            <span>{thongTinPhim.tenPhim}</span>
                         </div>
-                        <div className="my-3">
-                            <p className="m-0">{thongTinPhim.tenCumRap} - {thongTinPhim.tenRap}</p>
-                            <p className="m-0">{thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu}</p>
+                        <div className="chooseSeat__right__time">
+                            <p>{thongTinPhim.tenCumRap}</p>
+                            <p>{thongTinPhim.ngayChieu} - {thongTinPhim.gioChieu} - {thongTinPhim.tenRap}</p>
                         </div>
                         <hr />
-                        <div className="flex justify-between my-3">
-                            <div>
-                                <span className="text-red-500 text-lg mr-2">Ghế </span>
+                        <div className="chooseSeat__right__NS">
+                            
+                                <span>Ghế </span>
                                 {/* // lodash sortBy giup sap xep thu tu */}
                                 {_.sortBy(danhSachGheDangDat,['stt']).map((item,index)=>{
-                                    return <span key={index} className="text-green-500 text-xl"> {item.stt} </span>
+                                    return <span key={index}> {item.stt} </span>
                                 })}
-                            </div>
+                            
                         </div>
                         <hr />
-                        <div className="py-3">
+                        <div className="chooseSeat__right__detail">
                             <i>Email</i>
                             <p>{userLogin.email}</p>
                             {/* thay input bằng reducer email */}
                         </div>  
                         <hr />
-                        <div className="py-3">
+                        <div className="chooseSeat__right__detail">
                             <i>Số điện thoại</i>
                             <p>{userLogin.soDT}</p>
                             {/* thay input bằng reducer email */}
                         </div> 
                         <hr />
-                        <div className="h-full flex flex-col justify-end" style={{marginTop: '100px'}}>
-                            <button className="bg-green-400 rounded-xl p-3 text-white font-bold text-3xl" onClick={()=>{
+                    </div>
+                    <div className="chooseSeat__right__submit">
+                            <div className="chooseSeat__right__submit__warming" >
+                                <p><i class='bx bx-message-square-error'></i>Vé đã mua không thể đổi hoặc hoàn tiền </p>
+                                <p>Mã vé sẽ được gửi qua tin nhắn ZMS (tin nhắn Zalo) và Email đã nhập</p>
+                            </div>
+                            <button onClick={()=>{
                                 const thongTinDatVe = new ThongTinDatVe();
                                 thongTinDatVe.maLichChieu = props.match.params.id;
                                 thongTinDatVe.danhSachVe = danhSachGheDangDat;
                                 dispatch(datVeAction(thongTinDatVe))
                             }}>ĐẶT VÉ</button>
-                        </div>                     
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>  
@@ -228,22 +248,25 @@ function KetQuaDatVe(props) {
                 const seats = _.first(ticket.danhSachGhe);
 
                 return (
-                    <div key={index} className="p-2 lg:w-1/3 md:w-1/2 w-full">
-                        <div className="h-full flex items-center border-gray-200 border p-4 rounded-lg">
-                        <img alt="team" className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4" src={ticket.hinhAnh} />
-                        <div className="flex-grow">
-                            <h2 className="text-gray-900 title-font font-medium text-3xl">{ticket.tenPhim}</h2>
-                            <p className="text-gray-500">Giờ chiếu: {moment(ticket.ngayDat).format("hh:mm A")} - Ngày chiếu: {moment(ticket.ngayDat).format("DD-MM-YYYY")}</p>
-                            <p>Địa điểm: {seats.tenHeThongRap} - {seats.tenCumRap}</p>
-                            <p>Ghế: {ticket.danhSachGhe.map((ghe,index)=>{
-                                return (
-                                    <span key={index}>{ghe.tenGhe} </span>
-                                )
-                            })}
-                            </p>
+                   
+                        <div key={index} className="result__menu">
+                            <div>
+                                <img alt="team" src={ticket.hinhAnh}/>
+                            </div>                           
+                            <div className="flex-grow">
+                                <h2>{ticket.tenPhim}</h2>
+                                <p>Giờ chiếu: {moment(ticket.ngayDat).format("hh:mm A")}</p>
+                                <p>Ngày chiếu: {moment(ticket.ngayDat).format("DD-MM-YYYY")}</p>
+                                <p>Địa điểm: {seats.tenHeThongRap} - {seats.tenCumRap}</p>
+                                <p>Ghế: {ticket.danhSachGhe.map((ghe,index)=>{
+                                    return (
+                                        <span key={index}>{ghe.tenGhe} </span>
+                                    )
+                                })}
+                                </p>
+                            </div>
                         </div>
-                        </div>
-                    </div>              
+                                 
                 )
             })
         )
@@ -251,15 +274,18 @@ function KetQuaDatVe(props) {
 
     return (
         <div className="mt-3">
-                <section className="text-gray-600 body-font">
-                    <div className="container px-5 py-24 mx-auto">
-                        <div className="flex flex-col text-center w-full mb-20">
-                        <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-purple-800">Lịch sử đặt vé của khách hàng</h1>
-                        <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Hãy xem thông tin và thời gian chính xác để không ảnh hưởng trải nghiệm tuyệt vời của quý khách</p>
+                <section className="result">
+                    <div className="container">
+                        <div className="result__title">
+                            <h1>Lịch sử đặt vé của khách hàng</h1>
+                            <p>Hãy xem thông tin và thời gian chính xác để không ảnh hưởng trải nghiệm tuyệt vời của quý khách</p>
                         </div>
-                        <div className="flex flex-wrap -m-2">                      
+                        <Grid col={3}
+                            mdCol={2}
+                            smCol={1}
+                            gap={15}>                      
                             {ticketItem()}
-                        </div>
+                        </Grid>
                     </div>
                 </section>
         </div>
@@ -289,44 +315,46 @@ export default function (props) {
     },[])
 
     // hiện tên người dùng góc phải và đăng xuất
-    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
-    const operations = <Fragment>
-        {!_.isEmpty(userLogin) ? <Fragment>
-            <button onClick={()=>{
-                history.push('/profile')
-            }}> 
-                {userLogin.hoTen}
-            </button> 
-            <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200 ml-3" onClick={()=>{
-                localStorage.removeItem(USER_LOGIN);
-                localStorage.removeItem(TOKEN_CYBERSOFT);
-                history.push('/home');
-                window.location.reload();
-            }}>Đăng xuất
-            </button> 
-        </Fragment>  : ''}
-    </Fragment>
+    // const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
+    // const operations = <Fragment>
+    //     {!_.isEmpty(userLogin) ? <Fragment>
+    //         <button onClick={()=>{
+    //             history.push('/profile')
+    //         }}> 
+    //             {userLogin.hoTen}
+    //         </button> 
+    //         <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200 ml-3" onClick={()=>{
+    //             localStorage.removeItem(USER_LOGIN);
+    //             localStorage.removeItem(TOKEN_CYBERSOFT);
+    //             history.push('/home');
+    //             window.location.reload();
+    //         }}>Đăng xuất
+    //         </button> 
+    //     </Fragment>  : ''}
+    // </Fragment>
     
 
     return (
-        <div className="checkout min-h-screen">
-            <Tabs tabBarExtraContent={operations} defaultActiveKey="1" activeKey={tabActive} onChange={(key)=>{
-                dispatch({
-                    type: 'CHUYEN_TAB_ACTIVE',
-                    payload: key
-                })
-            }}>
-                <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
-                        <Checkout {...props}/> 
-                </TabPane>
-                <TabPane tab="02 KẾT QUẢ ĐẶT GHẾ" key="2">
-                        <KetQuaDatVe {...props} />
-                </TabPane>
-                <TabPane tab={<button onClick={()=>{
-                    history.push('/home')
-                    }}>03 TRỞ VỀ HOME</button>} key="3">                     
-                </TabPane>
-            </Tabs>
+        <div className="checkout">
+            <div>
+                <Tabs defaultActiveKey="1" activeKey={tabActive} onChange={(key)=>{
+                    dispatch({
+                        type: 'CHUYEN_TAB_ACTIVE',
+                        payload: key
+                    })
+                }}>
+                    <TabPane tab="01 CHỌN GHẾ & THANH TOÁN" key="1">
+                            <Checkout {...props}/> 
+                    </TabPane>
+                    <TabPane tab="02 KẾT QUẢ ĐẶT GHẾ" key="2">
+                            <KetQuaDatVe {...props} />
+                    </TabPane>
+                    <TabPane tab={<span onClick={()=>{
+                        history.push('/home')
+                        }}>03 TRỞ VỀ HOME</span>} key="3">                     
+                    </TabPane>
+                </Tabs>
+            </div>
         </div>
     )
 } 

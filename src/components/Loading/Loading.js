@@ -8,9 +8,10 @@ export default function Loading() {
     return (
         <Fragment>
             { isLoading ? 
-                <div style={{position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 99}}>
-                    {/* <div className="text-4xl text-white">Loading ...</div> */}
-                    <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-violet-600"></div>
+                <div className="loading">
+                    <div>
+                        
+                    </div>
                 </div>
                 : ''
             }

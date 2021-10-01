@@ -24,6 +24,9 @@ import "slick-carousel/slick/slick-theme.css";
 // import đa ngôn ngữ
 import './i18n';
 
+//boxicon
+import './assets/boxicons-2.0.9 2/css/boxicons.min.css'
+
 
 
 

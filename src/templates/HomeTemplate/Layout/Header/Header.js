@@ -1,13 +1,10 @@
 import React, { Fragment, useEffect, useRef } from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { history } from '../../../../App';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button } from '@tsamantanis/react-glassmorphism';
-import Languages from './Languages';
 import { Select } from "antd";
 import _ from 'lodash';
-// import './Header.css';
+
 
 
 // hook đa ngôn ngữ
@@ -20,33 +17,32 @@ const { Option } = Select;
 
 export default function Header() {
 
-    useEffect(()=>{
-        window.addEventListener("scroll", () => {
-            let navbarFixed = document.querySelector(".header");
-            if (window.scrollY > 10) {
-                // navbarFixed.classList.add("header--sticky");
-                navbarFixed.style.padding = "5px 15px";
-            } else {
-                // navbarFixed.classList.remove("header--sticky");
-                navbarFixed.style.padding = "50px 20px";
-            }
-        })
-        return () => {
-            window.removeEventListener("scroll")
-        };
-    },[]);
+    const headerRef = useRef(null)
+
+    // useEffect(()=>{
+    //     window.addEventListener("scroll", () => {
+    //         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    //             headerRef.current.classList.add("shrink");
+    //         } else {
+    //             headerRef.current.classList.remove("shrink");
+    //         }
+    //     })
+    //     return () => {
+    //         window.removeEventListener("scroll")
+    //     };
+    // },[]);
 
      // lấy thông tin đăng nhập
     const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer);
     console.log('userLogin', userLogin)
 
-    const { t, i18n } = useTranslation();
+    // const { t, i18n } = useTranslation();
 
 
-    // dịch ngôn ngữ
-    const handleChange = (value) => {      
-        i18n.changeLanguage(value)
-    }
+    // // dịch ngôn ngữ
+    // const handleChange = (value) => {      
+    //     i18n.changeLanguage(value)
+    // }
 
 
     // đăng nhập xong sẽ hiển thị tên ngừoi dùng
@@ -54,58 +50,67 @@ export default function Header() {
         //dùng lodash
         if(_.isEmpty(userLogin)) {
             return <Fragment>
-                        <button style={{background: '#e5a24b'}} className="self-center px-8 py-3 rounded text-white mr-3" onClick={()=>{
+                        <span className="header__menu__item" onClick={()=>{
                                 history.push('/login')
-                        }}>Đăng nhập</button>                                                
-                        <button style={{background: '#af731b'}} className="self-center px-8 py-3 rounded text-white"  onClick={()=>{
+                        }}>Đăng nhập</span>                                                
+                        <span className="header__menu__item"  onClick={()=>{
                                 history.push('/register')
-                        }}>Đăng ký</button>
+                        }}>Đăng ký</span>
             </Fragment>
         }
 
         return <Fragment> 
-            <button onClick={()=>{
+            <span onClick={()=>{
                     history.push('/profile')
-                }} className="text-white">
-                    {userLogin.hoTen}
-            </button>
-            <button className="text-blue-800 pl-5 transition duration-300 ease-in-out hover:text-blue-200" onClick={()=>{
+                }} className="header__menu__item">
+                   <i class='bx bxs-user' ></i> Hello {userLogin.hoTen}!
+            </span>
+            <span className="header__menu__item" onClick={()=>{
                 localStorage.removeItem(USER_LOGIN);
                 localStorage.removeItem(TOKEN_CYBERSOFT);
                 history.push('/home');
                 window.location.reload();
                 }}><span>Đăng xuất</span>
-            </button>
+            </span>
         </Fragment>
 
     }
 
+    const menuRef = useRef(null);
+
+    const menuToggle = () => menuRef.current.classList.toggle('active');
+
     return (
-        <header className="p-4 header">
-            <div className="container flex justify-between items-center mx-auto">
-                <NavLink to="/home" aria-label="Back to homepage" className="flex items-center p-2" style={{marginBottom: '11px'}}>
-                    <img className="w-full" src='./imageFilm/logo.svg' />
-                </NavLink>
+        <header className="header" ref={headerRef}>
+            <div className="header__height">
+                <div className="header__logo">
+                    <Link to="/home">
+                        <img src='./imageFilm/logo.svg' width={300} height={300} />
+                    </Link>
+                </div>
                 <div className="header__menu">
-                    <button className="p-4 lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-coolGray-800">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                    <ul className="items-stretch hidden space-x-3 lg:flex">
-                        <li className="flex">
-                            <NavLink to="/home" className="flex text-white items-center px-4 -mb-1 transition duration-500 ease-in-out hover:text-yellow-300">Home</NavLink>
-                        </li>
-                        <li className="flex">
-                            <a href="#lichChieu" className="flex text-white items-center px-4 -mb-1 border-b-2 border-transparent transition duration-500 ease-in-out hover:text-yellow-300">lịch chiếu</a>
-                        </li>
-                        <li className="flex">
-                            <a href="#cumRap" className="group text-white flex items-center px-4 -mb-1 border-b-2 border-transparent transition duration-500 ease-in-out hover:text-yellow-300">Cụm rạp</a>
-                        </li>
-                    </ul>
-                    <div className="items-center flex-shrink-0 hidden lg:flex">
-                        {renderLogin()}
-                    </div>
+                    <div className="header__menu__mobile-toggle" onClick={menuToggle}>
+                        <i class='bx bx-menu'></i>
+                    </div> 
+                        <div className="header__menu__left" ref={menuRef}>
+                            <div className="header__menu__left__close" onClick={menuToggle}>
+                                <i className='bx bx-chevron-left'></i>
+                            </div>
+                            <div className="header__menu__left__content">
+                                <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
+                                    <Link to="/home">Home</Link>
+                                </div>
+                                <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
+                                    <a href="#lichChieu">lịch chiếu</a>
+                                </div>
+                                <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
+                                    <a href="#cumRap">Cụm rạp</a>
+                                </div>
+                            </div>
+                            <div className="header__menu__left__info">
+                                {renderLogin()}
+                            </div>
+                        </div>
                 </div>
             </div>
         </header>

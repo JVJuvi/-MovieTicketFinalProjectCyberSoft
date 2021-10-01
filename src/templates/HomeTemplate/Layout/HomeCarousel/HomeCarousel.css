@@ -2,7 +2,7 @@
     margin: 0 !important;
     padding: 0 !important;
 }
-.carousel.slick-slider slick-initialized {
+.carousel.slick-slider .slick-initialized {
     margin: 0 !important;
     padding: 0 !important;
 }

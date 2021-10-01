@@ -1,0 +1,36 @@
+.footer {
+    padding: 80px 0 80px 0;
+    background: url('https://tix.vn/app/assets/img/icons/backapp.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    .container {
+        padding: 0 3rem;
+    }
+
+    &__title {
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        font-weight: 600;
+        color: aliceblue;
+        
+        @include mobile-576 {
+            text-align: center;
+        }
+    }
+    &__content {
+        margin-bottom: 1rem;
+
+        @include mobile-576 {
+            text-align: center;
+        }
+        a {
+            color: white;
+        }
+    }
+
+    &__parner {
+        @include flex(center, space-between)
+    }
+}

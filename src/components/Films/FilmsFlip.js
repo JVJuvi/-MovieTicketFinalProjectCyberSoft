@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './FilmsFlip.css';
-import { NavLink } from 'react-router-dom';
+// import './FilmsFlip.css';
+import { Link, NavLink } from 'react-router-dom';
 import ModalVideo from './ModalVideo';
 import { history } from '../../App';
 import { Rate } from 'antd';
@@ -21,19 +21,18 @@ export default function FilmsFlip(props) {
     return (
         <div className="flip-card">
             <div className="flip-card-inner">
-                <img className="w-full" src={item.hinhAnh} alt="Avatar" style={{height: 400}} />
+                <img className="flip-card-inner__img" src={item.hinhAnh} alt="Avatar"/>
                 <div className="flip-card-inner-div">
-                    <button className="rounder-full z-50 cursor-pointer transition duration-300 ease-in-out hover:opacity-75" onClick={openModal}>
+                    <button>
                         <img src='https://tix.vn/app/assets/img/icons/play-video.png' />    
                     </button>
-                    <ModalVideo item={item} showModal={showModal} setShowModal={setShowModal} />
                 </div>
-            </div>
-            <div className="flip-bottom">
-                <NavLink to={`/detail/${item.maPhim}`}>
-                    <span className="text-white bg-red-500 rounded-md mr-1" style={{padding: '2px 10px'}}>C18</span>
-                    <span className="text-lg font-bold text-black">{item.tenPhim}</span>
-                </NavLink>
+                <div className="flip-bottom">
+                    <Link to={`/detail/${item.maPhim}`}>
+                        <span>C18</span>
+                        {item.tenPhim}
+                    </Link>
+                </div>
             </div>
         </div>
     )

@@ -28,6 +28,8 @@ import Edit from './pages/Admin/Films/Edit/Edit';
 import Users from './pages/Admin/Users/Users';
 import AddUserNew from './pages/Admin/Users/AddNew/AddUserNew';
 import EditUser from './pages/Admin/Users/Edit/EditUser';
+import { HeadsetRounded } from '@material-ui/icons';
+import Header from './templates/HomeTemplate/Layout/Header/Header';
 
 const CheckOutTemPlateLazy = lazy(()=> import ('./templates/CheckOutTemPlate/CheckOutTemPlate'))
 
@@ -45,10 +47,10 @@ function App() {
         <Switch>
           <HomTemplate path="/" exact component={Home} />
           <HomTemplate path="/home" exact component={Home} />
-          <HomTemplate path="/homemenu" exact component={HomeMenu} />
-          <HomTemplate path="/contact" exact component={Contact} />
+          {/* <HomTemplate path="/homemenu" exact component={HomeMenu} /> */}
+          {/* <HomTemplate path="/contact" exact component={Contact} /> */}
           <HomTemplate path="/detail/:id" exact component={Detail} />
-          <HomTemplate path="/new" exact component={New} />
+          {/* <HomTemplate path="/new" exact component={New} /> */}
           <HomTemplate path="/profile" exact component={Profile} />
 
           

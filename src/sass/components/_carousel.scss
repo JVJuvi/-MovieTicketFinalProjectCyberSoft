@@ -1,0 +1,111 @@
+.carousel {
+    position: relative;
+
+    .slick-slider {
+        margin: 0 !important;
+        padding: 0 !important;
+
+        .slick-prev, .slick-next {
+            display: block;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;     
+            width: 60px;
+            height: 70px; 
+            background-color: transparent;
+            z-index: 999 !important;
+            opacity: 0.3;
+
+            &:hover {
+                opacity: 0.2;
+                transition: all 0.3s linear;
+            }
+
+            @include mobile-576 {
+                height: 30px;
+            }
+        }
+
+        .slick-prev:before, .slick-next:before {
+            font-size: 60px;
+            opacity: .5;
+            display: none;
+        }
+        
+
+        .slick-prev {
+            left: 0;
+            background-image: url(../../assets/images/imageFilm/back-session.png) !important;
+        }
+
+        .slick-next {
+            right: 0;
+            background-image: url(../../assets/images/imageFilm/next-session.png) !important;
+        }
+
+        .slick-dots {
+            bottom: 57px !important;
+            z-index: 1000;
+
+            @include mobile-768 {
+                bottom: 24px !important;
+            }
+
+            @include mobile-576 {
+                bottom: 13px !important;
+            }
+
+            & li {
+                @include mobile-576 {
+                    margin: 0 !important;
+                }
+            }
+
+            & li button:before {
+                font-size: 20px !important;
+                opacity: 0.9 !important;
+                color: white !important;
+
+                @include mobile-576 {
+                    font-size: 12px !important;
+                }
+            
+            }
+
+            & li.slick-active button:before {
+                color: red !important;
+            }
+        }
+        .slick-list {
+            .carousel__img {
+                height: 880px;
+                color: #fff;
+                line-height: 160px;
+                text-align: center;
+                background-color: #364d79;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+
+                @include tablet-1500 {
+                    height: 765px;
+                }
+
+                @include tablet-1200 {
+                    height: 700px;
+                }
+
+                @include tablet-1024 {
+                    height: 500px;
+                }
+                @include mobile-576 {
+                    height: 290px;
+                }
+
+                img {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}

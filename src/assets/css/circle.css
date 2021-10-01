@@ -24,6 +24,14 @@
   transform: rotate(180deg);
 }
 
+@media only screen and (max-width: 768px) {
+  .c100.big {
+    font-size: 130px !important;
+    margin-top: 39px;
+    margin-left: 44px;
+  }
+}
+
 .c100 {
   position: relative;
   font-size: 120px;
@@ -45,7 +53,7 @@
 }
 
 .c100.big {
-  font-size: 240px;
+  font-size: 160px;
 }
 
 .c100.small {
@@ -80,7 +88,7 @@
   display: block;
   content: " ";
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   width: 0.84em;
   height: 0.84em;
   -webkit-transition-property: all;
