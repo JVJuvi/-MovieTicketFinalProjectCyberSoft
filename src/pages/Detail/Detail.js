@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { CustomCard } from '@tsamantanis/react-glassmorphism';
 import '@tsamantanis/react-glassmorphism/dist/index.css';
 import { Tabs, Radio, Space } from 'antd';
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { layChiTietPhimAction } from '../../redux/actions/QuanLyRapAction';
 import { Rate } from 'antd';
@@ -10,6 +10,8 @@ import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 import Grid from '../../components/Grid/Grid';
 import '../../assets/style/circle.scss';
+import _ from 'lodash';
+
 
 
 const { TabPane } = Tabs;
@@ -96,6 +98,8 @@ export default function Detail(props) {
                                 Kích thước màn hình không đủ để hiển thị hết nội dung
                             </p>
                             <div className="detail__bottom__schedule">
+                                {!_.isEmpty(filmDetail.heThongRapChieu) ?  
+                                
                                 <Tabs tabPosition={tabPosition}>
                                 {/* sẽ báo lỗi ko tìm thấy redux vì ban đầu nếu chưa nhận đc api thì sẽ ko có dữ liệu */}
                                     {filmDetail.heThongRapChieu?.map((cumRap,index)=>{
@@ -136,6 +140,10 @@ export default function Detail(props) {
                                         )
                                     })}
                                 </Tabs>
+                                : <>
+                                    <span style={{color: 'white'}}>Không có suất chiếu</span>
+                                </>};
+
                             </div>
                         </TabPane>
                         <TabPane tab="Thông tin" key="2">
@@ -176,4 +184,6 @@ export default function Detail(props) {
             </div> 
         </div>
     )
+
+    
 }
