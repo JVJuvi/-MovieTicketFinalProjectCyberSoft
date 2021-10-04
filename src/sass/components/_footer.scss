@@ -31,6 +31,19 @@
     }
 
     &__parner {
-        @include flex(center, space-between)
+        text-align: center;
+        width: 5rem;
+        height: 5rem;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    &__logo {
+
+        img {
+            max-width: 100%;
+        }
     }
 }

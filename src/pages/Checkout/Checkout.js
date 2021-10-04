@@ -131,8 +131,11 @@ function Checkout(props) {
   
     return (
         <div>
-            <div className="chooseSeat">
-                <div className="chooseSeat__left container">
+             <p className="hidden">
+                Kích thước màn hình không đủ để hiển thị hết nội dung
+            </p>
+            <div className="chooseSeat container">
+                <div className="chooseSeat__left">
                     <div className="chooseSeat__left__logo"> 
                         <img src={filmDetail.logo} alt="" />
                         <div>
@@ -142,10 +145,10 @@ function Checkout(props) {
                     </div>
                     <div className="chooseSeat__left__seat">
                         <div className="chooseSeat__left__seat__tv"></div> 
-                        <div style={{textAlign: 'center'}} className={`${style['trapezoid']}`}>
+                        <div style={{textAlign: 'center'}} className="trapezoid">
                             <h3>Màn hình</h3>
                         </div>
-                        <div style={{marginTop: '60px'}}>
+                        <div className="chooseSeat__left__seat__seats" style={{marginTop: '60px'}}>
                             {renderSeats()}
                         </div>
                         <div className="chooseSeat__left__seat__table">

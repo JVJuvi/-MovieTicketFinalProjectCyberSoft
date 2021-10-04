@@ -19,7 +19,7 @@
     }
 
     @include mobile-768 {
-        height: 90px;
+        height: 9rem;
         box-shadow: $box-shadow;
     }
 
@@ -31,14 +31,18 @@
 
     &__height {
         height: 100% ;
-        padding: 0 50px;
+        padding: 0 10rem;
+
+        @include tablet-1500 {
+            padding: 0 5rem;
+        }
 
         @include mobile-768 {
-            padding: 0 20px !important;
+            padding: 0 2rem !important;
         }
 
         @include mobile-576 {
-            padding: 0 10px !important;
+            padding: 0 1rem !important;
         }
     }
 
@@ -55,46 +59,46 @@
         pointer-events: none;
 
         img {
+            max-width: 100%; 
 
-            @include tablet-1024 {
-                width: 250px;
-                height: 250px;
-            }
-
-            @include mobile-768 {
-                width: 250px;
-                height: 250px;
-            }
-
-            @include mobile-576 {
-                width: 150px;
-                height: 200px;
-            }
+            // @include mobile-768 {
+            //     width: 20rem;
+            //     height: 20rem;
+            // }
         }
     }
     &__menu {
         height: 100%;
-        font-size: 1.5rem;
+
+        @include tablet-1024 {
+            @include flex(center, space-between);
+        }
 
         &__mobile-toggle {
             display: none;
+            font-size: 4.5rem;
 
-            @include mobile-768 {
+            @include tablet-1024 {
+                color: white;
                 display: block;
-                font-size: 4.5rem;
-            }
-
-            @include mobile-576 {
-                display: block;
-                font-size: 3.5rem;
             }
         }
 
         &__item ~ &__item {
-            margin-left: 39px;
+            margin-left: 3.9rem;
 
             @include tablet-1024 {
-                margin-left: 10px;
+                margin-left: 1rem;
+            }
+        }
+
+        &__item {
+            font-size: 2rem;
+
+            @include tablet-1200 {
+                font-size: 1.5rem;
+                color: black
+
             }
         }
 
@@ -102,20 +106,22 @@
         //     color: #af731b;
         // }
 
-        &__left, &__right {
-            @include flex(center, center);
-            height: 100%;
-        }
+        // &__left{
+        //     @include flex(center, center);
+        //     height: 100%;
+        // }
+
 
         &__left {
             @include flex(center, space-between);
+            height: 100%;
 
             &__item {
                 a {
                     color: white;
                     transition: all 0.3s linear;
 
-                    @include mobile-768 {
+                    @include tablet-1024 {
                         color: black
                     }
 
@@ -138,12 +144,20 @@
             &__info {
                 color: white;
                 cursor: pointer;
+                @include flex(center, center);
+                height: 100%;
 
-                span {
+                p {
                     transition: all 0.3s linear;
+                    margin-bottom: 0;
+                    color: white;
 
                     &:hover {
                         color: #f18f43;
+                    }
+
+                    @include tablet-1024 {
+                        color: black;
                     }
                 }
                 
@@ -151,11 +165,8 @@
                 @include tablet-1024 {
                     flex-direction: column;
                     padding-top: 100px;
+                    @include flex(center, flex-start);
                     text-align: center;
-                }
-
-                @include mobile-768 {
-                    color: black;
                 }
             }
 

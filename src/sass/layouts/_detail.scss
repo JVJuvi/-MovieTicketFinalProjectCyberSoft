@@ -1,13 +1,14 @@
 .detail {
     .container {
-        padding: 10px 100px 0 100px;
+        // padding: 1rem 10rem 0 10rem;
+        // padding: 3rem;
     }
 
     &__top {
         margin-bottom: 5rem;
 
         &__hidden {
-            @include mobile-768 {
+            @include tablet-1024 {
                 display: none;
             }
         }
@@ -17,18 +18,18 @@
                 text-align: center;
             }
             img {
-                width: 260px;
-                height: 400px;
+                width: 26rem;
+                height: 40rem;
                 border-radius: 5px;
 
                 @include mobile-768 {
-                    width: 200px;
-                    height: 300px;
+                    width: 20rem;
+                    height: 30rem;
                 }
 
                 @include mobile-576 {
-                    width: 230px;
-                    height: 330px;
+                    width: 23rem;
+                    height: 33rem;
                 }
             }   
         }    
@@ -53,7 +54,7 @@
                 }
                 span:nth-child(2) {
                     color: white;
-                    font-size: 20px;
+                    font-size: 2rem;
                     font-weight: 600;   
                 }
             }
@@ -61,6 +62,11 @@
         }
 
         &__circle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
             @include mobile-576 {
                 display: flex;
                 align-items: center;
@@ -71,14 +77,14 @@
 
     &__bottom {
         background-color: #0a2029;
-        padding: 0 150px 50px 150px;
+        // padding: 0 15rem 5rem 15rem;
 
         @include mobile-768 {
-            padding: 40px 34px;
+            padding: 4rem 3.4rem;
         }
 
         @include mobile-375 {
-            padding: 0 10px;
+            padding: 0 1rem;
         }
         
 
@@ -105,31 +111,31 @@
 
         .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
             color: #fb4226 !important;
-            font-size: 25px;
+            font-size: 2.5rem;
         }
 
         .ant-tabs-tab {
             color: #fff !important;
             transition: all 0.1s linear;
             &:hover {
-                font-size: 25px;
+                font-size: 2.5rem;
             }
         }
 
         .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-right > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab {
             @include mobile-768 {
-                padding: 8px 15px;
+                padding: 0.8rem 1.5rem;
             }
         }
         //end ant
 
         &__title {
             color: white;
-            font-size: 20px;
+            font-size: 2rem;
             margin-bottom: 0;
 
             @include mobile-768 {
-                font-size: 16px;
+                font-size: 1.6rem;
             }
         }
 
@@ -149,14 +155,14 @@
                 align-items: center;
 
                 img {
-                    width: 70px;
-                    height: 70px;
+                    width: 7rem;
+                    height: 7rem;
                 }
 
                 p {
                     margin-bottom: 0;
-                    margin-left: 10px;
-                    font-size: 13px;
+                    margin-left: 1rem;
+                    font-size: 1.3rem;
                     color: white;
 
                     @include mobile-768 {
@@ -170,40 +176,40 @@
                     display: flex;   
                     
                     img {
-                        height: 100px;
-                        width: 100px;
+                        height: 10rem;
+                        width: 10rem;
 
                         @include mobile-768 {
-                            height: 80px;
-                            width: 80px;
+                            height: 8rem;
+                            width: 8rem;
                         }
                     }
                     div {
-                        margin-left: 30px;
+                        margin-left: 3rem;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
 
                         @include mobile-768 {
-                           margin-left: 15px;
+                           margin-left: 1.5rem;
                         }
                     }
                 }
 
                 &__ticket {
                     margin-bottom: 3rem;
-                    margin-left: 130px;
+                    margin-left: 13rem;
                     display: flex;
 
                     @include mobile-768 {
                         margin-left: 0;
-                        margin-top: 10px;
+                        margin-top: 1rem;
                     }
 
                     h5 {
-                        margin-right: 10px;
+                        margin-right: 1rem;
                         display: inline-block;
-                        padding: 5px 10px;
+                        padding: 0.5rem 1rem;
                         border: 1px solid #d0d0d4;
                         border-radius: 7px;
                         color: green;
@@ -226,7 +232,7 @@
             &__title {
                 float: left;
                 width: 45%;
-                font-size: 16px;
+                font-size: 1.6rem;
                 color: #9b9b9b;
 
                 @include mobile-576 {
@@ -267,7 +273,7 @@
                 }
 
                 p:nth-child(1) {
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     color: #9b9b9b;
 
                     @include mobile-576 {

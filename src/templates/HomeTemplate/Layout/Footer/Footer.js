@@ -64,13 +64,16 @@ export default function Footer() {
                         <div className="footer__title">
                             Đối tác
                         </div>
-                        <div className="footer__parner">
+                        <Grid col={4}
+                            mdCol={2}
+                            smCol={2}
+                            gap={50}>
                             {arrLogoRap.map((item,index)=>(
-                                <div key={index} className="my-3">
-                                    <img src={item.logo} alt="..." width={50} />
+                                <div key={index} className="footer__parner">
+                                    <img src={item.logo} alt="..."/>
                                 </div>
                             ))}
-                        </div>
+                        </Grid>
                     </div>
                     <div>
                         <div className="footer__title">
@@ -101,11 +104,9 @@ export default function Footer() {
                         </div>
                     </div>
                     <div>
-                        <p>
-                            <Link to="/">
-                                <img className="footer__logo" src={logo} alt="" width={300} height={100} />
-                            </Link>
-                        </p>
+                        <div className="footer__logo">
+                            <img src={logo} alt="" />
+                        </div>
                     </div>
                 </Grid>
             </div>

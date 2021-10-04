@@ -67,7 +67,7 @@ export default function Detail(props) {
                     </div> 
                     <div className="detail__top__hidden"></div>
                     <div className="detail__top__circle">
-                        <div className={`c100 p${filmDetail.danhGia * 10} big`} style={{marginTop: '50px', marginLeft: '40px'}}>
+                        <div className={`c100 p${filmDetail.danhGia * 10} big`}>
                             <span>
                                 {filmDetail.danhGia * 10}%
                             </span>

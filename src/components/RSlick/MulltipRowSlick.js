@@ -34,8 +34,8 @@ const MultipRowSlick = (props) => {
         className: "center",
         centerMode: true,
         infinite: true,
-        centerPadding: "130px",
-        slidesToShow: 3,
+        centerPadding: "0rem",
+        slidesToShow: 4,
         speed: 500,
         rows: 2,    
         slidesPerRow: 1,
@@ -45,55 +45,55 @@ const MultipRowSlick = (props) => {
           {
             breakpoint: 1536,
             settings: {
-              slidesToShow: 3,
+              slidesToShow: 4,
               slidesToScroll: 3,
               infinite: true,
               centerMode: true,
-              centerPadding: "130px",
+              centerPadding: "0rem",
             }
           },
           {
             breakpoint: 1280,
             settings: {
-              slidesToShow: 2,
-              slidesToScroll: 3,
+              slidesToShow: 4,
+              slidesToScroll: 2,
               infinite: true,
               centerMode: true,
-              centerPadding: "250px",
+              centerPadding: "0rem",
             }
           },
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
+              slidesToShow: 4,
+              slidesToScroll: 2,
               infinite: true,
               centerMode: true,
-              centerPadding: "280px",
+              centerPadding: "0",
             }
           },
           {
             breakpoint: 768,
             settings: {
-              slidesToShow: 1,
+              slidesToShow: 3,
               centerMode: true,
-              centerPadding: '130px'
+              centerPadding: '0'
             }
           },
           {
-            breakpoint: 414,
+            breakpoint: 576,
             settings: {
-              slidesToShow: 1,
-              slidesPerRow: 1,
-              centerMode: false,
+              slidesToShow: 3,
+              centerMode: true,
+              centerPadding: '0'
             }
           },
           {
             breakpoint: 375,
             settings: {
-              slidesToShow: 1,
-              slidesPerRow: 1,
-              centerMode: false,
+              slidesToShow: 2,
+              centerMode: true,
+              centerPadding: '0'
             }
           }
         ],

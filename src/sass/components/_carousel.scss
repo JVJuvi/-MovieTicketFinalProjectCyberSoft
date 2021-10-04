@@ -10,8 +10,8 @@
             background-position: center !important;
             background-repeat: no-repeat !important;
             background-size: cover !important;     
-            width: 60px;
-            height: 70px; 
+            width: 6rem;
+            height: 7rem; 
             background-color: transparent;
             z-index: 999 !important;
             opacity: 0.3;
@@ -22,12 +22,12 @@
             }
 
             @include mobile-576 {
-                height: 30px;
+                height: 3rem;
             }
         }
 
         .slick-prev:before, .slick-next:before {
-            font-size: 60px;
+            font-size: 6rem;
             opacity: .5;
             display: none;
         }
@@ -44,15 +44,15 @@
         }
 
         .slick-dots {
-            bottom: 57px !important;
+            bottom: 5.7rem !important;
             z-index: 1000;
 
             @include mobile-768 {
-                bottom: 24px !important;
+                bottom: 2.4rem !important;
             }
 
             @include mobile-576 {
-                bottom: 13px !important;
+                bottom: 1.3rem !important;
             }
 
             & li {
@@ -62,12 +62,12 @@
             }
 
             & li button:before {
-                font-size: 20px !important;
+                font-size: 2rem !important;
                 opacity: 0.9 !important;
                 color: white !important;
 
                 @include mobile-576 {
-                    font-size: 12px !important;
+                    font-size: 1.2rem !important;
                 }
             
             }
@@ -80,7 +80,7 @@
             .carousel__img {
                 height: 880px;
                 color: #fff;
-                line-height: 160px;
+                line-height: 16rem;
                 text-align: center;
                 background-color: #364d79;
                 background-position: center;
@@ -88,22 +88,23 @@
                 background-repeat: no-repeat;
 
                 @include tablet-1500 {
-                    height: 765px;
+                    height: 76.5rem;
                 }
 
                 @include tablet-1200 {
-                    height: 700px;
+                    height: 70rem;
                 }
 
                 @include tablet-1024 {
-                    height: 500px;
+                    height: 50rem;
                 }
                 @include mobile-576 {
-                    height: 290px;
+                    height: 29rem;
                 }
 
                 img {
                     opacity: 0;
+                    max-width: 100%;
                 }
             }
         }

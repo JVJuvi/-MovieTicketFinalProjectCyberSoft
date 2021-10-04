@@ -50,28 +50,28 @@ export default function Header() {
         //dùng lodash
         if(_.isEmpty(userLogin)) {
             return <Fragment>
-                        <span className="header__menu__item" onClick={()=>{
+                        <p className="header__menu__item" onClick={()=>{
                                 history.push('/login')
-                        }}>Đăng nhập</span>                                                
-                        <span className="header__menu__item"  onClick={()=>{
+                        }}>Đăng nhập</p>                                                
+                        <p className="header__menu__item"  onClick={()=>{
                                 history.push('/register')
-                        }}>Đăng ký</span>
+                        }}>Đăng ký</p>
             </Fragment>
         }
 
         return <Fragment> 
-            <span onClick={()=>{
+            <p onClick={()=>{
                     history.push('/profile')
                 }} className="header__menu__item">
                    <i class='bx bxs-user' ></i> Hello {userLogin.hoTen}!
-            </span>
-            <span className="header__menu__item" onClick={()=>{
+            </p>
+            <p className="header__menu__item" onClick={()=>{
                 localStorage.removeItem(USER_LOGIN);
                 localStorage.removeItem(TOKEN_CYBERSOFT);
                 history.push('/home');
                 window.location.reload();
                 }}><span>Đăng xuất</span>
-            </span>
+            </p>
         </Fragment>
 
     }
@@ -85,7 +85,7 @@ export default function Header() {
             <div className="header__height">
                 <div className="header__logo">
                     <Link to="/home">
-                        <img src='./imageFilm/logo.svg' width={300} height={300} />
+                        <img src='./imageFilm/logo.svg' />
                     </Link>
                 </div>
                 <div className="header__menu">

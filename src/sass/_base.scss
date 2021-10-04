@@ -9,7 +9,7 @@
 }
 
 html {
-    font-size: 13px;
+    font-size: 62.5%;
     scroll-behavior: smooth;
 }
 
@@ -96,20 +96,26 @@ input:focus {
 
 .container {
     width: 100%;
-    max-width: 1200px;
-    padding: 0 50px;
-    margin: auto;
+    max-width: 120rem;
+    padding: 0 5rem;
+    margin: 0 auto;
 
     @include mobile-576 {
-        padding: 0 10px !important;
+        padding: 0 1rem !important;
     }
 
-    @include mobile-768 {
-        padding: 0 20px !important;
+    
+
+    @include tablet-1024 {
+        padding: 0 7rem !important;
     }
 
     @include tablet-1200 {
-        padding: 0 100px;
+        padding: 0 7rem;
+    }
+
+    @include mobile-768 {
+        padding: 0 2rem !important;
     }
 }
 
@@ -129,4 +135,12 @@ input:focus {
 
 .grid {
     display: grid;
+}
+
+.hidden {
+    display: none;
+
+    @include mobile-576 {
+        display: block;
+    }
 }
