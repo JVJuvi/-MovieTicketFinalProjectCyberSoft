@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import FilmsFlip from "../Films/FilmsFlip";
 import { LAY_PHIM_DANG_CHIEU, LAY_PHIM_SAP_CHIEU } from "../../redux/types/QuanLyPhimType";
 import { useDispatch, useSelector } from 'react-redux';
+import _ from "lodash";
 
 
 
@@ -16,8 +17,18 @@ const MultipRowSlick = (props) => {
     console.log('sapChieu', sapChieu)
     
     const dispatch = useDispatch();
+
+    //lọc ra phim nào đang chiếu và sắp chiếu
     const renderPhim = () => {
-        return arrPhim.slice(0,12).map((item,index)=>{
+        let arrFilter = [];
+        if(dangChieu === true) {
+            arrFilter = _.filter(arrPhim, {'dangChieu': true});
+        } else {
+            arrFilter = _.filter(arrPhim, {'sapChieu': true});
+        }
+
+        console.log('arrFilter', arrFilter)
+        return arrFilter.slice(0,12).map((item,index)=>{
             return (
                 <div key={index}>
                     <FilmsFlip item={item} style={{ }} />
@@ -104,13 +115,15 @@ const MultipRowSlick = (props) => {
                 <div className="multipRowSlick__top">
                     <span type="button" className={`multipRowSlick__top__button ${activeClassDC}`} onClick={()=>{
                         const action = {
-                            type: LAY_PHIM_DANG_CHIEU
+                            type: LAY_PHIM_DANG_CHIEU,
+                            payload: true
                         }
                         dispatch(action)
                     }}>Đang chiếu</span>
                     <span type="button" className={`multipRowSlick__top__button ${activeClassSC}`} onClick={()=>{
                         const action = {
-                            type: LAY_PHIM_SAP_CHIEU
+                            type: LAY_PHIM_SAP_CHIEU,
+                            payload: true
                         }
                         dispatch(action)
                     }}>Sắp chiếu</span>

@@ -84,9 +84,9 @@ export default function Header() {
         <header className="header" ref={headerRef}>
             <div className="header__height">
                 <div className="header__logo">
-                    <Link to="/home">
+                    <NavLink to="/home">
                         <img src='./imageFilm/logo.svg' />
-                    </Link>
+                    </NavLink>
                 </div>
                 <div className="header__menu">
                     <div className="header__menu__mobile-toggle" onClick={menuToggle}>

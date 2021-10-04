@@ -20,14 +20,18 @@ const QuanLyPhimReducer = (state = stateDefault, action) => {
             return {...state};
         }
         case LAY_PHIM_DANG_CHIEU: {
-            state.dangChieu = !state.dangChieu;
-            state.sapChieu = !state.sapChieu
+            if(action.payload === true) {
+                state.dangChieu = action.payload;
+                state.sapChieu = false;
+            }
             state.arrPhim = state.arrPhimDefault.filter(item => item.dangChieu === state.dangChieu);
             return {...state};
         }
         case LAY_PHIM_SAP_CHIEU: {
-            state.sapChieu = !state.sapChieu
-            state.dangChieu = !state.dangChieu;
+            if(action.payload === true) {
+                state.sapChieu = action.payload;
+                state.dangChieu = false;
+            }
             state.arrPhim = state.arrPhimDefault.filter(item => item.sapChieu === state.sapChieu);
             return {...state};
         }

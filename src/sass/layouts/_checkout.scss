@@ -35,14 +35,14 @@
         transition: all 0.1s linear;
         margin: 0 0 0 5rem;
 
-        font-size: 1rem;
+        font-size: 1.5rem;
         &:hover {
             font-size: 2rem;
         }
 
         @include mobile-576 {
             margin: 0 0 0 1rem;
-
+            font-size: 1rem;
         }
     }
     .ant-tabs-top > .ant-tabs-nav, .ant-tabs-bottom > .ant-tabs-nav, .ant-tabs-top > div > .ant-tabs-nav, .ant-tabs-bottom > div > .ant-tabs-nav {
@@ -420,6 +420,7 @@
     // height: 100vh;
     // width: 100%;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 
     &__title {
         text-align: center;
@@ -438,6 +439,14 @@
             border-radius: 100%;
             width: 6rem;
             height: 6rem;
+        }
+
+        &__detail {
+            margin-left: 5px;
+
+            span {
+                color: #EF4444;
+            }
         }
     }
 }

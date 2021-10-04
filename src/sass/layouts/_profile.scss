@@ -1,0 +1,105 @@
+.information {
+.profile {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    p {
+        color: #7f7f7f;
+        margin-bottom: 0.5rem;
+    }
+
+    h1 {
+        margin-bottom: 0;
+
+        @include mobile-576 {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__menu {
+        display: flex;
+
+        @include mobile-576 {
+            display: block;
+        }
+
+        &__left, &__right {
+            float: left;
+            width: 50%;
+
+            @include mobile-576 {
+                float: none;
+                width: auto;
+            }
+        }
+
+        &__left {
+            margin-right: 0.5rem;
+            
+            @include mobile-576 {
+                text-align: center;
+            }
+
+            img {
+                height: 12rem;
+                width: 12rem;
+                border: 2px solid #676565;
+                border-radius: 100%;
+            }
+
+            div {
+
+                @include mobile-576 {
+                    text-align: left;
+                }
+            }
+        
+        }
+
+        &__right {
+            h1{
+                margin-bottom: 1rem;
+
+                @include mobile-576 {
+                    border-bottom: 1px solid black;
+                }
+            }
+        }
+    }
+}
+
+//ant
+.ant-tabs {
+    .ant-tabs-nav:before {
+        border-bottom: none !important;
+    }
+}
+
+.ant-tabs-ink-bar {
+    background-color: red !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #fb4226 !important;
+    font-size: 2.5rem;
+
+    @include mobile-576 {
+        font-size: 1.5rem;
+    }
+}
+
+.ant-tabs-tab {
+    color: #000 !important;
+    transition: all 0.1s linear;
+    &:hover {
+        font-size: 2.5rem;
+    }
+}
+
+.ant-tabs-left > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-right > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab {
+    @include mobile-768 {
+        padding: 0.8rem 1.5rem;
+    }
+}
+//end ant
+}
