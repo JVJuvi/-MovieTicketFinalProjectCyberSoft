@@ -74,17 +74,20 @@ export default function Films(props) {
             dataIndex: 'hanhDong',
             render: (text, film, index) => {
                 return <Fragment>
-                    <NavLink key={1} to={`/admin/films/edit/${film.maPhim}`} className="mr-2 text-3xl"><EditOutlined style={{color: 'blue'}}/></NavLink>
-                    <span key={2} className="mr-2 text-3xl" style={{cursor: 'pointer'}} onClick={()=>{
+                    {/* Chỉnh sửa */}
+                    <NavLink key={1} to={`/admin/films/edit/${film.maPhim}`} style={{marginRight: '1rem', fontSize: '2.5rem'}}><EditOutlined style={{color: 'blue'}}/></NavLink>
+                    {/* //xoá */}
+                    <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}} onClick={()=>{
                         //xác nhận muốn xoá
                         if(window.confirm('Bạn có chắc muốn xoá phim ' + film.tenPhim)) {
                             //gọi action
                             dispatch(xoaPhimAction(film.maPhim))
                         }
                     }}><DeleteOutlined style={{color: 'red'}}/></span>
-                    <NavLink key={3} to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} className="mr-2 text-3xl" onClick={()=>{
+                    {/* //xếp lịch */}
+                    <NavLink key={3} to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} onClick={()=>{
                         localStorage.setItem('filmParams', JSON.stringify(film))
-                    }}><ScheduleOutlined style={{color: 'green'}}/></NavLink>
+                    }}><ScheduleOutlined style={{color: 'green', marginRight: '1rem', fontSize: '2.5rem'}}/></NavLink>
                 </Fragment>
             },
             sortDirections: ['descend', 'ascend'],
@@ -111,8 +114,11 @@ export default function Films(props) {
 
     return (
         <div>
-            <h3 className="text-4xl">Quản lý phim</h3>
-            <Button className="mb-3" onClick={()=>{
+            <h3 style={{fontSize: '2rem'}}>Quản lý phim</h3>
+            <Button style={{marginBottom: '20px'}} onClick={()=>{
+                dispatch({
+                    type: 'CHANGE_TAB',
+                })
                 history.push('/admin/films/addnew')
             }}>Thêm phim</Button>
             <br />

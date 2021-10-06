@@ -30,7 +30,10 @@ export const AdminTemplate = (props) => {
         });
     };
 
-    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
+    const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer);
+
+    const {activeKey} = useSelector(state => state.QuanLyPhimReducer);
+    console.log('activeKey', activeKey)
 
     //khi chuyển qua trang admin thì sẽ tự load lên đầu trang
     useEffect(()=>{
@@ -48,15 +51,21 @@ export const AdminTemplate = (props) => {
     }
 
     const operations = <Fragment>
-        {!_.isEmpty(userLogin) ? <Fragment><button onClick={()=>{
-            history.push('/profile')
-        }}> <div className="flex align-items-center"> <div className="rounded-full bg-red-500" style={{width: '50px',height: '50px'}}></div> <div> <h5 className="text-white">{userLogin.hoTen}</h5></div> </div> </button> <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200 ml-2" onClick={()=>{
-            localStorage.removeItem(USER_LOGIN);
-            localStorage.removeItem(TOKEN_CYBERSOFT);
-            history.push('/home');
-            window.location.reload();
-        }}>Đăng xuất</button> </Fragment>  : ''}
+        <p onClick={()=>{
+                    history.push('/profile')
+                }} className="header__menu__item">
+                   <i class='bx bxs-user' ></i> Hello {userLogin.hoTen}!
+            </p>
+            <p className="header__menu__item" onClick={()=>{
+                localStorage.removeItem(USER_LOGIN);
+                localStorage.removeItem(TOKEN_CYBERSOFT);
+                history.push('/home');
+                window.location.reload();
+                }}><span>Đăng xuất</span>
+            </p>
     </Fragment>
+
+
 
 
     return <Route exact path={props.path} render={(propsRoute) => {
@@ -64,14 +73,16 @@ export const AdminTemplate = (props) => {
         return <Fragment>
             <Layout>
                 <Sider className="sider">
-                    <div className="text-center mb-1"> 
-                        <img src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png" alt="..." />
+                    <div style={{marginBottom: '27px'}}> 
+                        <NavLink to="/">
+                            <img src="./imageFilm/logo.svg" alt="..." />
+                        </NavLink>
                      </div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item key="1" icon={<UserOutlined />}>
                             <NavLink to="/admin">
                                 DashBoard
-                            </NavLink>
+                            </NavLink>  
                         </Menu.Item>
                         <SubMenu key="sub1" icon={<FileOutlined />} title="Quản lý phim">
                             <Menu.Item key="10" icon={<FileOutlined />}>
@@ -92,13 +103,13 @@ export const AdminTemplate = (props) => {
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0 }}>
-                        <div className="text-right pr-10 pt-1">
+                    <Header className="site-layout-background" style={{ padding: 0, }}>
+                        <div className="text-right pr-10 pt-1" style={{ display: 'flex', justifyContent: 'flex-end' }}>
                             {operations}
                         </div>
                     </Header>
                     <Content
-                        className="site-layout-background bg-white"
+                        className="site-layout-background "
                         style={{
                             margin: '24px 16px',
                             padding: 24,

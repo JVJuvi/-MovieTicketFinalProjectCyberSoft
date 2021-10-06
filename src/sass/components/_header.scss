@@ -86,6 +86,7 @@
 
         &__item ~ &__item {
             margin-left: 3.9rem;
+            cursor: pointer;
 
             @include tablet-1024 {
                 margin-left: 1rem;
@@ -94,6 +95,13 @@
 
         &__item {
             font-size: 2rem;
+            color: white;
+            transition: all 0.3s;
+            cursor: pointer;
+
+            &:hover {
+                color: #f18f43;
+            }
 
             @include tablet-1200 {
                 font-size: 1.5rem;

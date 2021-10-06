@@ -9,7 +9,8 @@ const stateDefault = {
     sapChieu:false,
     arrPhimDefault: [],
     filmDetail: {},
-    adminThongTinPhim: {}
+    adminThongTinPhim: {},
+    activeKey: '1'
 }
 
 const QuanLyPhimReducer = (state = stateDefault, action) => {
@@ -41,6 +42,10 @@ const QuanLyPhimReducer = (state = stateDefault, action) => {
         }
         case LAY_CHI_TIET_PHIM_ADMIN: {
             state.adminThongTinPhim = action.payload;
+            return {...state};
+        }
+        case 'CHANGE_TAB': {
+            state.activeKey = '11';
             return {...state};
         }
         default: return{...state};

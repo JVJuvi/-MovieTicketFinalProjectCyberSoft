@@ -234,67 +234,7 @@ function Checkout(props) {
     )
 }
 
-// function KetQuaDatVe(props) {
 
-//     const {thongTinNguoiDung} = useSelector(state => state.QuanLyNguoiDungReducer);
-//     console.log('thongTinNguoiDung',thongTinNguoiDung)
-
-//     const dispatch = useDispatch();
-
-//     useEffect(()=>{
-//         dispatch(layThongTinNguoiDungDanNhapAction())
-//     },[])
-
-//     const ticketItem = () => {
-//         return (
-//             thongTinNguoiDung.thongTinDatVe?.map((ticket,index)=>{
-
-//                 const seats = _.first(ticket.danhSachGhe);
-
-//                 return (
-                   
-//                         <div key={index} className="result__menu">
-//                             <div>
-//                                 <img alt="team" src={ticket.hinhAnh}/>
-//                             </div>                           
-//                             <div className="flex-grow">
-//                                 <h2>{ticket.tenPhim}</h2>
-//                                 <p>Giờ chiếu: {moment(ticket.ngayDat).format("hh:mm A")}</p>
-//                                 <p>Ngày chiếu: {moment(ticket.ngayDat).format("DD-MM-YYYY")}</p>
-//                                 <p>Địa điểm: {seats.tenHeThongRap} - {seats.tenCumRap}</p>
-//                                 <p>Ghế: {ticket.danhSachGhe.map((ghe,index)=>{
-//                                     return (
-//                                         <span key={index}>{ghe.tenGhe} </span>
-//                                     )
-//                                 })}
-//                                 </p>
-//                             </div>
-//                         </div>
-                                 
-//                 )
-//             })
-//         )
-//     }
-
-//     return (
-//         <div className="mt-3">
-//                 <section className="result">
-//                     <div className="container">
-//                         <div className="result__title">
-//                             <h1>Lịch sử đặt vé của khách hàng</h1>
-//                             <p>Hãy xem thông tin và thời gian chính xác để không ảnh hưởng trải nghiệm tuyệt vời của quý khách</p>
-//                         </div>
-//                         <Grid col={3}
-//                             mdCol={2}
-//                             smCol={1}
-//                             gap={15}>                      
-//                             {ticketItem()}
-//                         </Grid>
-//                     </div>
-//                 </section>
-//         </div>
-//     )
-// }
 
 const { TabPane } = Tabs;
 
@@ -318,24 +258,6 @@ export default function (props) {
         }
     },[])
 
-    // hiện tên người dùng góc phải và đăng xuất
-    // const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer)
-    // const operations = <Fragment>
-    //     {!_.isEmpty(userLogin) ? <Fragment>
-    //         <button onClick={()=>{
-    //             history.push('/profile')
-    //         }}> 
-    //             {userLogin.hoTen}
-    //         </button> 
-    //         <button className="text-blue-800 transition duration-300 ease-in-out hover:text-blue-200 ml-3" onClick={()=>{
-    //             localStorage.removeItem(USER_LOGIN);
-    //             localStorage.removeItem(TOKEN_CYBERSOFT);
-    //             history.push('/home');
-    //             window.location.reload();
-    //         }}>Đăng xuất
-    //         </button> 
-    //     </Fragment>  : ''}
-    // </Fragment>
     
 
     return (

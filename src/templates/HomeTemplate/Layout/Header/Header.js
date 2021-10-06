@@ -44,6 +44,18 @@ export default function Header() {
     //     i18n.changeLanguage(value)
     // }
 
+    //trang admin chỉ có quản trị viên mới có quyền truy cập nên set userLogin nếu maLoaiNguoiDung khác quản trị thì sẽ cho về home
+    const renderAdmin = () => {
+        if(!localStorage.getItem(USER_LOGIN)) {
+            return '';
+        }
+        if(userLogin.maLoaiNguoiDung === "QuanTri") {
+            return <div className="header__menu__item header__menu__left__item">
+                    <NavLink to="/admin">Admin</NavLink>
+                </div>
+        }
+    }
+
 
     // đăng nhập xong sẽ hiển thị tên ngừoi dùng
     const renderLogin = () => {
@@ -84,9 +96,9 @@ export default function Header() {
         <header className="header" ref={headerRef}>
             <div className="header__height">
                 <div className="header__logo">
-                    <NavLink to="/home">
+                    <Link to="/home">
                         <img src='./imageFilm/logo.svg' />
-                    </NavLink>
+                    </Link>
                 </div>
                 <div className="header__menu">
                     <div className="header__menu__mobile-toggle" onClick={menuToggle}>
@@ -106,6 +118,7 @@ export default function Header() {
                                 <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
                                     <a href="#cumRap">Cụm rạp</a>
                                 </div>
+                                {renderAdmin()}
                             </div>
                             <div className="header__menu__left__info">
                                 {renderLogin()}

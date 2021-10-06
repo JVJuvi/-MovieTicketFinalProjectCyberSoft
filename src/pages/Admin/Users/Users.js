@@ -64,8 +64,8 @@ export default function Users(props) {
             dataIndex: 'hanhDong',
             render: (text, user, index) => {
                 return <Fragment>
-                    <NavLink key={1} to={`/admin/users/edit/${user.taiKhoan}`} className="mr-2 text-3xl"><EditOutlined style={{color: 'blue'}}/></NavLink>
-                    <span key={2} className="mr-2 text-3xl" style={{cursor: 'pointer'}} onClick={()=>{
+                    <NavLink key={1} to={`/admin/users/edit/${user.taiKhoan}`} style={{marginRight: '1rem', fontSize: '2.5rem'}}><EditOutlined style={{color: 'blue'}}/></NavLink>
+                    <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}} onClick={()=>{
                         if(window.confirm('Bạn có chắc muốn xoá tài khoản ' + user.taiKhoan)) {
                             dispatch(xoaNguoiDungAction(user.taiKhoan))
                         }
@@ -97,7 +97,7 @@ export default function Users(props) {
     return (
         <div>
             <h3 className="text-4xl">Quản lý người dùng</h3>
-            <Button className="mb-3" onClick={()=>{
+            <Button style={{marginBottom: '20px'}} onClick={()=>{
                 history.push('/admin/users/addnew')
             }} >Thêm người dùng</Button>
             <br />

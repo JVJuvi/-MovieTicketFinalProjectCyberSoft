@@ -150,7 +150,7 @@ export default function Edit(props) {
                     <br />
                     <img src={imgSRC === '' ? adminThongTinPhim.hinhAnh : imgSRC} alt="..." style={{width: 150, height: 200}} />
                 </Form.Item>
-                <Form.Item className="text-center">
+                <Form.Item label="Hành động" className="text-center">
                     <button type="submit" className="bg-green-500 rounded-sm text-white" style={{width: '300px', height: '50px'}}>Cập nhật</button>
                 </Form.Item>
             </Form>
