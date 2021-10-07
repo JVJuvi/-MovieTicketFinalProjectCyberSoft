@@ -47,10 +47,7 @@ function App() {
         <Switch>
           <HomTemplate path="/" exact component={Home} />
           <HomTemplate path="/home" exact component={Home} />
-          {/* <HomTemplate path="/homemenu" exact component={HomeMenu} /> */}
-          {/* <HomTemplate path="/contact" exact component={Contact} /> */}
           <HomTemplate path="/detail/:id" exact component={Detail} />
-          {/* <HomTemplate path="/new" exact component={New} /> */}
           <HomTemplate path="/profile" exact component={Profile} />
 
           

@@ -52,7 +52,8 @@ export default function (props) {
     const { TabPane } = Tabs;
 
     const contentStyle = {
-        paddingTop: '130px'
+        paddingTop: '13rem',
+        paddingBottom: '6rem'
     }
 
     return (
