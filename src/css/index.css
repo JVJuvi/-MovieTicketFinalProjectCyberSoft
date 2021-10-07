@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand', sans-serif !important;
 }
 
 ul {
@@ -500,6 +500,7 @@ input:focus {
 
 .header__menu__item ~ .header__menu__item {
   margin-left: 3.9rem;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -510,9 +511,17 @@ input:focus {
 
 .header__menu__item {
   font-size: 2rem;
+  color: white;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
 }
 
-@media only screen and (max-width: 1280px) {
+.header__menu__item:hover {
+  color: #f18f43;
+}
+
+@media only screen and (max-width: 768px) {
   .header__menu__item {
     font-size: 1.5rem;
     color: black;
@@ -1067,8 +1076,8 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .multipRowSlick .slick-slider .slick-track .flip-card .flip-card-inner {
-    width: 20rem;
-    height: 30rem;
+    width: 25rem;
+    height: 35rem;
   }
 }
 
@@ -1081,8 +1090,8 @@ input:focus {
 
 @media only screen and (max-width: 768px) {
   .multipRowSlick .slick-slider .slick-track .flip-card .flip-card-inner {
-    width: 14rem;
-    height: 24rem;
+    width: 16rem;
+    height: 26rem;
   }
 }
 
@@ -1381,6 +1390,10 @@ input:focus {
   background: #ebebec;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+.homeMenu__bottom__listMovies__bottom h5:hover {
+  opacity: 0.7;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1748,6 +1761,12 @@ input:focus {
   font-size: 2.5rem;
 }
 
+@media only screen and (max-width: 576px) {
+  .detail__bottom .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    font-size: 1.5rem;
+  }
+}
+
 .detail__bottom .ant-tabs-tab {
   color: #fff !important;
   -webkit-transition: all 0.1s linear;
@@ -2042,7 +2061,7 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .checkout .chooseSeat__left {
-    margin-top: 10rem;
+    margin-top: 2rem;
   }
 }
 
@@ -2290,14 +2309,14 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .checkout .ghe {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .checkout .ghe {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
@@ -2313,14 +2332,14 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .checkout .gheDuocChon {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .checkout .gheDuocChon {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
@@ -2337,14 +2356,14 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .checkout .gheDangChon {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .checkout .gheDangChon {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
@@ -2361,14 +2380,14 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .checkout .gheVip {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .checkout .gheVip {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
@@ -2385,14 +2404,14 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .checkout .gheMinhDat {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .checkout .gheMinhDat {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
@@ -2409,20 +2428,21 @@ input:focus {
 
 @media only screen and (max-width: 1280px) {
   .checkout .gheKhachDat {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .checkout .gheKhachDat {
-    width: 3.5rem;
+    width: 3rem;
     height: 2.5rem;
   }
 }
 
 .result {
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .result__title {
@@ -2445,6 +2465,14 @@ input:focus {
   border-radius: 100%;
   width: 6rem;
   height: 6rem;
+}
+
+.result__menu__detail {
+  margin-left: 5px;
+}
+
+.result__menu__detail span {
+  color: #EF4444;
 }
 
 .loading {
@@ -2475,5 +2503,117 @@ input:focus {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+.information .profile {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.information .profile p {
+  color: #7f7f7f;
+  margin-bottom: 0.5rem;
+}
+
+.information .profile h1 {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 576px) {
+  .information .profile h1 {
+    font-size: 1.6rem;
+  }
+}
+
+.information .profile__menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media only screen and (max-width: 576px) {
+  .information .profile__menu {
+    display: block;
+  }
+}
+
+.information .profile__menu__left, .information .profile__menu__right {
+  float: left;
+  width: 50%;
+}
+
+@media only screen and (max-width: 576px) {
+  .information .profile__menu__left, .information .profile__menu__right {
+    float: none;
+    width: auto;
+  }
+}
+
+.information .profile__menu__left {
+  margin-right: 0.5rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .information .profile__menu__left {
+    text-align: center;
+  }
+}
+
+.information .profile__menu__left img {
+  height: 12rem;
+  width: 12rem;
+  border: 2px solid #676565;
+  border-radius: 100%;
+}
+
+@media only screen and (max-width: 576px) {
+  .information .profile__menu__left div {
+    text-align: left;
+  }
+}
+
+.information .profile__menu__right h1 {
+  margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .information .profile__menu__right h1 {
+    border-bottom: 1px solid black;
+  }
+}
+
+.information .ant-tabs .ant-tabs-nav:before {
+  border-bottom: none !important;
+}
+
+.information .ant-tabs-ink-bar {
+  background-color: red !important;
+}
+
+.information .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #fb4226 !important;
+  font-size: 2.5rem;
+}
+
+@media only screen and (max-width: 576px) {
+  .information .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    font-size: 1.5rem;
+  }
+}
+
+.information .ant-tabs-tab {
+  color: #000 !important;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.information .ant-tabs-tab:hover {
+  font-size: 2.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .information .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab, .information .ant-tabs-right > .ant-tabs-nav .ant-tabs-tab, .information .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab, .information .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab {
+    padding: 0.8rem 1.5rem;
+  }
 }
 /*# sourceMappingURL=index.css.map */

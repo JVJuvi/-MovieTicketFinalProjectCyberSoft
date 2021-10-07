@@ -136,7 +136,7 @@ export default function AddNew(props) {
                     <br />
                     <img src={imgSRC} alt="..." style={{width: 150, height: 200}} />
                 </Form.Item>
-                <Form.Item className="text-center">
+                <Form.Item label="Hành động">
                     <button type="submit" className="bg-green-500 rounded-sm text-white" style={{width: '300px', height: '50px'}}>Thêm phim</button>
                 </Form.Item>
             </Form>
