@@ -42,7 +42,8 @@ export const dangNhapAction = (values) => {
                 history.goBack();
             }
         } catch (error) {
-            console.log({error})
+            console.log('error', error.response?.data);
+            alert(error.response?.data.content)
         }
     }
 }
