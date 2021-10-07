@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { dangKyNguoiDungAction, dangNhapAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import { history } from '../../App';
 // import './Register.css'
+import { message } from 'antd';
 
 export default function Register(props) {
 
@@ -25,11 +26,11 @@ export default function Register(props) {
            dispatch(dangKyNguoiDungAction(values))
        },
        validationSchema: Yup.object({
-           taiKhoan: Yup.string().required("Không được để trống"),
-           matKhau: Yup.string().required("Không được để trống"),
+           taiKhoan: Yup.string().required("Không được để trống").min(6, 'Tối thiểu 6 ký tự'),
+           matKhau: Yup.string().required("Không được để trống").min(6, 'Tối thiểu 6 ký tự'),
            hoTen: Yup.string().required("Không được để trống"),
-           soDt: Yup.string().required("Không được để trống"),
-           email: Yup.string().required("Không được để trống"),
+           soDt: Yup.string().matches(/^[0-9]+$/, 'Không đúng định dạng').required("Không được để trống"),
+           email: Yup.string().required("Không được để trống").email('Không đúng định dạng'),
        })
 
     })
