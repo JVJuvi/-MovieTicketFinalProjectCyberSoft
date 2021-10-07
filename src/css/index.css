@@ -382,6 +382,10 @@ input:focus {
           justify-content: center;
 }
 
+.userTemplate p {
+  color: white;
+}
+
 .header {
   height: 13rem;
   width: 100%;

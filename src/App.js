@@ -52,7 +52,6 @@ function App() {
 
           
           <UserTemplate path="/login" exact component={Login} />
-          <UserTemplate path="/dangnhap" exact component={dangNhap} />
           <UserTemplate path="/register" exact component={Register} />
 
           <AdminTemplate path="/admin" exact component={Dashboard} />

@@ -31,7 +31,7 @@ export default function Login(props) {
     return (
         <div className="login">
             <div className="login__close" onClick={()=>{
-                history.push('/home');
+                history.goBack();
             }}>
                 <i class='bx bx-x'></i>
             </div>
