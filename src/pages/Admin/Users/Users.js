@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef } from 'react';
-import { Button, Table, AutoComplete, Input } from 'antd';
+import { Button, Table, AutoComplete, Input, Popconfirm } from 'antd';
 import { EditOutlined, DeleteOutlined, ScheduleOutlined} from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { LayDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanLyPhimAcTion';
@@ -63,13 +63,24 @@ export default function Users(props) {
             title: 'Hành động',
             dataIndex: 'hanhDong',
             render: (text, user, index) => {
+
+                const textantd = 'Bạn có chắc muốn xoá tài khoản';
+
+                const confirm = () => {
+                    dispatch(xoaNguoiDungAction(user.taiKhoan))
+                }
+
                 return <Fragment>
                     <NavLink key={1} to={`/admin/users/edit/${user.taiKhoan}`} style={{marginRight: '1rem', fontSize: '2.5rem'}}><EditOutlined style={{color: 'blue'}}/></NavLink>
-                    <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}} onClick={()=>{
+                    {/* <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}} onClick={()=>{
                         if(window.confirm('Bạn có chắc muốn xoá tài khoản ' + user.taiKhoan)) {
                             dispatch(xoaNguoiDungAction(user.taiKhoan))
                         }
-                    }}><DeleteOutlined style={{color: 'red'}}/></span>
+                    }}><DeleteOutlined style={{color: 'red'}}/></span> */}
+
+                    <Popconfirm placement="topLeft" title={textantd} onConfirm={confirm} okText="Yes" cancelText="No">
+                        <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}}><DeleteOutlined style={{color: 'red'}}/></span>
+                    </Popconfirm>
                 </Fragment>
             },
             sortDirections: ['descend', 'ascend'],

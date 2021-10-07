@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef } from 'react';
-import { Button, Table, AutoComplete, Input } from 'antd';
+import { Button, Table, AutoComplete, Input, Popconfirm, message } from 'antd';
 import { EditOutlined, DeleteOutlined, ScheduleOutlined} from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { LayDanhSachPhimAction, xoaPhimAction } from '../../../redux/actions/QuanLyPhimAcTion';
@@ -23,7 +23,7 @@ export default function Films(props) {
 
     useEffect(() => {
         dispatch(LayDanhSachPhimAction(props.match.params.id));
-    },[])
+    },[]);
 
     const columns = [
         {
@@ -73,17 +73,29 @@ export default function Films(props) {
             title: 'Hành động',
             dataIndex: 'hanhDong',
             render: (text, film, index) => {
+
+                const textantd = 'Bạn có chắc muốn xoá phim';
+
+                const confirm = () => {
+                    dispatch(xoaPhimAction(film.maPhim))
+                }
+
                 return <Fragment>
                     {/* Chỉnh sửa */}
                     <NavLink key={1} to={`/admin/films/edit/${film.maPhim}`} style={{marginRight: '1rem', fontSize: '2.5rem'}}><EditOutlined style={{color: 'blue'}}/></NavLink>
                     {/* //xoá */}
-                    <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}} onClick={()=>{
+                    {/* <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}} onClick={()=>{
                         //xác nhận muốn xoá
                         if(window.confirm('Bạn có chắc muốn xoá phim ' + film.tenPhim)) {
                             //gọi action
                             dispatch(xoaPhimAction(film.maPhim))
                         }
-                    }}><DeleteOutlined style={{color: 'red'}}/></span>
+                    }}><DeleteOutlined style={{color: 'red'}}/></span> */}
+
+                    <Popconfirm placement="topLeft" title={textantd} onConfirm={confirm} okText="Yes" cancelText="No">
+                        <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}}><DeleteOutlined style={{color: 'red'}}/></span>
+                    </Popconfirm>
+
                     {/* //xếp lịch */}
                     <NavLink key={3} to={`/admin/films/showtime/${film.maPhim}/${film.tenPhim}`} onClick={()=>{
                         localStorage.setItem('filmParams', JSON.stringify(film))
@@ -111,6 +123,8 @@ export default function Films(props) {
     function onChange(pagination, filters, sorter, extra) {
         console.log('params', pagination, filters, sorter, extra);
     }
+
+    
 
     return (
         <div>
