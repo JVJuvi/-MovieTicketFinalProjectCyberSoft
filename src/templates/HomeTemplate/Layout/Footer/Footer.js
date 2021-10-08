@@ -10,38 +10,38 @@ import logo from '../../../../assets/images/imageFilm/logo.svg';
 const footerAboutLink = [
     {
         display: "Giới thiệu",
-        path: "/about"
+        path: "/"
     },
     {
         display: "Tuyển dụng",
-        path: "/about"
+        path: "/"
     },
     {
         display: "Tin tức",
-        path: "/about"
+        path: "/"
     },
     {
         display: "Liên hệ",
-        path: "/about"
+        path: "/"
     },
     {
         display: "Hệ thống rạp chiếu",
-        path: "/about"
+        path: "/"
     }
 ]
 
 const footerAboutCustomer = [
     {
         display: "Chính sách đổi trả",
-        path: "/about"
+        path: "/"
     },
     {
         display: "Chính sách bảo hành",
-        path: "/about"
+        path: "/"
     },
     {
         display: "Chính sách hoàn tiền",
-        path: "/about"
+        path: "/"
     }
 ]
 
