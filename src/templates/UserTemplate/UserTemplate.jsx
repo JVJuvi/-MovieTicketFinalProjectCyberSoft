@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
 import { Route } from 'react-router-dom';
-// import './UserTemplate.css';
 
 export const UserTemplate = (props) => {
 

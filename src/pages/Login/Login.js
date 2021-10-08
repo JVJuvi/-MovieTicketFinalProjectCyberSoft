@@ -4,7 +4,6 @@ import { GROUP_ID } from '../../util/setting';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { dangNhapAction } from '../../redux/actions/QuanLyNguoiDungAction';
-// import './Login.css';
 import { history } from '../../App';
 
 export default function Login(props) {

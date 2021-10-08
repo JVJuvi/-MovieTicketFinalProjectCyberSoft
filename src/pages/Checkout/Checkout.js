@@ -1,19 +1,13 @@
 import React, { Fragment, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import style from "./Checkout.module.css";
 import { datVeAction, layChiTietPhongVeAcTion, datGheAction } from '../../redux/actions/QuanLyDatVeAction';
-// import './Checkout.css';
-import { CheckOutlined, CloseCircleOutlined, SmileOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
-import { DAT_GHE, DAT_VE } from '../../redux/types/QuanLyDatVeType';
+import { CheckOutlined, CloseCircleOutlined, SmileOutlined, UserOutlined } from '@ant-design/icons';
+import { DAT_GHE} from '../../redux/types/QuanLyDatVeType';
 import _ from 'lodash';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
 import { Tabs } from 'antd';
-import { layThongTinNguoiDungDanNhapAction } from '../../redux/actions/QuanLyNguoiDungAction';
-import moment from 'moment';
 import { connection } from '../../index';
 import { history } from '../../App';
-import { USER_LOGIN, TOKEN_CYBERSOFT } from '../../util/setting';
-import Grid from '../../components/Grid/Grid';
 import KetQuaDatVe from '../../components/KetQuaDatVe/KetQuaDatVe';
 
 

@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-// import './FilmsFlip.css';
-import { Link, NavLink } from 'react-router-dom';
-import ModalVideo from './ModalVideo';
-import { history } from '../../App';
-import { Rate } from 'antd';
+import { Link } from 'react-router-dom';
 
 
 

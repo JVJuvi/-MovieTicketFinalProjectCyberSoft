@@ -4,16 +4,11 @@ import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 
 // chuyen huong
 import { createBrowserHistory } from 'history';
-import { Route } from 'react-router-dom';
 import { HomTemplate } from './templates/HomeTemplate/Hometemplate';
 import Home from './pages/Home/Home';
-import Contact from './pages/Contact/Contact';
-import New from './pages/News/New';
 import Login from './pages/Login/Login';
-import dangNhap from './pages/Login/dangNhap';
 
 import Register from './pages/Resister/Register';
-import HomeMenu from './pages/Home/HomeMenu/HomeMenu';
 import Detail from './pages/Detail/Detail';
 import { AdminTemplate } from './templates/AdminTemplate/AdminTemplate';
 import Dashboard from './pages/Admin/Dashboard/Dashboard';
@@ -28,8 +23,6 @@ import Edit from './pages/Admin/Films/Edit/Edit';
 import Users from './pages/Admin/Users/Users';
 import AddUserNew from './pages/Admin/Users/AddNew/AddUserNew';
 import EditUser from './pages/Admin/Users/Edit/EditUser';
-import { HeadsetRounded } from '@material-ui/icons';
-import Header from './templates/HomeTemplate/Layout/Header/Header';
 
 const CheckOutTemPlateLazy = lazy(()=> import ('./templates/CheckOutTemPlate/CheckOutTemPlate'))
 

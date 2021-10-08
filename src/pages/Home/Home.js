@@ -7,7 +7,6 @@ import { LayDanhSachPhimAction } from '../../redux/actions/QuanLyPhimAcTion';
 import { ChevronLeft } from '@material-ui/icons';
 import { layDanhSachCumRapAction } from '../../redux/actions/QuanLyRapAction';
 import HomeCarousel from '../../templates/HomeTemplate/Layout/HomeCarousel/HomeCarousel';
-import './Home.css'
 
 export default function Home(props) {
 

@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { dangKyNguoiDungAction, dangNhapAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import { history } from '../../App';
-// import './Register.css'
 import { message } from 'antd';
 
 export default function Register(props) {

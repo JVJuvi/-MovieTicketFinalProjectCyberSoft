@@ -3,7 +3,6 @@ import { Tabs } from 'antd';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import moment from 'moment';
-import './HomeMenu.css';
 
 
 const { TabPane } = Tabs;

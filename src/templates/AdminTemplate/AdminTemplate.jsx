@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import './AdminTemplate.css';
 //Fragment giống thẻ div mà không hiển thị chỉ dùng để bao bọc trang
 import { NavLink, Route } from "react-router-dom"
 import { Layout, Menu } from 'antd';
