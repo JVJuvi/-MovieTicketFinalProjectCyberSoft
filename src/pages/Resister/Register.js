@@ -29,7 +29,7 @@ export default function Register(props) {
            taiKhoan: Yup.string().required("Không được để trống").min(6, 'Tối thiểu 6 ký tự'),
            matKhau: Yup.string().required("Không được để trống").min(6, 'Tối thiểu 6 ký tự'),
            hoTen: Yup.string().required("Không được để trống"),
-           soDt: Yup.string().matches(/^[0-9]+$/, 'Không đúng định dạng').required("Không được để trống"),
+           soDt: Yup.string().matches(/^[0-9]+$/, 'Không đúng định dạng').min(6, 'Số điện thoại tối thiểu 10 số').required("Không được để trống"),
            email: Yup.string().required("Không được để trống").email('Không đúng định dạng'),
        })
 

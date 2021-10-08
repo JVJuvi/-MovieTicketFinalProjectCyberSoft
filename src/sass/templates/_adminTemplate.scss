@@ -1,0 +1,11 @@
+.admin__item {
+    font-size: 2rem;
+    padding: 0 2rem;
+    color: black;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        color: #f18f43;
+    }   
+}

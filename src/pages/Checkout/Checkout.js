@@ -182,7 +182,7 @@ function Checkout(props) {
                     <div style={{padding: '0 20px'}}>
                         <h1 className="chooseSeat__right__price">{danhSachGheDangDat.reduce((tongTien,item,index)=>{
                                 return tongTien += item.giaVe
-                            },0).toLocaleString()} đ</h1>
+                            },0).toLocaleString()}<span>vnd</span></h1>
                         <hr />
                         <div className="chooseSeat__right__name">
                             <span>C18</span>

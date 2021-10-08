@@ -42,7 +42,15 @@ export default function Users(props) {
         },
         {
             title: 'Họ tên',
-            dataIndex: 'hoTen',        
+            dataIndex: 'hoTen', 
+            sorter: (a, b) => {
+                let hoTenA = a.hoTen.toLowerCase().trim();
+                let hoTenB = b.hoTen.toLowerCase().trim();
+                if(hoTenA > hoTenB) {
+                    return 1;
+                }
+                return -1
+            },       
             sortDirections: ['descend', 'ascend'],
             width: '15%'
         },

@@ -16,6 +16,7 @@ import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { themPhimUploadHinhAction, layChiTietPhimAction, capNhatPhimUploadAction } from '../../../../redux/actions/QuanLyPhimAcTion';
 import { GROUP_ID } from '../../../../util/setting';
+import { history } from '../../../../App';
 
 export default function Edit(props) {
 
@@ -115,6 +116,10 @@ export default function Edit(props) {
 
     return (
         <div>
+            <a onClick={()=>{
+                history.goBack();
+            }}><i class='bx bx-left-arrow-alt'></i> Trở về</a>
+        <div className="container">
             <Form
                 onSubmitCapture={formik.handleSubmit}
                 labelCol={{ span: 4 }}
@@ -154,6 +159,7 @@ export default function Edit(props) {
                     <button type="submit" className="bg-green-500 rounded-sm text-white" style={{width: '300px', height: '50px'}}>Cập nhật</button>
                 </Form.Item>
             </Form>
+        </div>
         </div>
     )
 }

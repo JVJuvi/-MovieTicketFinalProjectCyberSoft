@@ -4,6 +4,8 @@ import { quanLyRapService } from '../../../services/QuanLyRapService';
 import { useFormik } from 'formik';
 import moment from 'moment';
 import { quanLyDatVeService } from '../../../services/QuanLyDatVeService';
+import Grid from '../../../components/Grid/Grid';
+
 
 export default function ShowTime(props) {
 
@@ -92,29 +94,35 @@ export default function ShowTime(props) {
     }
 
     return (
-        <div>
-            <h3 className="text-3xl">Tạo lịch chiếu - {props.match.params.tenphim}</h3>
-                <img src={film.hinhAnh} />
-                <Form {...layout} name="nest-messages" onSubmitCapture={formik.handleSubmit} >
-                    <Form.Item label="Hệ thống rạp">
-                        <Select placeholder="Nhập Hệ thống rạp" options={state.heThongRapChieu?.map((htr,index)=>({label: htr.tenHeThongRap, value: htr.maHeThongRap}))} onChange={handleChangeHeThongRap} /> 
-                        {/* không có () trong handleChangeHeThongRap đẻ khi chọn giá trị trong input thì nó sẽ là giá trị mặc định values trong hằm  */}
-                    </Form.Item>
-                    <Form.Item label="Cụm rạp">
-                        <Select placeholder="Nhập cụm rạp" options={state.cumRapChieu?.map((cumRap,index)=>({label: cumRap.tenCumRap, value:cumRap.maCumRap}))} onChange={handleChangeCumRap} />
-                    </Form.Item>
-                    <Form.Item label="Ngày, giờ chiếu">
-                        <DatePicker format="DD/MM/YYYY HH:mm:ss" showTime onChange={onChangeDate} onOk={onOk} placeholder="Chọn ngày giờ chiếu" />
-                    </Form.Item>
-                    <Form.Item label="Giá vé">
-                        <InputNumber min={75000} max={150000} onChange={handleChangeGiaTien} />vnd
-                    </Form.Item>
-                    <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                        <Button type="primary" htmlType="submit">
-                        Tạo lịch chiếu
-                        </Button>
-                    </Form.Item>
-                </Form>
+        <div className="showTime container">
+            <h3>Tạo lịch chiếu - {props.match.params.tenphim}</h3>
+            <div className="showTime__menu" style={{display: 'flex'}}>
+                <div className="showTime__menu__left">
+                    <img src={film.hinhAnh} />
+                </div>
+                <div className="showTime__menu__right">
+                    <Form {...layout} name="nest-messages" onSubmitCapture={formik.handleSubmit} >
+                        <Form.Item label="Hệ thống rạp">
+                            <Select placeholder="Nhập Hệ thống rạp" options={state.heThongRapChieu?.map((htr,index)=>({label: htr.tenHeThongRap, value: htr.maHeThongRap}))} onChange={handleChangeHeThongRap} /> 
+                            {/* không có () trong handleChangeHeThongRap đẻ khi chọn giá trị trong input thì nó sẽ là giá trị mặc định values trong hằm  */}
+                        </Form.Item>
+                        <Form.Item label="Cụm rạp">
+                            <Select placeholder="Nhập cụm rạp" options={state.cumRapChieu?.map((cumRap,index)=>({label: cumRap.tenCumRap, value:cumRap.maCumRap}))} onChange={handleChangeCumRap} />
+                        </Form.Item>
+                        <Form.Item label="Ngày, giờ chiếu">
+                            <DatePicker format="DD/MM/YYYY HH:mm:ss" showTime onChange={onChangeDate} onOk={onOk} placeholder="Chọn ngày giờ chiếu" />
+                        </Form.Item>
+                        <Form.Item label="Giá vé">
+                            <InputNumber min={75000} max={150000} onChange={handleChangeGiaTien} />vnd
+                        </Form.Item>
+                        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                            <Button type="primary" htmlType="submit">
+                            Tạo lịch chiếu
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
+            </div>
         </div>
     )
 }

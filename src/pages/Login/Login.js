@@ -42,13 +42,13 @@ export default function Login(props) {
             <div className="login__menu__form__input">
                 <form onSubmit={formik.handleSubmit} className="login__menu__form">
                     <div className="login__menu__form__input">
-                        <p>User name</p>     
-                        <input type placeholder="Enter your user name" name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur}/>   
+                        <p>Tài khoản</p>     
+                        <input type placeholder="Nhập tài khoản" name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur}/>   
                         {formik.errors.taiKhoan && formik.touched.taiKhoan ? (<div className="login__menu__form__input__error">{formik.errors.taiKhoan}</div>) : null}   
                     </div>
                     <div className="login__menu__form__input">
-                        <p>Password</p>  
-                        <input type="password" placeholder="Enter your password" name="matKhau" onChange={formik.handleChange} onBlur={formik.handleBlur} />
+                        <p>Mật khẩu</p>  
+                        <input type="password" placeholder="Nhập mật khẩu" name="matKhau" onChange={formik.handleChange} onBlur={formik.handleBlur} />
                         {formik.errors.matKhau && formik.touched.matKhau ? (<div className="login__menu__form__input__error">{formik.errors.matKhau}</div>) : null}
                     </div>
                     <div className="login__menu__form__button">
@@ -56,9 +56,9 @@ export default function Login(props) {
                     </div>
                 </form>
                 <div className="login__menu__signUp">
-                    Don't have an account ? <a onClick={()=>{
+                    Bạn chưa có tài khoản ? <a onClick={()=>{
                         history.push('/register')
-                    }}>Sign up</a>
+                    }}>Đăng ký</a>
                 </div>             
             </div>         
         </div>           

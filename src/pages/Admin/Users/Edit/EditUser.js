@@ -6,12 +6,24 @@ import { GROUP_ID } from '../../../../util/setting';
 import { useDispatch, useSelector } from 'react-redux';
 import { layThongTinNguoiDungAction, capNhatThongTinNguoiDungAction, layDanhSachNguoiDungAction } from '../../../../redux/actions/QuanLyNguoiDungAction';
 import { quanLyNguoiDungService } from '../../../../services/QuanLyNguoiDungService';
+import { Prompt } from 'react-router';
+import { history } from '../../../../App';
 
 
 export default function EditUser(props) {
 
     const [state, setState] = useState({
-        maLoaiNguoiDung: []
+        maLoaiNguoiDungAPI: []
+    });
+
+    const [promt, setPromt] = useState({
+        taiKhoan: '',
+        matKhau:  '',
+        email:  '',
+        soDt:  '',
+        hoTen:  '',
+        maLoaiNguoiDung: '',    
+        status: true
     });
 
     const dispatch = useDispatch();
@@ -25,7 +37,7 @@ export default function EditUser(props) {
             console.log('result', result.data);
             setState({
                 ...state,
-                maLoaiNguoiDung: result.data.content 
+                maLoaiNguoiDungAPI: result.data.content 
             })
 
         } catch(errors) {
@@ -36,6 +48,8 @@ export default function EditUser(props) {
 
     const {danhSachNguoiDung} = useSelector(state => state.QuanLyNguoiDungReducer);
     console.log('danhSachNguoiDung', danhSachNguoiDung)
+    console.log('danhSachNguoiDungmanguoidung', danhSachNguoiDung[0].maLoaiNguoiDung)
+
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -46,8 +60,9 @@ export default function EditUser(props) {
             soDt:  danhSachNguoiDung[0].soDt,
             hoTen:  danhSachNguoiDung[0].hoTen,
             maNhom: GROUP_ID,
-            maLoaiNguoiDung: ''
+            maLoaiNguoiDung: danhSachNguoiDung[0].maLoaiNguoiDung,
         },
+        
         onSubmit: (values) => {
             console.log('values', values);
             values.maNhom = GROUP_ID;
@@ -80,6 +95,10 @@ export default function EditUser(props) {
 
     return (
         <div>
+            <a onClick={()=>{
+                history.goBack();
+            }}><i class='bx bx-left-arrow-alt'></i> Trở về</a>
+        <div className="container">
             <Form {...layout} onSubmitCapture={formik.handleSubmit} name="nest-messages">
                 <Form.Item label="Tài khoản">
                     <Input name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.taiKhoan} />
@@ -103,15 +122,20 @@ export default function EditUser(props) {
                 </Form.Item>
                 <Form.Item label="Loại người dùng">
                     <Select
-                         placeholder="chọn loại người dùng" onChange={handleChangeLoaiNguoiDung} options={state.maLoaiNguoiDung.map((loai,index)=>({label: loai.tenLoai, value: loai.maLoaiNguoiDung}))}
+                         placeholder="chọn loại người dùng" onChange={handleChangeLoaiNguoiDung} options={state.maLoaiNguoiDungAPI.map((loai,index)=>({label: loai.tenLoai, value: loai.maLoaiNguoiDung}))}
                     />
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                     <Button type="primary" htmlType="submit">
                     Cập nhật
                     </Button>
+                    
                 </Form.Item>
+                <Prompt when={promt.status} message={(location)=>{
+                    return 'bạn có muốn rời đi'
+                }}></Prompt>
             </Form>
+        </div>
         </div>
     )
 }

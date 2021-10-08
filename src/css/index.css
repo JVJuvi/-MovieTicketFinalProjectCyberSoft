@@ -386,6 +386,19 @@ input:focus {
   color: white;
 }
 
+.admin__item {
+  font-size: 2rem;
+  padding: 0 2rem;
+  color: black;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.admin__item:hover {
+  color: #f18f43;
+}
+
 .header {
   height: 13rem;
   width: 100%;
@@ -1415,9 +1428,9 @@ input:focus {
   text-align: center;
   color: #fff;
   border-radius: 6px;
-  width: 400px;
-  height: 560px;
-  padding: 40px;
+  width: 40rem;
+  height: auto;
+  padding: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1436,9 +1449,9 @@ input:focus {
 
 .login__close {
   position: absolute;
-  top: -19px;
-  right: -22px;
-  font-size: 32px;
+  top: -1.9rem;
+  right: -2.2rem;
+  font-size: 3.2rem;
   width: 3.5rem;
   height: 3.5rem;
   line-height: 3.5rem;
@@ -1459,23 +1472,19 @@ input:focus {
 
 @media only screen and (max-width: 576px) {
   .login {
-    width: 361px;
+    width: 36.1rem;
   }
 }
 
 @media only screen and (max-width: 375px) {
   .login {
-    width: 328px;
+    width: 32.8rem;
   }
-}
-
-.login__logo {
-  margin-bottom: 2rem;
 }
 
 .login h2 {
   color: #fff;
-  font-size: 40px;
+  font-size: 3rem;
 }
 
 .login__menu__form__input p {
@@ -1486,9 +1495,9 @@ input:focus {
 .login__menu__form__input input {
   margin-bottom: 1rem;
   border-radius: 7px;
-  width: 300px;
-  height: 45px;
-  text-indent: 13px;
+  width: 30rem;
+  height: 4.5rem;
+  text-indent: 1.3rem;
   color: #999;
   font-weight: 300;
   border-width: 1px;
@@ -1499,13 +1508,24 @@ input:focus {
 }
 
 .login__menu__form__button button {
-  width: 300px;
-  height: 50px;
+  width: 30rem;
+  height: 5rem;
   border-radius: 7px;
   color: #999;
-  background-color: antiquewhite;
+  background-color: #f0d7b7;
   border-width: 1px;
   margin-top: 1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.login__menu__form__button button:hover {
+  opacity: 0.7;
+}
+
+.login__menu__signUp {
+  margin: 1rem;
 }
 
 .register {
@@ -1516,9 +1536,9 @@ input:focus {
   text-align: center;
   color: #fff;
   border-radius: 6px;
-  width: 400px;
-  height: 819px;
-  padding: 40px;
+  width: 40rem;
+  height: auto;
+  padding: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1537,9 +1557,9 @@ input:focus {
 
 .register__close {
   position: absolute;
-  top: -19px;
-  right: -22px;
-  font-size: 32px;
+  top: -1.9rem;
+  right: -2.2rem;
+  font-size: 3.2rem;
   width: 3.5rem;
   height: 3.5rem;
   line-height: 3.5rem;
@@ -1560,30 +1580,26 @@ input:focus {
 
 @media only screen and (max-width: 576px) {
   .register {
-    width: 361px;
-    height: 660px;
+    width: 36.1rem;
+    height: 66rem;
   }
 }
 
 @media only screen and (max-width: 375px) {
   .register {
-    width: 322px;
-    height: 617px;
+    width: 32.2rem;
+    height: 61.7rem;
   }
-}
-
-.register__logo {
-  margin-bottom: 2rem;
 }
 
 .register h2 {
   color: #fff;
-  font-size: 40px;
+  font-size: 3rem;
 }
 
 @media only screen and (max-width: 576px) {
   .register h2 {
-    font-size: 30px;
+    font-size: 3rem;
   }
 }
 
@@ -1595,9 +1611,9 @@ input:focus {
 .register__menu__form__input input {
   margin-bottom: 1rem;
   border-radius: 7px;
-  width: 300px;
-  height: 45px;
-  text-indent: 13px;
+  width: 30rem;
+  height: 4.5rem;
+  text-indent: 1.3rem;
   color: #999;
   font-weight: 300;
   border-width: 1px;
@@ -1605,13 +1621,13 @@ input:focus {
 
 @media only screen and (max-width: 576px) {
   .register__menu__form__input input {
-    height: 40px;
+    height: 4rem;
   }
 }
 
 @media only screen and (max-width: 375px) {
   .register__menu__form__input input {
-    height: 35px;
+    height: 3.5rem;
   }
 }
 
@@ -1620,13 +1636,20 @@ input:focus {
 }
 
 .register__menu__form__button button {
-  width: 300px;
-  height: 50px;
+  width: 30rem;
+  height: 6rem;
   border-radius: 7px;
   color: #999;
-  background-color: antiquewhite;
+  background-color: #f0d7b7;
   border-width: 1px;
   margin-top: 1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.register__menu__form__button button:hover {
+  opacity: 0.7;
 }
 
 .detail__top {
@@ -2182,7 +2205,12 @@ input:focus {
   color: #7ed321;
   text-align: center;
   margin-bottom: 0;
-  font-size: 5rem;
+  font-size: 4rem;
+}
+
+.checkout .chooseSeat__right__price span {
+  color: #7ed321;
+  font-size: 2rem;
 }
 
 .checkout .chooseSeat__right__name {
@@ -2609,5 +2637,31 @@ input:focus {
   .information .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab, .information .ant-tabs-right > .ant-tabs-nav .ant-tabs-tab, .information .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-tab, .information .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-tab {
     padding: 0.8rem 1.5rem;
   }
+}
+
+.showTime h3 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 5rem;
+}
+
+.showTime .showTime__menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.showTime .showTime__menu .showTime__menu__left {
+  float: left;
+  width: 30%;
+}
+
+.showTime .showTime__menu .showTime__menu__left img {
+  border-radius: 6px;
+}
+
+.showTime .showTime__menu .showTime__menu__right {
+  float: left;
+  width: 70%;
 }
 /*# sourceMappingURL=index.css.map */

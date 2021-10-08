@@ -3,9 +3,7 @@
 @import "./base";
 
 @import "./templates/userTemplate";
-
-// @import "compass";
-// @import "./vendors/circle.scss";
+@import "./templates/adminTemplate";
 
 @import "./components/header";
 @import "./components/carousel";
@@ -20,3 +18,4 @@
 @import "./layouts/loading";
 @import "./layouts/profile";
 @import "./layouts/films";
+@import "./layouts/showTime";

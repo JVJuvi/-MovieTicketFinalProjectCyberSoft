@@ -182,7 +182,12 @@
                 color: #7ed321;
                 text-align: center;
                 margin-bottom: 0;
-                font-size: 5rem;
+                font-size: 4rem;
+
+                span {
+                    color: #7ed321;
+                    font-size: 2rem;
+                }
             }
 
             &__name {

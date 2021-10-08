@@ -1,0 +1,24 @@
+.showTime {
+    h3 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 5rem;
+    }
+    .showTime__menu {
+        display: flex;
+
+        .showTime__menu__left {
+            float: left;
+            width: 30%;
+
+            img {
+                border-radius: 6px;
+            }
+        }
+
+        .showTime__menu__right {
+            float: left;
+            width: 70%;
+        }
+    }
+}

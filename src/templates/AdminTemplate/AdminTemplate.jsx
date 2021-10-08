@@ -2,12 +2,8 @@ import React, { Fragment, useEffect, useState } from "react";
 import './AdminTemplate.css';
 //Fragment giống thẻ div mà không hiển thị chỉ dùng để bao bọc trang
 import { NavLink, Route } from "react-router-dom"
-
 import { Layout, Menu } from 'antd';
-import {
-    UserOutlined,
-    FileOutlined,
-} from '@ant-design/icons';
+import {UserOutlined,FileOutlined} from '@ant-design/icons';
 import { useSelector } from "react-redux";
 import _ from "lodash";
 import { history } from "../../App";
@@ -51,18 +47,27 @@ export const AdminTemplate = (props) => {
     }
 
     const operations = <Fragment>
-        <p onClick={()=>{
-                    history.push('/profile')
-                }} className="header__menu__item">
-                   <i class='bx bxs-user' ></i> Hello {userLogin.hoTen}!
-            </p>
-            <p className="header__menu__item" onClick={()=>{
-                localStorage.removeItem(USER_LOGIN);
-                localStorage.removeItem(TOKEN_CYBERSOFT);
-                history.push('/home');
-                window.location.reload();
-                }}><span>Đăng xuất</span>
-            </p>
+            
+                <p onClick={()=>{
+                        history.push('/')
+                    }} className="admin__item">
+                    Home
+                </p>
+                <div style={{display: 'flex'}}>
+                    <p onClick={()=>{
+                            history.push('/profile')
+                        }} className="admin__item">
+                        <i class='bx bxs-user' ></i> Hello {userLogin.hoTen}!
+                    </p>
+                    <p className="admin__item" onClick={()=>{
+                        localStorage.removeItem(USER_LOGIN);
+                        localStorage.removeItem(TOKEN_CYBERSOFT);
+                        history.push('/home');
+                        window.location.reload();
+                        }}><span>Đăng xuất</span>
+                    </p>
+                </div>
+          
     </Fragment>
 
 
@@ -103,8 +108,8 @@ export const AdminTemplate = (props) => {
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0, }}>
-                        <div className="text-right pr-10 pt-1" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Header className="site-layout-background" style={{ padding: 0, background: 'white'}}>
+                        <div className="text-right pr-10 pt-1" style={{ display: 'flex', justifyContent: 'space-between' }}>
                             {operations}
                         </div>
                     </Header>
