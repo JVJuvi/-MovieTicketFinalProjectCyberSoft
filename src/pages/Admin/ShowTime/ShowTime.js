@@ -5,6 +5,7 @@ import { useFormik } from 'formik';
 import moment from 'moment';
 import { quanLyDatVeService } from '../../../services/QuanLyDatVeService';
 import Grid from '../../../components/Grid/Grid';
+import { history } from '../../../App';
 
 
 export default function ShowTime(props) {
@@ -94,6 +95,10 @@ export default function ShowTime(props) {
     }
 
     return (
+        <div>
+            <a onClick={()=>{
+                history.goBack();
+            }}><i class='bx bx-left-arrow-alt'></i> Trở về</a>
         <div className="showTime container">
             <h3>Tạo lịch chiếu - {props.match.params.tenphim}</h3>
             <div className="showTime__menu" style={{display: 'flex'}}>
@@ -123,6 +128,7 @@ export default function ShowTime(props) {
                     </Form>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

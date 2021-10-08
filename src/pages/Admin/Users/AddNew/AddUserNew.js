@@ -6,6 +6,7 @@ import { GROUP_ID } from '../../../../util/setting';
 import { useDispatch, useSelector } from 'react-redux';
 import { themNguoiDungAction } from '../../../../redux/actions/QuanLyNguoiDungAction';
 import { quanLyNguoiDungService } from '../../../../services/QuanLyNguoiDungService';
+import { history } from '../../../../App';
 
 export default function AddUserNew(props) {
 
@@ -59,14 +60,20 @@ export default function AddUserNew(props) {
         formik.setFieldValue('maLoaiNguoiDung', value)
     }
 
-    const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
-    };
+    // const layout = {
+    //     labelCol: { span: 4 },
+    //     wrapperCol: { span: 14 },
+    // };
 
     return (
         <div>
-            <Form {...layout} onSubmitCapture={formik.handleSubmit} name="nest-messages">
+            <a onClick={()=>{
+                history.goBack();
+            }}><i class='bx bx-left-arrow-alt'></i> Trở về</a>
+        <div className="container">
+            <Form labelCol={{ span: 4 }}
+                wrapperCol={{ span: 14 }} 
+                layout="horizontal" onSubmitCapture={formik.handleSubmit} name="nest-messages">
                 <Form.Item label="Tài khoản">
                     <Input name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur} />
                     {formik.errors.taiKhoan && formik.touched.taiKhoan ? (<div className="alert alert-danger">{formik.errors.taiKhoan}</div>) : null} 
@@ -92,12 +99,13 @@ export default function AddUserNew(props) {
                          placeholder="chọn loại người dùng" onChange={handleChangeLoaiNguoiDung} options={state.maLoaiNguoiDung.map((loai,index)=>({label: loai.tenLoai, value: loai.maLoaiNguoiDung}))}
                     />
                 </Form.Item>
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                <Form.Item label="Hành động">
                     <Button type="primary" htmlType="submit">
                     Thêm người dùng
                     </Button>
                 </Form.Item>
             </Form>
+        </div>
         </div>
     )
 }

@@ -16,6 +16,7 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { themPhimUploadHinhAction } from '../../../../redux/actions/QuanLyPhimAcTion';
 import { GROUP_ID } from '../../../../util/setting';
+import { history } from '../../../../App';
 
 export default function AddNew(props) {
 
@@ -101,6 +102,10 @@ export default function AddNew(props) {
 
     return (
         <div>
+            <a onClick={()=>{
+                history.goBack();
+            }}><i class='bx bx-left-arrow-alt'></i> Trở về</a>
+        <div className="container">
             <Form
                 onSubmitCapture={formik.handleSubmit}
                 labelCol={{ span: 4 }}
@@ -137,9 +142,13 @@ export default function AddNew(props) {
                     <img src={imgSRC} alt="..." style={{width: 150, height: 200}} />
                 </Form.Item>
                 <Form.Item label="Hành động">
-                    <button type="submit" className="bg-green-500 rounded-sm text-white" style={{width: '300px', height: '50px'}}>Thêm phim</button>
+                    <Button type="primary" htmlType="submit">
+                        Thêm phim
+                    </Button>
+                    {/* <button type="submit" className="bg-green-500 rounded-sm text-white" style={{width: '300px', height: '50px'}}>Thêm phim</button> */}
                 </Form.Item>
             </Form>
+        </div>
         </div>
     )
 }
