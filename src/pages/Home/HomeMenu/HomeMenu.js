@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import moment from 'moment';
 
 
+
 const { TabPane } = Tabs;
 
 
@@ -17,7 +18,8 @@ function HomeMenu(props) {
     const { tabPosition } = state;
 
     const {arrRap} = props;
-    console.log('arrRapSauKhiLay', arrRap)
+    console.log('arrRapSauKhiLay', arrRap);
+
 
     return (
         <div id="cumRap" className="homeMenu">

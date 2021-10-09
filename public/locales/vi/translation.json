@@ -1,10 +1,19 @@
 {
-    "Hello": "Xin chào",
+    "Hello": "Chào",
     "Sign in": "Đăng nhập",
     "Sign up": "Đăng ký",
     "Home": "Trang chủ",
-    "Contact": "Liên hệ",
-    "News": "Thông tin",
-    "Cluster Theaters": "Cụm rạp",
+    "Theaters": "Cụm rạp",
     "Showtimes": "Lịch chiếu",
+    "Log out": "Thoát",
+    "Now Showing": "Đang chiếu",
+    "Coming Soon": "Sắp chiếu",
+    "Customer Service": "Chăm sóc khách hàng",
+    "Partner": "Đối tác",
+    "About Us": "Giới thiệu",
+    "Careers": "Tuyển dụng",
+    "Contact": "Liên hệ",
+    "News": "Tin mới",
+    "Detail": "Chi tiết",
+    "Address": "Địa chỉ"
 }

@@ -4,52 +4,52 @@ import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import Grid from '../../../../components/Grid/Grid';
 import logo from '../../../../assets/images/imageFilm/logo.svg';
+import { useTranslation } from 'react-i18next';
 
 
 
-const footerAboutLink = [
-    {
-        display: "Giới thiệu",
-        path: "/"
-    },
-    {
-        display: "Tuyển dụng",
-        path: "/"
-    },
-    {
-        display: "Tin tức",
-        path: "/"
-    },
-    {
-        display: "Liên hệ",
-        path: "/"
-    },
-    {
-        display: "Hệ thống rạp chiếu",
-        path: "/"
-    }
-]
 
-const footerAboutCustomer = [
-    {
-        display: "Chính sách đổi trả",
-        path: "/"
-    },
-    {
-        display: "Chính sách bảo hành",
-        path: "/"
-    },
-    {
-        display: "Chính sách hoàn tiền",
-        path: "/"
-    }
-]
 
 
 export default function Footer() {
 
     const{arrLogoRap} = useSelector(state => state.QuanLyRapReducer);
-    console.log('arrlogo', arrLogoRap)
+    console.log('arrlogo', arrLogoRap);
+
+    //dich ngon ngu
+    const { t, i18n } = useTranslation();
+
+    const footerAboutLink = [
+        {
+            display: t('About Us'),
+            path: "/"
+        },
+        {
+            display: t('Careers'),
+            path: "/"
+        },
+        {
+            display: t('Contact'),
+            path: "/"
+        },
+        {
+            display: t('News'),
+            path: "/"
+        },
+    ]
+    
+    const footerAboutCustomer = [
+        {   
+            content: "Hotline: ",
+            display: "1234 5678",
+            path: "/"
+        },
+        {
+            content: "Email support: ",
+            display:  'hoidap@moviestar.vn' ,
+            path: "/"
+        }
+    ]
 
     return (
         <footer className="footer">
@@ -58,11 +58,11 @@ export default function Footer() {
                     col={4}
                     mdCol={2}
                     smCol={1}
-                    gap={50}
+                    gap={25}
                 >
                     <div>
                         <div className="footer__title">
-                            Đối tác
+                        {t('Partner')}
                         </div>
                         <Grid col={4}
                             mdCol={2}
@@ -77,7 +77,7 @@ export default function Footer() {
                     </div>
                     <div>
                         <div className="footer__title">
-                            Về Movie start
+                            Movie start
                         </div>
                         <div className="footer__content">
                             {
@@ -91,13 +91,13 @@ export default function Footer() {
                     </div>
                     <div>
                         <div className="footer__title">
-                            Chăm sóc khánh hàng
+                            {t('Customer Service')}
                         </div>
                         <div className="footer__content">
                             {
                                 footerAboutCustomer.map((item, index)=>(
                                     <p key={index}>
-                                       <Link to={item.path}>{item.display}</Link>
+                                       {item.content}<Link to={item.path}>{item.display}</Link>
                                     </p>
                                 ))
                             }

@@ -4,12 +4,11 @@ import { history } from '../../../../App';
 import { useSelector } from 'react-redux';
 import { Select } from "antd";
 import _ from 'lodash';
-
-
-
+import { TOKEN_CYBERSOFT, USER_LOGIN } from '../../../../util/setting';
 // hook đa ngôn ngữ
 import { useTranslation } from 'react-i18next';
-import { TOKEN_CYBERSOFT, USER_LOGIN } from '../../../../util/setting';
+import { styled } from 'styled-components';
+
 
 
 const { Option } = Select;
@@ -36,13 +35,19 @@ export default function Header() {
     const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer);
     console.log('userLogin', userLogin)
 
-    // const { t, i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
 
-    // // dịch ngôn ngữ
-    // const handleChange = (value) => {      
-    //     i18n.changeLanguage(value)
+    // dịch ngôn ngữ
+    const handleChange = (value) => {      
+        i18n.changeLanguage(value)
+    };
+
+    // let i18 = '';
+    // if(localStorage.getItem('i18nextLng')) {
+    //     i18 = JSON.parse(localStorage.getItem('i18nextLng'));
     // }
+    // console.log('i18'. i18)
 
     //trang admin chỉ có quản trị viên mới có quyền truy cập nên set userLogin nếu maLoaiNguoiDung khác quản trị thì sẽ cho về home
     const renderAdmin = () => {
@@ -57,6 +62,7 @@ export default function Header() {
     }
 
 
+
     // đăng nhập xong sẽ hiển thị tên ngừoi dùng
     const renderLogin = () => {
         //dùng lodash
@@ -64,10 +70,10 @@ export default function Header() {
             return <Fragment>
                         <p className="header__menu__item" onClick={()=>{
                                 history.push('/login')
-                        }}>Đăng nhập</p>                                                
+                        }}>{t('Sign in')}</p>                                                
                         <p className="header__menu__item"  onClick={()=>{
                                 history.push('/register')
-                        }}>Đăng ký</p>
+                        }}>{t('Sign up')}</p>
             </Fragment>
         }
 
@@ -75,14 +81,14 @@ export default function Header() {
             <p onClick={()=>{
                     history.push('/profile')
                 }} className="header__menu__item">
-                   <i class='bx bxs-user' ></i> Hello {userLogin.hoTen}!
+                   <i class='bx bxs-user' ></i> {t('Hello')} {userLogin.hoTen}!
             </p>
             <p className="header__menu__item" onClick={()=>{
                 localStorage.removeItem(USER_LOGIN);
                 localStorage.removeItem(TOKEN_CYBERSOFT);
                 history.push('/home');
                 window.location.reload();
-                }}><span>Đăng xuất</span>
+                }}><span>{t('Log out')}</span>
             </p>
         </Fragment>
 
@@ -91,6 +97,8 @@ export default function Header() {
     const menuRef = useRef(null);
 
     const menuToggle = () => menuRef.current.classList.toggle('active');
+
+    const { Option } = Select;
 
     return (
         <header className="header" ref={headerRef}>
@@ -110,18 +118,24 @@ export default function Header() {
                             </div>
                             <div className="header__menu__left__content">
                                 <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
-                                    <Link to="/home">Home</Link>
+                                    <Link to="/home">{t('Home')}</Link>
                                 </div>
                                 <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
-                                    <a href="#lichChieu">lịch chiếu</a>
+                                    <a href="#lichChieu">{t('Showtimes')}</a>
                                 </div>
                                 <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
-                                    <a href="#cumRap">Cụm rạp</a>
+                                    <a href="#cumRap">{t('Theaters')}</a>
                                 </div>
                                 {renderAdmin()}
                             </div>
                             <div className="header__menu__left__info">
                                 {renderLogin()}
+                                <div className="header__menu__item" style={{textAlign: 'right', zIndex:"9999"}}>
+                                    <Select defaultValue="vi" style={{ width: 41, zIndex:"9999" }} onChange={handleChange}>
+                                        <Option value="vi">🇻🇳</Option>
+                                        <Option value="en">🇺🇸</Option>
+                                    </Select>
+                                </div>
                             </div>
                         </div>
                 </div>

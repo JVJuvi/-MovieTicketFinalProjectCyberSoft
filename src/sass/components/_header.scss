@@ -8,7 +8,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 9000;
+    z-index: 1;
     // color: #af731b !important;
     transition: height .3s ease-in-out;
     
@@ -184,9 +184,9 @@
 
             @include tablet-1024 {
                 display: block;
-                z-index: 1000;
-                background-color: white !important;
-                position: absolute;
+                z-index: 9000 !important;
+                background-color: wheat !important;
+                position: fixed;
                 top: 0;
                 right: 0;
                 width: 53%;
@@ -214,5 +214,11 @@
             }
         }
     }
+
+    //antd 
+    .ant-select-arrow {
+        display: none !important;
+    }
+    //antd
     
 }

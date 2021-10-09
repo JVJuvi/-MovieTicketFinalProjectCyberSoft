@@ -5,6 +5,7 @@ import FilmsFlip from "../Films/FilmsFlip";
 import { LAY_PHIM_DANG_CHIEU, LAY_PHIM_SAP_CHIEU } from "../../redux/types/QuanLyPhimType";
 import { useDispatch, useSelector } from 'react-redux';
 import _ from "lodash";
+import { useTranslation } from "react-i18next";
 
 
 
@@ -36,6 +37,9 @@ const MultipRowSlick = (props) => {
             )
         })
     }
+
+    //dich ngon ngu
+    const { t, i18n } = useTranslation();
 
     let activeClassDC = dangChieu===true ? 'active__Film' : '';
 
@@ -119,14 +123,14 @@ const MultipRowSlick = (props) => {
                             payload: true
                         }
                         dispatch(action)
-                    }}>Đang chiếu</span>
+                    }}>{t('Now Showing')}</span>
                     <span type="button" className={`multipRowSlick__top__button ${activeClassSC}`} onClick={()=>{
                         const action = {
                             type: LAY_PHIM_SAP_CHIEU,
                             payload: true
                         }
                         dispatch(action)
-                    }}>Sắp chiếu</span>
+                    }}>{t('Coming Soon')}</span>
                 </div>
                 {/* <Slider {...settings}>
                     {renderPhim()}

@@ -20,9 +20,9 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: 'en', //ngôn ngữ mặc định
+    fallbackLng: 'vi', //ngôn ngữ mặc định
     debug: true,
-    whitelist:['chi', 'en', 'vi'], //liệt kê các ngôn ngữ
+    whitelist:['chi','en','vi'], //liệt kê các ngôn ngữ
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     }

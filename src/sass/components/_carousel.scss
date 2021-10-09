@@ -13,12 +13,16 @@
             width: 6rem;
             height: 7rem; 
             background-color: transparent;
-            z-index: 999 !important;
+            z-index: 1;
             opacity: 0.3;
 
             &:hover {
                 opacity: 0.2;
                 transition: all 0.3s linear;
+            }
+
+            @include mobile-768 {
+                display: none !important;
             }
 
             @include mobile-576 {
@@ -45,7 +49,7 @@
 
         .slick-dots {
             bottom: 5.7rem !important;
-            z-index: 1000;
+            // z-index: 1000;
 
             @include mobile-768 {
                 bottom: 2.4rem !important;
