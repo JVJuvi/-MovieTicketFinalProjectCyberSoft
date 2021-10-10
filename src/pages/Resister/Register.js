@@ -50,7 +50,7 @@ export default function Register(props) {
             <form onSubmit={formik.handleSubmit} className="register__menu__form">
                 <div className="register__menu__form__input">
                     <p>Tài khoản</p>
-                    <input type placeholder="Nhập tài khoản" name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur}/
+                    <input autoComplete="off" placeholder="Nhập tài khoản" name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur}/
                     > 
                     {formik.errors.taiKhoan && formik.touched.taiKhoan ? (<div className="register__menu__form__input__error">{formik.errors.taiKhoan}</div>) : null}              
                 </div>
@@ -61,17 +61,17 @@ export default function Register(props) {
                 </div>
                 <div className="register__menu__form__input">
                     <p>Họ và tên</p>
-                    <input placeholder="nhập họ và tên" name="hoTen" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                    <input autoComplete="off" placeholder="nhập họ và tên" name="hoTen" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                     {formik.errors.hoTen && formik.touched.hoTen ? (<div className="register__menu__form__input__error">{formik.errors.hoTen}</div>) : null}
                 </div>
                 <div className="register__menu__form__input">
                     <p>Số điện thoại</p>
-                    <input placeholder="nhập số điện thoại" name="soDt" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                    <input autoComplete="off" placeholder="nhập số điện thoại" name="soDt" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                     {formik.errors.soDt && formik.touched.soDt ? (<div className="register__menu__form__input__error">{formik.errors.soDt}</div>) : null}
                 </div>
                 <div className="register__menu__form__input">
                     <p>Email</p>
-                    <input placeholder="Nhập email" name="email" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                    <input autoComplete="off" placeholder="Nhập email" name="email" onChange={formik.handleChange} onBlur={formik.handleBlur}/>
                     {formik.errors.email && formik.touched.email ? (<div className="register__menu__form__input__error">{formik.errors.email}</div>) : null}
                 </div>
                 <div className="register__menu__form__button">

@@ -42,7 +42,7 @@ export default function Login(props) {
                 <form onSubmit={formik.handleSubmit} className="login__menu__form">
                     <div className="login__menu__form__input">
                         <p>Tài khoản</p>     
-                        <input type placeholder="Nhập tài khoản" name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur}/>   
+                        <input type="text" autoComplete="off" placeholder="Nhập tài khoản" name="taiKhoan" onChange={formik.handleChange} onBlur={formik.handleBlur}/>   
                         {formik.errors.taiKhoan && formik.touched.taiKhoan ? (<div className="login__menu__form__input__error">{formik.errors.taiKhoan}</div>) : null}   
                     </div>
                     <div className="login__menu__form__input">
