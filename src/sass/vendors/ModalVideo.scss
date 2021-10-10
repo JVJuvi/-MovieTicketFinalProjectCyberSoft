@@ -19,6 +19,11 @@
             width: 80rem;
             height: 50rem;
 
+            @include tablet-1200 {
+                width: 60rem;
+                height: 37rem;                
+            }
+
             @include mobile-768 {
                 width: 55rem;
                 height: 35rem;    
