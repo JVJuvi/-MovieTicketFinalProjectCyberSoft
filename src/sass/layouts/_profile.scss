@@ -89,6 +89,10 @@
     }
 }
 
+.ant-tabs-tab-btn:focus {
+    color: black !important;
+}
+
 .ant-tabs-tab {
     color: #000 !important;
     transition: all 0.1s linear;

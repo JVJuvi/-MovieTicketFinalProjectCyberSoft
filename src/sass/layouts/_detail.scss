@@ -159,6 +159,10 @@
             }
         }
 
+        .ant-tabs-tab-btn:focus {
+            color: white !important;
+        }
+
         .ant-tabs-tab {
             color: #fff !important;
             transition: all 0.1s linear;
