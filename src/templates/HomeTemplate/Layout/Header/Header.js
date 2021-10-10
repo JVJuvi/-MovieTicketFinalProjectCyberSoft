@@ -68,12 +68,13 @@ export default function Header() {
         //dùng lodash
         if(_.isEmpty(userLogin)) {
             return <Fragment>
+                        <img className="header__menu__img" style={{width: '4rem', height: '4rem', borderRadius: '100%', marginRight: '1rem'}} src="./imageFilm/avatar.png" alt="" />
                         <p className="header__menu__item" onClick={()=>{
                                 history.push('/login')
                         }}>{t('Sign in')}</p>                                                
-                        <p className="header__menu__item"  onClick={()=>{
+                        {/* <p className="header__menu__item"  onClick={()=>{
                                 history.push('/register')
-                        }}>{t('Sign up')}</p>
+                        }}>{t('Sign up')}</p> */}
             </Fragment>
         }
 
