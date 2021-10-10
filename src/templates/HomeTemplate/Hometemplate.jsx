@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import Hello from "../../Hello"
 import Footer from "./Layout/Footer/Footer"
 import Header from "./Layout/Header/Header"
+import { ModalVideo } from '../../components/Films/ModalVideo';
 
 
 
@@ -14,7 +15,8 @@ export const HomTemplate = (props) => {
 
     return <Route path={props.path} render={(propsRoute) => {
         return <Fragment>
-            <Header/>        
+            <Header/>    
+            <ModalVideo />   
             <props.component {...propsRoute} />
             <Footer />
         </Fragment>

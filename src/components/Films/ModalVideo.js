@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import styled from 'styled-components';
 import {MdClose} from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Background = styled.div`
@@ -38,23 +39,35 @@ const CloseModalButton = styled(MdClose)`
   border-radius: 100%
 `;
 
-export default function ModalVideo({showModal, setShowModal, item}) {
+export const ModalVideo = (props) => {
+
+    const {item, showModal} = useSelector(state => state.ModalVideoReducer);
+
+    const dispatch = useDispatch();
 
     const modalRef = useRef();
 
     const closeModal = e => {
         if(modalRef.current === e.target) {
-            setShowModal(false)
+            dispatch({
+                type: 'CLOSE_MODAL',
+                payload: false
+            })
         }
     }
 
     return (
         <>
            {showModal ? (
-               <Background onClick={closeModal}>
+               <Background ref={modalRef} onClick={closeModal}>
                    <ModalWrapper showModal={showModal}>
                       <iframe width="800" height="500" src={item.trailer} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                      <CloseModalButton aria-label="Close modal" onClick={()=>setShowModal(prev => !prev)} />
+                      <CloseModalButton aria-label="Close modal" onClick={()=>{
+                          dispatch({
+                            type: 'CLOSE_MODAL',
+                            payload: false
+                        })
+                      }}/>
                    </ModalWrapper>
                </Background>
            ): null}
