@@ -57,6 +57,17 @@ export default function Detail(props) {
                     >
                     <div className="detail__top__img">
                         <img src={filmDetail.hinhAnh}s alt="123" />
+                        <div className="detail__top__img__button">
+                            <button onClick={()=>{
+                                dispatch({
+                                    type: 'SHOW_MODAL',
+                                    payload: true,
+                                    item: filmDetail,
+                                })
+                            }}>
+                                <img src='https://tix.vn/app/assets/img/icons/play-video.png' />    
+                            </button>
+                        </div>
                     </div>
                     <div className="detail__top__content">
                         <p>{moment(filmDetail.ngayKhoiChieu).format('DD.MM.YYYY')}</p>

@@ -14,10 +14,11 @@
         }
 
         &__img {
+            position: relative;
             @include mobile-576 {
                 text-align: center;
             }
-            img {
+            >img {
                 width: 26rem;
                 height: 40rem;
                 border-radius: 5px;
@@ -31,7 +32,47 @@
                     width: 23rem;
                     height: 33rem;
                 }
-            }   
+            }
+            
+            &__button {
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s linear;
+                z-index: 100;
+                position: absolute;
+                
+                button {
+                    border-radius: 100%;
+                    z-index: 500;
+                    transition: all .3s;
+                    cursor: pointer;
+                    opacity: 0.5;
+                    width: 8rem;
+                    // height: 8rem;
+                    border: none;
+
+                    img {
+                        max-width: 100%;
+                    }
+
+                    &:hover {
+                        opacity: 0.3;
+                    }
+
+                    @include mobile-576 {
+                        width: 6rem;
+                    }         
+                }
+            }
+
+            &:hover &__button {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+                visibility: visible;         
+            }
         }    
         
         &__content {
