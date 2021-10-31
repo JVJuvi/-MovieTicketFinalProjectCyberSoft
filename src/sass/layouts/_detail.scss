@@ -21,7 +21,7 @@
             >img {
                 width: 26rem;
                 height: 40rem;
-                border-radius: 5px;
+                border-radius: $border-radius;
 
                 @include mobile-768 {
                     width: 20rem;

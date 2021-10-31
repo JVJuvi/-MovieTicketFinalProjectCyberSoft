@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ModalVideo from './ModalVideo';
 import { useDispatch } from 'react-redux';
 
 
 
 
 export default function FilmsFlip(props) {
-
-    // const [showModal, setShowModal] = useState(false);
-
-    // const openModal = () => {
-    //     setShowModal(prev => !prev)
-    // }
 
     const dispatch = useDispatch();
 
@@ -30,7 +23,7 @@ export default function FilmsFlip(props) {
                             item: item,
                         })
                     }}>
-                        <img src='https://tix.vn/app/assets/img/icons/play-video.png' />    
+                        <i class='bx bx-play'></i>    
                     </button>
                 </div>
                 <div className="flip-bottom">

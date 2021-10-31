@@ -59,16 +59,17 @@
         pointer-events: none;
 
         a {
-            @include mobile-768 {
-                width: 20%;
-            }
-
-            @include mobile-576 {
-                width: 45%;
-            }
+            font-size: 2.5rem;
+            color: #fff !important;
+            font-weight: 700;
 
             img {
-                max-width: 100%; 
+                width: 70px;
+                margin-right: .5rem;
+
+                @include tablet-1024 {
+                    width: 50px !important;
+                }
             }       
         }
     }
@@ -94,7 +95,7 @@
             cursor: pointer;
 
             @include mobile-576 {
-                margin-left: 0;
+                // margin-left: 0;
                 margin-top: 2rem;
             }
         }
@@ -105,13 +106,10 @@
             transition: all 0.3s;
             cursor: pointer;
 
-            &:hover {
-                color: #f18f43;
-            }
 
             @include tablet-1024 {
                 font-size: 1.2rem;
-                color: black
+                color: black !important;
 
             }
         }
@@ -142,18 +140,27 @@
             height: 100%;
 
             &__item {
-                a {
-                    color: white;
-                    transition: all 0.3s linear;
+                color: white !important;
+                transition: all 0.3s linear;
+                padding: 5px 0;
+                position: relative;
+                transition: all .3s ease;
+                font-weight: 700;
 
-                    @include mobile-576 {
-                        color: black
-                    }
-
-                    &:hover {
-                        color: #f18f43
-                    }
+                @include mobile-576 {
+                    color: black !important;
+                    background-color: #fff !important;
+                    padding: 1rem 6rem;
+                    display: block;
+                    margin: 1.5rem;
+                    border: .1rem solid rgba(0, 0, 0, .3);
+                    border-left: .2rem solid red;
+                }    
+                
+                &:hover {
+                    color: #66bb5e !important;
                 }
+                
             }
 
             &__content {
@@ -173,12 +180,12 @@
                 height: 100%;
 
                 p {
-                    transition: all 0.3s linear;
+                    transition: all 0.3s ease;
                     margin-bottom: 0;
                     color: white;
 
                     &:hover {
-                        color: #f18f43;
+                        color: #66bb5e;
                     }
 
                     @include mobile-576 {
@@ -202,7 +209,7 @@
             @include mobile-576 {
                 display: block;
                 z-index: 9000 !important;
-                background-color: wheat !important;
+                background-color: #f6f6f6 !important;
                 position: fixed;
                 top: 0;
                 right: 0;
@@ -217,7 +224,7 @@
                 }
 
                 &__item ~ &__item {
-                    margin-left: unset;
+                    // margin-left: unset;
                     margin-top: 20px;
                 }
 

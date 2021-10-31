@@ -1,5 +1,5 @@
 import {Suspense, lazy} from 'react';
-import { BrowserRouter, Router, Switch } from 'react-router-dom';
+import { BrowserRouter, Router, Switch, Route } from 'react-router-dom';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 
 // chuyen huong
@@ -23,6 +23,8 @@ import Edit from './pages/Admin/Films/Edit/Edit';
 import Users from './pages/Admin/Users/Users';
 import AddUserNew from './pages/Admin/Users/AddNew/AddUserNew';
 import EditUser from './pages/Admin/Users/Edit/EditUser';
+import Loader from './components/Loading/Loader';
+import NotFound from './pages/NotFound/NotFound';
 
 const CheckOutTemPlateLazy = lazy(()=> import ('./templates/CheckOutTemPlate/CheckOutTemPlate'))
 
@@ -37,11 +39,13 @@ function App() {
   return (
     <Router history={history}>
         <Loading />
+        <Loader />
         <Switch>
           <HomTemplate path="/" exact component={Home} />
           <HomTemplate path="/home" exact component={Home} />
           <HomTemplate path="/detail/:id" exact component={Detail} />
           <HomTemplate path="/profile" exact component={Profile} />
+
 
           
           <UserTemplate path="/login" exact component={Login} />
@@ -63,7 +67,8 @@ function App() {
             <CheckOutTemPlateLazy path="/checkout/:id" exact component={Checkout} />  
           </Suspense>
 
-          
+
+          {/* <Route path="*" exact component={NotFound} /> */}
         </Switch>
     </Router>
   );

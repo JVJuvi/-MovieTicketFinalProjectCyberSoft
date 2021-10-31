@@ -45,9 +45,14 @@
     }
 
     &__logo {
+        display: flex;
+        font-size: 2.5rem;
+        color: #fff !important;
+        font-weight: 700;
 
         img {
-            max-width: 100%;
+            max-width: 100px;
+            margin-right: .5rem;
         }
     }
 }

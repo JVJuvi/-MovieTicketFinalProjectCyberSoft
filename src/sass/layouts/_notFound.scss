@@ -1,0 +1,17 @@
+.not-found {
+    @include flex(center, center);
+    flex-direction: column;
+
+    .link {
+        padding: 2rem 10rem;
+        background-color: #a76161;
+        color: #fff;
+        font-size: 2rem;
+        border-radius: $border-radius;
+        transition: all .3s ease;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+}

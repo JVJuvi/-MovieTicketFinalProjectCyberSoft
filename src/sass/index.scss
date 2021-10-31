@@ -4,6 +4,7 @@
 
 @import "./templates/userTemplate";
 @import "./templates/adminTemplate";
+@import "./templates/homeTemplate";
 
 @import "./components/header";
 @import "./components/carousel";
@@ -19,5 +20,6 @@
 @import "./layouts/profile";
 @import "./layouts/films";
 @import "./layouts/showTime";
+@import "./layouts/notFound";
 
 @import "./vendors/ModalVideo.scss";

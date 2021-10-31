@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef } from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { history } from '../../../../App';
 import { useSelector } from 'react-redux';
 import { Select } from "antd";
@@ -7,29 +7,18 @@ import _ from 'lodash';
 import { TOKEN_CYBERSOFT, USER_LOGIN } from '../../../../util/setting';
 // hook đa ngôn ngữ
 import { useTranslation } from 'react-i18next';
-import { styled } from 'styled-components';
+
+import logo from '../../../../assets/images/imageFilm/movie-2-icon.png'
 
 
 
 const { Option } = Select;
 
 
+
 export default function Header() {
 
-    const headerRef = useRef(null)
-
-    // useEffect(()=>{
-    //     window.addEventListener("scroll", () => {
-    //         if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    //             headerRef.current.classList.add("shrink");
-    //         } else {
-    //             headerRef.current.classList.remove("shrink");
-    //         }
-    //     })
-    //     return () => {
-    //         window.removeEventListener("scroll")
-    //     };
-    // },[]);
+    const headerRef = useRef(null);
 
      // lấy thông tin đăng nhập
     const {userLogin} = useSelector(state => state.QuanLyNguoiDungReducer);
@@ -42,12 +31,6 @@ export default function Header() {
     const handleChange = (value) => {      
         i18n.changeLanguage(value)
     };
-
-    // let i18 = '';
-    // if(localStorage.getItem('i18nextLng')) {
-    //     i18 = JSON.parse(localStorage.getItem('i18nextLng'));
-    // }
-    // console.log('i18'. i18)
 
     //trang admin chỉ có quản trị viên mới có quyền truy cập nên set userLogin nếu maLoaiNguoiDung khác quản trị thì sẽ cho về home
     const renderAdmin = () => {
@@ -72,9 +55,6 @@ export default function Header() {
                         <p className="header__menu__item" onClick={()=>{
                                 history.push('/login')
                         }}>{t('Sign in')}</p>                                                
-                        {/* <p className="header__menu__item"  onClick={()=>{
-                                history.push('/register')
-                        }}>{t('Sign up')}</p> */}
             </Fragment>
         }
 
@@ -101,12 +81,14 @@ export default function Header() {
 
     const { Option } = Select;
 
+    
+
     return (
         <header className="header" ref={headerRef}>
             <div className="header__height">
                 <div className="header__logo">
                     <Link to="/home">
-                        <img src='./imageFilm/logo.svg' />
+                        <img src={logo} alt="" />Movie
                     </Link>
                 </div>
                 <div className="header__menu">
@@ -119,7 +101,7 @@ export default function Header() {
                             </div>
                             <div className="header__menu__left__content">
                                 <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
-                                    <Link to="/home">{t('Home')}</Link>
+                                    <Link to="/">{t('Home')}</Link>
                                 </div>
                                 <div className="header__menu__item header__menu__left__item" onClick={menuToggle}>
                                     <a href="#lichChieu">{t('Showtimes')}</a>

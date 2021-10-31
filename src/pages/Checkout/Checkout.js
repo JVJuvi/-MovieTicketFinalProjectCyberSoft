@@ -250,9 +250,7 @@ export default function (props) {
                 payload: '1'
             })
         }
-    },[])
-
-    
+    },[]);  
 
     return (
         <div className="checkout">

@@ -24,9 +24,9 @@ function HomeMenu(props) {
     return (
         <div id="cumRap" className="homeMenu">
             <div className="container">
-            <div className="homeMenu__top">
+            {/* <div className="homeMenu__top">
                 <img src="./imageFilm/back-news.png" />
-            </div>
+            </div> */}
             <p className="homeMenu__hidden">
                 Kích thước màn hình không đủ để hiển thị hết nội dung
             </p>

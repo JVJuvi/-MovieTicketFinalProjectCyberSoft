@@ -24,7 +24,7 @@ export default function Home(props) {
     },[])
 
     return (
-        <div className="home">
+        <div className="home" id="home">
             <HomeCarousel />  
             <MultipRowSlick arrPhim={arrPhim} />
             <HomeMenu arrRap={arrRap} />

@@ -9,6 +9,8 @@ import { history } from "../../App";
 import { TOKEN_CYBERSOFT, USER_LOGIN } from "../../util/setting";
 import { Redirect } from "react-router";
 import SubMenu from "antd/lib/menu/SubMenu";
+import logo from '../../assets/images/imageFilm/movie-2-icon.png';
+
 
 const { Header, Sider, Content } = Layout;
 
@@ -77,9 +79,9 @@ export const AdminTemplate = (props) => {
         return <Fragment>
             <Layout>
                 <Sider className="sider">
-                    <div style={{marginBottom: '27px'}}> 
+                    <div className="sider__logo"> 
                         <NavLink to="/">
-                            <img src="./imageFilm/logo.svg" alt="..." />
+                            <img src={logo} alt="..." />Movie
                         </NavLink>
                      </div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>

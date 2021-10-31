@@ -6,9 +6,24 @@
     cursor: pointer;
 
     &:hover {
-        color: #f18f43;
+        color: #66bb5e;
     }   
 }
 .sider{
     min-width: 250px !important;
+
+    &__logo {
+
+        a {
+            font-size: 2.5rem;
+            color: #fff !important;
+            font-weight: 700;
+            margin-left: 5rem;
+
+            img {
+                width: 70px;
+                margin-right: .5rem;
+            }       
+        }      
+    }
 }

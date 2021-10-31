@@ -84,14 +84,6 @@ export default function Films(props) {
                     {/* Chỉnh sửa */}
                     <NavLink key={1} to={`/admin/films/edit/${film.maPhim}`} style={{marginRight: '1rem', fontSize: '2.5rem'}}><EditOutlined style={{color: 'blue'}}/></NavLink>
                     {/* //xoá */}
-                    {/* <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}} onClick={()=>{
-                        //xác nhận muốn xoá
-                        if(window.confirm('Bạn có chắc muốn xoá phim ' + film.tenPhim)) {
-                            //gọi action
-                            dispatch(xoaPhimAction(film.maPhim))
-                        }
-                    }}><DeleteOutlined style={{color: 'red'}}/></span> */}
-
                     <Popconfirm placement="topLeft" title={textantd} onConfirm={confirm} okText="Yes" cancelText="No">
                         <span key={2} style={{cursor: 'pointer', marginRight: '1rem', fontSize: '2.5rem'}}><DeleteOutlined style={{color: 'red'}}/></span>
                     </Popconfirm>

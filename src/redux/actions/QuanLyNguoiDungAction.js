@@ -10,7 +10,6 @@ export const dangKyNguoiDungAction = (values) => {
     return async(dispatch) => {
         try {
             const result = await quanLyNguoiDungService.dangKyNguoiDung(values);
-            console.log('result', result.data)
             await alert("Đăng ký thành công")
             await history.goBack();
         } catch(error) {
@@ -27,8 +26,7 @@ export const dangNhapAction = (values) => {
     return async (dispatch) => {
 
         try {
-            const result = await http.post('/api/QuanLyNguoiDung/DangNhap', values);
-            console.log('result', result.data); 
+            const result = await http.post('/api/QuanLyNguoiDung/DangNhap', values);; 
             localStorage.setItem(ACCESS_TOKEN, result.data.content.accessToken);
             const sUserLogin = JSON.stringify(result.data.content)
             localStorage.setItem(USER_LOGIN, sUserLogin)    
@@ -72,7 +70,6 @@ export const layDanhSachNguoiDungAction = (taiKhoan) => {
     return async(dispatch) => {
         try {
             const result = await quanLyNguoiDungService.layDanhSachNguoiDung(taiKhoan);
-            console.log('result', result.data)
             dispatch({
                 type: LAY_DANH_SACH_NGUOI_DUNG,
                 payload: result.data.content
@@ -88,7 +85,6 @@ export const layThongTinNguoiDungAction = (taiKhoan) => {
     return async(dispatch) => {
         try {
             const result = await quanLyNguoiDungService.layThongTinNguoiDung(taiKhoan)
-            console.log('result', result.data)
             dispatch({
                 type: LAY_THONG_TIN_NGUOI_DUNG_ADMIN,
                 payload: result.data.content
@@ -103,7 +99,6 @@ export const capNhatThongTinNguoiDungAction = (formData) => {
     return async(dispatch) => {
         try {
             const result = await quanLyNguoiDungService.capNhatThongTinNguoiDung(formData);
-            console.log('result', result.data)
             alert("Cập nhật thành công")
             await dispatch(layDanhSachNguoiDungAction());
             history.push('/admin/users');
@@ -119,7 +114,6 @@ export const timKiemNguoiDungAction = (taiKhoan) => {
     return async(dispatch) => {
         try {
             const result = await quanLyNguoiDungService.timKiemNguoiDung(taiKhoan)
-            console.log('result', result.data)
             dispatch({
                 type: LAY_THONG_TIN_NGUOI_DUNG_ADMIN,
                 payload: result.data.content
@@ -134,7 +128,6 @@ export const themNguoiDungAction = (values) => {
     return async(dispatch) => {
         try {
             const result = await quanLyNguoiDungService.themNguoiDung(values);
-            console.log('result', result.data)
             alert("Thêm thành công")
             await dispatch(layDanhSachNguoiDungAction())
             history.push('/admin/users');
@@ -148,8 +141,7 @@ export const themNguoiDungAction = (values) => {
 export const xoaNguoiDungAction = (taiKhoan) => {
     return async(dispatch) => {
         try {
-            const result = await quanLyNguoiDungService.xoaNguoiDung(taiKhoan);
-            console.log('result', result.data);
+            const result = await quanLyNguoiDungService.xoaNguoiDung(taiKhoan);;
             alert("Xoá thành công")
             dispatch(layDanhSachNguoiDungAction());
         } catch(errors) {

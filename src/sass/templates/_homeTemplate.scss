@@ -1,0 +1,20 @@
+#scrollTop {
+    position: fixed;
+    top: -100%;
+    right: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 2rem;
+    color: #fff !important;
+    background: #66bb5e;
+    z-index: 9999;
+    transition: top 1s ease, opacity .3s ease;
+    border-radius: .5rem;
+
+    &:hover {
+        opacity: .8;
+    }
+}
+
+#scrollTop.active {
+    top: calc(100% - 12rem);
+}

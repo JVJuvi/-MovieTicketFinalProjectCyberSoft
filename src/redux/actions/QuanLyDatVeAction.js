@@ -15,7 +15,6 @@ export const layChiTietPhongVeAcTion = (maLichChieu) => {
                 type: DISPPLAY_LOADING
             })
             const result = await quanLyDatVeService.layChiTietPhongVe(maLichChieu)
-            console.log('result', result.data);
             if(result.status === 200) {
                 dispatch({
                     type: LAY_CHI_TIET_DAT_VE,
@@ -25,7 +24,6 @@ export const layChiTietPhongVeAcTion = (maLichChieu) => {
             await dispatch({type: HIDE_LOADING})  
         } catch (error) {
             await dispatch({type: HIDE_LOADING})  
-            console.log('error', error.response?.data);
         }
     }
 }
@@ -39,7 +37,6 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
 
             const result = await quanLyDatVeService.datVe(thongTinDatVe)
             // const result = await http.post('/api/QuanLyDatVe/DatVe', thongTinDatVe)
-            console.log('result', result.data.content)
             // sau khi đặt vé thành công api load lại phòng vé
             await dispatch(layChiTietPhongVeAcTion(thongTinDatVe.maLichChieu))
             await dispatch(layThongTinNguoiDungDanNhapAction())
@@ -55,7 +52,6 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
             
         } catch (error) {
             dispatch({type: HIDE_LOADING})
-            console.log('error', error.response.data)
         }
     }
 }
@@ -72,9 +68,6 @@ export const datGheAction = (ghe, maLichChieu) => {
         let danhSachGheDangDat = getState().QuanLyDatVeReducer.danhSachGheDangDat;
         let taiKhoan = getState().QuanLyNguoiDungReducer.userLogin.taiKhoan;
         
-        console.log('danhSachGheDangDat',danhSachGheDangDat);
-        console.log('taiKhoan',taiKhoan);
-        console.log('maLichChieu',maLichChieu);
         //biến mảng thành chuổi trước khi vỏ vào invoke
         danhSachGheDangDat = JSON.stringify(danhSachGheDangDat);
 

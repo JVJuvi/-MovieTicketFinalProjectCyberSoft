@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import Grid from '../../../../components/Grid/Grid';
-import logo from '../../../../assets/images/imageFilm/logo.svg';
+import logo from '../../../../assets/images/imageFilm/movie-2-icon.png'
 import { useTranslation } from 'react-i18next';
 
 
@@ -105,7 +105,9 @@ export default function Footer() {
                     </div>
                     <div>
                         <div className="footer__logo">
-                            <img src={logo} alt="" />
+                            <Link to="/">
+                                <img src={logo} alt="" />Movie
+                            </Link>
                         </div>
                     </div>
                 </Grid>

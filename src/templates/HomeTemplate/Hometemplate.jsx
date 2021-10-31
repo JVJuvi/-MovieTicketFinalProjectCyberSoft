@@ -13,9 +13,20 @@ export const HomTemplate = (props) => {
         window.scrollTo(0, 0);
     })
 
+    // window.onscroll = () => {
+    //     if(window.scrollY > 80) {
+    //         document.querySelector('#scrollTop').classList.add('active');
+    //     }else {
+    //         document.querySelector('#scrollTop').classList.remove('active');
+    //     }
+    // }
+
+    
+
     return <Route path={props.path} render={(propsRoute) => {
         return <Fragment>
-            <Header/>    
+            <a href="#header" id="scrollTop"><i class='bx bx-up-arrow-alt'></i></a>
+            <Header id="header"/>    
             <ModalVideo />   
             <props.component {...propsRoute} />
             <Footer />
