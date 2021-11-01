@@ -21,9 +21,9 @@ export const layChiTietPhongVeAcTion = (maLichChieu) => {
                     payload: result.data.content
                 })
             }
-            await dispatch({type: HIDE_LOADING})  
+            await dispatch({type: HIDE_LOADING});
         } catch (error) {
-            await dispatch({type: HIDE_LOADING})  
+            await dispatch({type: HIDE_LOADING});
         }
     }
 }
